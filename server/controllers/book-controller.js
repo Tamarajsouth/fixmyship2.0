@@ -7,8 +7,14 @@ module.exports = {
     return res.json(books);
   },
   async saveBook(req, res) {
-    const savedBook = await Book.create(req.body);
-    return res.json(savedBook);
+    console.log(req.body);
+    try {
+      const savedBook = await Book.create(req.body);
+      return res.json(savedBook);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
   },
   async deleteBook(req, res) {
     const deletedBook = await Book.findOneAndRemove({ _id: req.params.id });
