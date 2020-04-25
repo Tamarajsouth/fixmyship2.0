@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useContext } from 'react';
 import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 
+import SavedBookContext from '../utils/SavedBookContext';
 import { saveBook, searchGoogleBooks } from '../utils/API';
 
 function SearchBooks() {
@@ -8,6 +9,11 @@ function SearchBooks() {
   const [searchedBooks, setSearchedBooks] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
+
+  // get saved books from app.js on load
+  const { books: savedBooks, getSavedBooks } = useContext(SavedBookContext);
+
+  console.log(savedBooks);
 
   // create method to search for books and set state on form submit
   const handleFormSubmit = (event) => {
@@ -41,7 +47,7 @@ function SearchBooks() {
 
     // send the books data to our api
     saveBook(bookToSave)
-      .then(() => console.log('book saved!'))
+      .then(() => getSavedBooks())
       .catch((err) => console.log(err));
   };
 
@@ -83,8 +89,13 @@ function SearchBooks() {
                   <Card.Title>{book.title}</Card.Title>
                   <p className='small'>Authors: {book.authors}</p>
                   <Card.Text>{book.description}</Card.Text>
-                  <Button className='btn-block btn-info' onClick={() => handleSaveBook(book.bookId)}>
-                    Save this Book!
+                  <Button
+                    disabled={savedBooks.some((savedBook) => savedBook.bookId === book.bookId)}
+                    className='btn-block btn-info'
+                    onClick={() => handleSaveBook(book.bookId)}>
+                    {savedBooks.some((savedBook) => savedBook.bookId === book.bookId)
+                      ? 'This book has already been saved!'
+                      : 'Save this Book!'}
                   </Button>
                 </Card.Body>
               </Card>
