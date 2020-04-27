@@ -13,8 +13,6 @@ function SearchBooks() {
   // get saved books from app.js on load
   const { books: savedBooks, getSavedBooks } = useContext(SavedBookContext);
 
-  console.log(savedBooks);
-
   // create method to search for books and set state on form submit
   const handleFormSubmit = (event) => {
     event.preventDefault();
