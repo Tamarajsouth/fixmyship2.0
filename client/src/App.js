@@ -5,34 +5,46 @@ import SavedBooks from './pages/SavedBooks';
 import Navbar from './components/Navbar';
 
 import * as API from './utils/API';
+import AuthService from './utils/auth';
 
 // import our context object for state
-import SavedBookContext from './utils/SavedBookContext';
+import UserInfoContext from './utils/UserInfoContext';
 
 function App() {
-  // create state for our saved
-  const [savedBookState, setSavedBookState] = useState({
-    books: [],
-    getSavedBooks: () => {
-      API.getSavedBooks().then(({ data }) => setSavedBookState({ ...savedBookState, books: data }));
+  const [userInfo, setUserInfo] = useState({
+    savedBooks: [],
+    username: '',
+    email: '',
+    bookCount: 0,
+    getUserData: () => {
+      const token = AuthService.loggedIn() ? AuthService.getToken() : null;
+
+      if (!token) {
+        return false;
+      }
+      API.getMe(token)
+        .then(({ data: { username, email, savedBooks, bookCount } }) =>
+          setUserInfo({ ...userInfo, username, email, savedBooks, bookCount })
+        )
+        .catch((err) => console.log(err));
     },
   });
-  // get saved books on load
+
   useEffect(() => {
-    savedBookState.getSavedBooks();
-  }, []);
+    userInfo.getUserData();
+  });
 
   return (
     <Router>
       <>
-        <Navbar />
-        <SavedBookContext.Provider value={savedBookState}>
+        <UserInfoContext.Provider value={userInfo}>
+          <Navbar />
           <Switch>
             <Route exact path='/' component={SearchBooks} />
             <Route exact path='/saved' component={SavedBooks} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           </Switch>
-        </SavedBookContext.Provider>
+        </UserInfoContext.Provider>
       </>
     </Router>
   );
