@@ -1,5 +1,7 @@
+// see SignupForm.js for comments
+
 import React, { useState, useContext } from 'react';
-import { Form, Button } from 'react-bootstrap';
+import { Form, Button, Alert } from 'react-bootstrap';
 
 import UserInfoContext from '../utils/UserInfoContext';
 import { loginUser } from '../utils/API';
@@ -8,6 +10,8 @@ import AuthService from '../utils/auth';
 function LoginForm({ handleModalClose }) {
   const [userFormData, setUserFormData] = useState({ username: '', password: '' });
   const [validated, setValidation] = useState(false);
+  const [showAlert, setShowAlert] = useState(false);
+  const [errorText, setErrorText] = useState('');
 
   const userData = useContext(UserInfoContext);
 
@@ -25,20 +29,26 @@ function LoginForm({ handleModalClose }) {
       e.stopPropagation();
     }
 
-    setValidation(true);
-
     loginUser(userFormData)
-      .then(({ data: { token } }) => {
-        AuthService.login(token);
+      .then(({ data }) => {
+        console.log(data);
+        AuthService.login(data.token);
         userData.getUserData();
         handleModalClose();
       })
-      .catch((err) => console.log(err));
+      .catch((err) => {
+        console.log(err.response);
+        setShowAlert(true);
+        setErrorText(err.response.data.message);
+      });
   };
 
   return (
     <>
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
+        <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+          {errorText || 'Something went wrong with your login credentials!'}
+        </Alert>
         <Form.Group>
           <Form.Label htmlFor='username'>Username</Form.Label>
           <Form.Control

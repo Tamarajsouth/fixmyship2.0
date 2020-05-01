@@ -8,6 +8,7 @@ import * as API from '../utils/API';
 import AuthService from '../utils/auth';
 
 function SavedBooks() {
+  // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
@@ -18,8 +19,8 @@ function SavedBooks() {
     if (!token) {
       return false;
     }
-    console.log('hi');
     API.deleteBook(bookId, token)
+      // upon succes, update user data to reflect book change
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));
   };
@@ -31,7 +32,7 @@ function SavedBooks() {
           <h1>Viewing saved books!</h1>
         </Container>
       </Jumbotron>
-      <Container fluid>
+      <Container>
         <h2>
           {userData.savedBooks.length
             ? `Viewing ${userData.savedBooks.length} saved books:`

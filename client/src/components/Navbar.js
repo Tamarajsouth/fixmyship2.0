@@ -8,7 +8,9 @@ import UserInfoContext from '../utils/UserInfoContext';
 import AuthService from '../utils/auth';
 
 function AppNavbar() {
+  // set modal display state
   const [showModal, setShowModal] = useState(false);
+  // get username out of context object to display in nav
   const { username } = useContext(UserInfoContext);
 
   return (
@@ -24,6 +26,7 @@ function AppNavbar() {
               <Nav.Link as={Link} to='/'>
                 Search For Books
               </Nav.Link>
+              {/* if user is logged in show saved books and logout */}
               {username ? (
                 <>
                   <Nav.Link as={Link} to='/saved'>
@@ -38,7 +41,9 @@ function AppNavbar() {
           </Navbar.Collapse>
         </Container>
       </Navbar>
+      {/* set modal data up */}
       <Modal size='lg' show={showModal} onHide={() => setShowModal(false)} aria-labelledby='signup-modal'>
+        {/* tab container to do either signup or login component */}
         <Tab.Container defaultActiveKey='login'>
           <Modal.Header closeButton>
             <Modal.Title id='signup-modal'>

@@ -11,12 +11,15 @@ import AuthService from './utils/auth';
 import UserInfoContext from './utils/UserInfoContext';
 
 function App() {
+  // set data to be used for UserInfoContext and make it available to all other components
   const [userInfo, setUserInfo] = useState({
     savedBooks: [],
     username: '',
     email: '',
     bookCount: 0,
+    // method to get user data after logging in
     getUserData: () => {
+      // if user's logged in get the token or return null
       const token = AuthService.loggedIn() ? AuthService.getToken() : null;
 
       if (!token) {
@@ -30,6 +33,7 @@ function App() {
     },
   });
 
+  // on load, get user data if a token exists
   useEffect(() => {
     userInfo.getUserData();
   });
@@ -37,6 +41,7 @@ function App() {
   return (
     <Router>
       <>
+        {/* wrap our entire app in context provider and provide userInfo state as value */}
         <UserInfoContext.Provider value={userInfo}>
           <Navbar />
           <Switch>
