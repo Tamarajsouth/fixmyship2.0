@@ -1,7 +1,8 @@
 import React, { useState, useContext } from 'react';
 import { Jumbotron, Container, Row, Col, Form, Button, Card, CardColumns } from 'react-bootstrap';
 
-import SavedBookContext from '../utils/SavedBookContext';
+import UserInfoContext from '../utils/UserInfoContext';
+import AuthService from '../utils/auth';
 import { saveBook, searchGoogleBooks } from '../utils/API';
 
 function SearchBooks() {
@@ -10,10 +11,7 @@ function SearchBooks() {
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
 
-  // get saved books from app.js on load
-  const { books: savedBooks, getSavedBooks } = useContext(SavedBookContext);
-
-  console.log(savedBooks);
+  const userData = useContext(UserInfoContext);
 
   // create method to search for books and set state on form submit
   const handleFormSubmit = (event) => {
@@ -45,9 +43,16 @@ function SearchBooks() {
     // find the book in `searchedBooks` state by the matching id
     const bookToSave = searchedBooks.find((book) => book.bookId === bookId);
 
+    // get token
+    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
+
+    if (!token) {
+      return false;
+    }
+
     // send the books data to our api
-    saveBook(bookToSave)
-      .then(() => getSavedBooks())
+    saveBook(bookToSave, token)
+      .then(() => userData.getUserData())
       .catch((err) => console.log(err));
   };
 
@@ -78,7 +83,7 @@ function SearchBooks() {
         </Container>
       </Jumbotron>
 
-      <Container fluid>
+      <Container>
         <h2>{searchedBooks.length ? `Viewing ${searchedBooks.length} results:` : 'Search for a book to begin'}</h2>
         <CardColumns>
           {searchedBooks.map((book) => {
@@ -89,14 +94,16 @@ function SearchBooks() {
                   <Card.Title>{book.title}</Card.Title>
                   <p className='small'>Authors: {book.authors}</p>
                   <Card.Text>{book.description}</Card.Text>
-                  <Button
-                    disabled={savedBooks.some((savedBook) => savedBook.bookId === book.bookId)}
-                    className='btn-block btn-info'
-                    onClick={() => handleSaveBook(book.bookId)}>
-                    {savedBooks.some((savedBook) => savedBook.bookId === book.bookId)
-                      ? 'This book has already been saved!'
-                      : 'Save this Book!'}
-                  </Button>
+                  {userData.username && (
+                    <Button
+                      disabled={userData.savedBooks?.some((savedBook) => savedBook.bookId === book.bookId)}
+                      className='btn-block btn-info'
+                      onClick={() => handleSaveBook(book.bookId)}>
+                      {userData.savedBooks?.some((savedBook) => savedBook.bookId === book.bookId)
+                        ? 'This book has already been saved!'
+                        : 'Save this Book!'}
+                    </Button>
+                  )}
                 </Card.Body>
               </Card>
             );

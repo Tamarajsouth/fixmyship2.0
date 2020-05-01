@@ -1,16 +1,6 @@
-const { Schema, model } = require('mongoose');
+const { Schema } = require('mongoose');
 
-// build book schema
-/* 
-{
-  authors: ["Suzanne Collins"]
-  description: "Set in a dark vision of the near future, a terrifying reality TV show is taking place. Twelve boys and twelve girls are forced to appear in a live event called The Hunger Games. There is only one rule: kill or be killed. When sixteen-year-old Katniss Everdeen steps forward to take her younger sister's place in the games, she sees it as a death sentence. But Katniss has been close to death before. For her, survival is second nature."
-  image: "http://books.google.com/books/content?id=sazytgAACAAJ&printsec=frontcover&img=1&zoom=1&source=gbs_api"
-  link: "http://books.google.com/books?id=sazytgAACAAJ&dq=title:The+Hunger+Games&hl=&source=gbs_api"
-  title: "The Hunger Games"
-}
-*/
-
+// This is a subdocument schema, it won't become its own model but we'll use it as the schema for the User's `savedBooks` array in User.js
 const bookSchema = new Schema({
   authors: [
     {
@@ -25,7 +15,6 @@ const bookSchema = new Schema({
   bookId: {
     type: String,
     required: true,
-    unique: true,
   },
   image: {
     type: String,
@@ -39,6 +28,4 @@ const bookSchema = new Schema({
   },
 });
 
-const Book = model('Book', bookSchema);
-
-module.exports = Book;
+module.exports = bookSchema;
