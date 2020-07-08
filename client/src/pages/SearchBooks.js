@@ -10,6 +10,7 @@ function SearchBooks() {
   const [searchedBooks, setSearchedBooks] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
+  // create state for holding our tag data... or is that above...
 
   const userData = useContext(UserInfoContext);
 
@@ -55,6 +56,13 @@ function SearchBooks() {
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));
   };
+
+const clickTag = () => {
+  // what do I need as a parameter?
+
+
+}
+
 
   return (
     <>
@@ -115,3 +123,36 @@ function SearchBooks() {
 }
 
 export default SearchBooks;
+
+
+// Gorm's Workspace
+
+/*
+
+Will Need:
+ * A method that is called when a tag is clicked
+    - api call: will get information from database about that tag...
+      : api call returns an array of posts that contai nthat tag
+      : fills out a new container with a bunch of posts, should be sorted by date... or something
+      :hides the other containers open
+
+
+NOTES: I need to create a sorting algorithm. https://www.cs.cmu.edu/~adamchik/15-121/lectures/Sorting%20Algorithms/sorting.html
+
+
+
+
+
+
+
+
+
+
+  // get token
+    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
+    if (!token) {
+      return false;
+    }
+
+
+*/
