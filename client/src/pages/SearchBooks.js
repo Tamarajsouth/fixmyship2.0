@@ -57,8 +57,20 @@ function SearchBooks() {
       .catch((err) => console.log(err));
   };
 
-const clickTag = () => {
+const clickTag = (tagName) => {    //occurs onclick of any tag
   // what do I need as a parameter?
+  //tagname needs to be switched out with a parameter from the specific component... 
+  
+  
+  //calls an API function that 
+  /* getPosts(tagName)
+    .then(() => xxx_unknownMethodGoesHere...
+    )
+    .catch((err) => console.log(err));
+
+      */
+
+
 /*
   Will Need:
  * Each tag will be a component on the right side of the screen. when that component is clicked
@@ -187,7 +199,7 @@ NOTES: I need to create a sorting algorithm. https://www.cs.cmu.edu/~adamchik/15
 setSearchInput hook for setting 
 will we need useEffect from react?
 
-
+keys of the Posts/shortPosts components will need to match up with the Posts ids in database...
 
 
 
