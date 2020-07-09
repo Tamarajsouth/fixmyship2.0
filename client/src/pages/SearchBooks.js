@@ -10,7 +10,7 @@ function SearchBooks() {
   const [searchedBooks, setSearchedBooks] = useState([]);
   // create state for holding our search field data
   const [searchInput, setSearchInput] = useState('');
-  // create state for holding our tag data... or is that above...
+  // we ought to be able to use the above to hold the search results from clicking on a tag!
 
   const userData = useContext(UserInfoContext);
 
@@ -59,7 +59,33 @@ function SearchBooks() {
 
 const clickTag = () => {
   // what do I need as a parameter?
+/*
+  Will Need:
+ * Each tag will be a component on the right side of the screen. when that component is clicked
+    1. API call uses that components text value (title, etc) as a database query
+      - db.posts.find({tags : "exampleTag"})
+      - ...unrelated note, an "ExampleTag" would be a fun way to have instructions and clarifications on how to use the app show up! 
+      - ...we could pin the ExampleTag as the first category (out of alphabetical order) so that instructions are always available
+      - Database: right now database is a collection of users with id,username,email and a saved books array
+      -> We need to add a posts collection and make it a many-to-one relationship with users
+        - that way posts remain if a user is deleted
+        - need to determine if users can post anonymously
+      - we will change savedbooks into posts... but as a... relationship 
+    2. Database Query returns all the Posts that meet the query
+    3. Posts will be mapped onto components (called "ShortPost" or "PostSummary" for example, to differentiate it from viewing a single post)
+    4. clicking on the ShortPost will send the user to a new page where the post and comments can be seen
+    OH GODS HOW WILL WE DO COMMENTS?
+      - as an array within post! simple!...?
+   
 
+ * A method that is called when a tag is clicked
+    - api call: will get information from database about that tag...
+      : api call returns an array of posts that contain that tag
+      : fills out a new container with a bunch of posts, should be sorted by date... or something
+      :hides the other containers open
+  ..\\
+
+  */
 
 }
 
@@ -130,17 +156,36 @@ export default SearchBooks;
 /*
 
 Will Need:
+ * Each tag will be a component on the right side of the screen. when that component is clicked
+    1. API call uses that components text value (title, etc) as a database query
+      - db.posts.find({tags : "exampleTag"})
+      - ...unrelated note, an "ExampleTag" would be a fun way to have instructions and clarifications on how to use the app show up! 
+      - ...we could pin the ExampleTag as the first category (out of alphabetical order) so that instructions are always available
+      - Database: right now database is a collection of users with id,username,email and a saved books array
+      -> We need to add a posts collection and make it a many-to-one relationship with users
+        - that way posts remain if a user is deleted
+        - need to determine if users can post anonymously
+      - we will change savedbooks into posts... but as a... relationship 
+    2. Database Query returns all the Posts that meet the query
+    3. Posts will be mapped onto components (called "ShortPost" or "PostSummary" for example, to differentiate it from viewing a single post)
+    4. clicking on the ShortPost will send the user to a new page where the post and comments can be seen
+    OH GODS HOW WILL WE DO COMMENTS?
+      - as an array within post! simple!...?
+   
+
  * A method that is called when a tag is clicked
     - api call: will get information from database about that tag...
-      : api call returns an array of posts that contai nthat tag
+      : api call returns an array of posts that contain that tag
       : fills out a new container with a bunch of posts, should be sorted by date... or something
       :hides the other containers open
+  ..\\
 
+  * 
 
 NOTES: I need to create a sorting algorithm. https://www.cs.cmu.edu/~adamchik/15-121/lectures/Sorting%20Algorithms/sorting.html
 
-
-
+setSearchInput hook for setting 
+will we need useEffect from react?
 
 
 
