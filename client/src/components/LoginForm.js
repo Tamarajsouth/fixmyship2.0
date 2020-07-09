@@ -46,36 +46,36 @@ function LoginForm({ handleModalClose }) {
   return (
     <>
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
-        <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='danger'>
+        <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='light'>
           {errorText || 'Something went wrong with your login credentials!'}
         </Alert>
         <Form.Group>
-          <Form.Label htmlFor='username'>Username</Form.Label>
+          <Form.Label htmlFor='username'></Form.Label>
           <Form.Control
             type='text'
-            placeholder='Your username'
+            placeholder='username'
             name='username'
             onChange={handleInputChange}
             value={userFormData.username}
             required
           />
-          <Form.Control.Feedback type='invalid'>Username is required!</Form.Control.Feedback>
+          <Form.Control.Feedback type='invalid'>username is required!</Form.Control.Feedback>
         </Form.Group>
 
         <Form.Group>
-          <Form.Label htmlFor='password'>Password</Form.Label>
+          <Form.Label htmlFor='password'></Form.Label>
           <Form.Control
             type='password'
-            placeholder='Your password'
+            placeholder='password'
             name='password'
             onChange={handleInputChange}
             value={userFormData.password}
             required
           />
-          <Form.Control.Feedback type='invalid'>Password is required!</Form.Control.Feedback>
+          <Form.Control.Feedback type='invalid'>password is required!</Form.Control.Feedback>
         </Form.Group>
-        <Button disabled={!(userFormData.username && userFormData.password)} type='submit' variant='success'>
-          Submit
+        <Button disabled={!(userFormData.username && userFormData.password)} type='submit' variant='light'>
+          submit
         </Button>
       </Form>
     </>

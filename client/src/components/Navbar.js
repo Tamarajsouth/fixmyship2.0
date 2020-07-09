@@ -1,11 +1,13 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Nav, Container, Modal, Tab } from 'react-bootstrap';
+import { Navbar, Nav, Container, Modal, Tab, Card } from 'react-bootstrap';
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
 
 import UserInfoContext from '../utils/UserInfoContext';
 import AuthService from '../utils/auth';
+
+import "./navbarStyle.css";
 
 function AppNavbar() {
   // set modal display state
@@ -15,27 +17,27 @@ function AppNavbar() {
 
   return (
     <>
-      <Navbar bg='dark' variant='dark' expand='lg'>
-        <Container fluid>
-          <Navbar.Brand as={Link} to='/'>
-            Google Books Search
-          </Navbar.Brand>
+      <Navbar bg='light' variant='light' expand='lg'>
+        <Container>
+          <Navbar className="nav-main" as={Link} to='/'>
+            Fix My 'Ship
+          </Navbar>
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto'>
-              <Nav.Link as={Link} to='/'>
-                Search For Books
-              </Nav.Link>
+              {/* <Nav.Link as={Link} to='/'>
+                profile
+              </Nav.Link> */}
               {/* if user is logged in show saved books and logout */}
               {username ? (
                 <>
                   <Nav.Link as={Link} to='/saved'>
-                    See {username}'s Books
+                    view {username}'s profile
                   </Nav.Link>
-                  <Nav.Link onClick={AuthService.logout}>Logout</Nav.Link>
+                  <Nav.Link onClick={AuthService.logout}>logout</Nav.Link>
                 </>
               ) : (
-                <Nav.Link onClick={() => setShowModal(true)}>Login/Sign Up</Nav.Link>
+                <Nav.Link onClick={() => setShowModal(true)}>login | sign up</Nav.Link>
               )}
             </Nav>
           </Navbar.Collapse>
@@ -49,10 +51,10 @@ function AppNavbar() {
             <Modal.Title id='signup-modal'>
               <Nav variant='pills'>
                 <Nav.Item>
-                  <Nav.Link eventKey='login'>Login</Nav.Link>
+                  <Nav.Link eventKey='login'>login</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey='signup'>Sign Up</Nav.Link>
+                  <Nav.Link eventKey='signup'>sign up</Nav.Link>
                 </Nav.Item>
               </Nav>
             </Modal.Title>
@@ -69,6 +71,20 @@ function AppNavbar() {
           </Modal.Body>
         </Tab.Container>
       </Modal>
+      <Card className='footer mt-auto py-3 bg-light text-white'>
+        <div className='container'>
+          <div className="line line-1">
+        <div className="wave wave1"></div>
+      </div>
+      HELLO
+      <div className="line line-2">
+        <div className="wave wave2"></div>
+      </div>
+      <div className="line line-3">
+        <div className="wave wave3"></div>
+      </div>
+    </div>
+      </Card>
     </>
   );
 }
