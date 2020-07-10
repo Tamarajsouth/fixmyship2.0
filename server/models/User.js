@@ -22,7 +22,7 @@ const userSchema = new Schema(
       required: true,
     },
     // set savedBooks to be an array of data that adheres to the bookSchema
-    savedPosts: [bookSchema],
+    savedBook: [bookSchema],
   },
   // set this to use virtual below
   {
@@ -49,7 +49,7 @@ userSchema.methods.isCorrectPassword = async function (password) {
 
 // when we query a user, we'll also get another field called `bookCount` with the number of saved books we have
 userSchema.virtual('postCount').get(function () {
-  return this.savedPosts.length;
+  return this.savedBook.length;
 });
 
 const User = model('User', userSchema);
