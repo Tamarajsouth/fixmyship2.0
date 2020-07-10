@@ -36,3 +36,14 @@ export const deleteBook = function (bookId, token) {
 export const searchGoogleBooks = function (query) {
   return axios.get('https://www.googleapis.com/books/v1/volumes', { params: { q: query } });
 };
+
+
+/*
+estimated function:
+
+export const getPosts = function (TagName) {
+  return axios.get(`/api/tags/${TagName}`);
+};
+
+
+*/
