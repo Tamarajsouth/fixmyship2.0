@@ -3,11 +3,18 @@ const {
   createUser,
   getAllUsers,
   getSingleUser,
-  savePost,
-  deletePost,
-  editPost,
+  saveBook,    //new
+  deleteBook,   //new
   login,
 } = require('../../controllers/user-controller');
+
+
+// const {
+// savePost,    //new
+// deletePost,   //new
+// editPost,   //new
+// } = require('../../controllers/post-controller');
+
 
 // import middleware
 const { authMiddleware } = require('../../utils/auth');
@@ -21,6 +28,13 @@ router.route('/me').get(authMiddleware, getSingleUser);
 
 router.route('/:username').get(getSingleUser);
 
-router.route('/books/:id').delete(authMiddleware, deletePost);
+router.route('/books/:id').delete(authMiddleware, deleteBook);
+
+//add new routes here (?)
+
+//router.route('/tags/:tagName)
 
 module.exports = router;
+
+
+//consider whether we should create a new file called "blogpost-routes"
