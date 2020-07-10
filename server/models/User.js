@@ -21,18 +21,11 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-
-    
-    posts: [  //this will be posts!
-      {
-        type: Schema.Types.ObjectId,
-        ref: "Post"
-      }
-    ],
-
     // set savedBooks to be an array of data that adheres to the bookSchema
     savedBooks: [bookSchema],
-  },
+    gravatarUrl: String,
+  },  //schema object closes here!
+
   // set this to use virtual below
   {
     toJSON: {
