@@ -5,7 +5,11 @@ const PostSchema = new Schema({
   title: String,
   body: String, //may need a longer variable type
   summary: String, //this could be a splice from the body
-  authorId: String,   //this might be a int, but need to check mongoose doc
+  posterId: String,   //this might be a int, but need to check mongoose doc
+  //datecreated and lastupdated... research that because I think its automatic
+
+//need to be able to figure out how to join this and track users own posts
+//add reference later
 
   tags: [
     {
