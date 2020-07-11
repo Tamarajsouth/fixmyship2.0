@@ -47,3 +47,9 @@ export const getPosts = function (TagName) {
 
 
 */
+
+export const getTest = function () {
+  return axios.get(`/api/users/test`);
+  //does index make the /api/users  part appear in front of everything in user-routes?
+  //maybe try '/test' if above fails
+};
