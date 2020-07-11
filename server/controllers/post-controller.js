@@ -1,28 +1,31 @@
-const { Post } = require('../models');
+const {Post} = require('../models');
 // figure out how signin works...
 //once this works we will add the signToken, etc
 
 
 module.exports = {
   async testGet(req, res) {
-    testObject = { 
-      "title" : "Muffin Man",
-    "body" : "This man keeps tryign to sell me muffins. Is he into me?",
-    "summary" : "not implemented",
-    "tags" : ["BadQuestion", "Hot Muffins"],
-  }
-    return res.json(testObject);
+    console.log("Wee")
+    // const posts = await Post.find();
+    // return res.json(post);
+       //nothing in db...
+    
   },
 
     async getPost(req, res) { // make into get function
+
+      // const foundPost = await Post.findOne({   //db.find...
+        //req.title ?
+      // });
+
     return res.json("test");
   },
 
-  async editPost(req, res) {  //  not sure how this will work?
+  async editPost(req, res) {  //  not sure how this will work? -put
     return res.json("test");
   },
 
-  async savePost(req, res) {  // not sure how this will work
+  async savePost(req, res) {  // not sure how this will work -post
     return res.json("test");
   }
 
