@@ -64,7 +64,7 @@ function SearchBooks() {
   // //  I need to figure out how to make tags set properly. Instead, I am using some temporary tags
   // console.log(tempTags)
   // }
-  const [tempTags, setTempTags] = useState(["testTag1", "TestTag2"]);
+  const [tempTags, setTempTags] = useState(["testTag1", "TestTag2"]); //switch this out with a function that gets tags from an api-call
   const clickTag = event => {                                                   //Working - GORM
     //should be set to activate "onClick" for each tag
     //... we might need to create a new model for tags... so that tags are easily searchable and can be pulled up in a container here
