@@ -5,7 +5,7 @@ export const getAllUsers = function () {
 };
 
 // route to get logged in user's info (needs the token)
-export const getMe = function (token) {
+export const getMe = function (token) { //is this working at all
   return axios.get('/api/users/me', { headers: { authorization: `Bearer ${token}` } });
 };
 

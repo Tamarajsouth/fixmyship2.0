@@ -5,17 +5,43 @@ const {Post} = require('../models');
 
 module.exports = {
   async testGet(req, res) {
-    console.log("Wee")
+    console.log("Hello Server")
     // const posts = await Post.find();
     // return res.json(post);
        //nothing in db...
     
+
+
+
+
+
   },
+
+// everything below this
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     async getPost(req, res) { // make into get function
 
       // const foundPost = await Post.findOne({   //db.find...
-        //req.title ?
+      //   req.title ?
       // });
 
     return res.json("test");
