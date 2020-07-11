@@ -11,7 +11,7 @@ import {
 
 import UserInfoContext from "../utils/UserInfoContext";
 import AuthService from "../utils/auth";
-import { saveBook, searchGoogleBooks, getTest } from "../utils/API";
+import { saveBook, searchGoogleBooks, getTest, getAllTags } from "../utils/API";
 
 import "./searchBooksStyle.css";
 
