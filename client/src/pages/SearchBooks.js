@@ -80,6 +80,7 @@ function SearchBooks() {
     //...this need to relearn USeContext to do this.
     console.log("button clicked");  //why is this running on render instead of click?
     getTest();
+    // getAllTags();
       //troubleshooting this particular function!
   };
 

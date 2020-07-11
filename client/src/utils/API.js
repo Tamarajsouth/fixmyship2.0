@@ -58,5 +58,7 @@ export const getTest = function () {
 };
 
 export const getAllTags = function () {
-  return axios.get('/api/tags.all');
+ console.log("getting tags from server");
+  return axios.get('/api/tags/all');
+  
 };
