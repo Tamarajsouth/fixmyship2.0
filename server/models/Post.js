@@ -14,7 +14,7 @@ const PostSchema = new Schema({
   tags: [
     {
       type: String,
-
+      //add relationships later
     },
   ]
 

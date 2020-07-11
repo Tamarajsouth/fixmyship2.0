@@ -26,8 +26,8 @@ function App() {
         return false;
       }
       API.getMe(token)
-        .then(({ data: { username, email, savedBooks, bookCount } }) =>
-          setUserInfo({ ...userInfo, username, email, savedBooks, bookCount })
+        .then(({ data: { username, email } }) =>
+          setUserInfo({ ...userInfo, username, email })
         )
         .catch((err) => console.log(err));
     },

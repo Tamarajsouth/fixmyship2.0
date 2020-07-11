@@ -6,14 +6,11 @@ const {
   saveBook,    //new
   deleteBook,   //new
   login,
+
 } = require('../../controllers/user-controller');
 
 
-// const {
-// savePost,    //new
-// deletePost,   //new
-// editPost,   //new
-// } = require('../../controllers/post-controller');
+
 
 
 // import middleware
@@ -30,9 +27,7 @@ router.route('/:username').get(getSingleUser);
 
 router.route('/books/:id').delete(authMiddleware, deleteBook);
 
-//add new routes here (?)
 
-//router.route('/tags/:tagName)
 
 module.exports = router;
 
