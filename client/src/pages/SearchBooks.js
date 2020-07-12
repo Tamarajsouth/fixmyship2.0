@@ -1,4 +1,4 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, useEffect } from "react";
 import {
   Container,
   Row,
@@ -18,6 +18,36 @@ import "./searchBooksStyle.css";
 
 // BOOK RELATE FUCNTIONS - keep for reference!  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 function SearchBooks() {
+
+//need to make this an async function that gets the tags...
+
+  //need to grab and return api data for tags
+  // https://reactjs.org/docs/hooks-reference.html#usecontext
+  // I am trying to figure out how to put tags as a variable, in state, that can be used to load the tag components
+  // right now tempTags loads some buttons. so we should updte those, and then use the code to make real tags
+  // let myTags;
+  const [tempTags, setTempTags] = useState(["testTag1", "TestTag2"]); //switch this out with a function that gets tags from an api-call
+
+
+// I need to figure out how to mkae something run at the beginning... and set the tags to that...
+//  useEffect!
+
+useEffect(() => {
+//   // For demonstration purposes, we mock an API call.
+  getAllTags()
+  .then((res) => {
+    console.log(res.data[0].tagName);
+    console.log(res.data[0]._id);
+    setTempTags([res.data[0].tagName]); //good! now make it grab an array instead of the first object in array!
+// // need to make an array from this data, then put it into the state...
+// //can put objects in state, so I can pass the tagname and id !
+console.log(tempTags);
+  });
+}, []);
+
+// ~~~~~~~~~~~
+
+
   // create state for holding returned google api data
   const [searchedBooks, setSearchedBooks] = useState([]);
   // create state for holding our search field data
@@ -64,7 +94,7 @@ function SearchBooks() {
   // //  I need to figure out how to make tags set properly. Instead, I am using some temporary tags
   // console.log(tempTags)
   // }
-  const [tempTags, setTempTags] = useState(["testTag1", "TestTag2"]); //switch this out with a function that gets tags from an api-call
+
   const clickTag = event => {                                                   //Working - GORM
     //should be set to activate "onClick" for each tag
     //... we might need to create a new model for tags... so that tags are easily searchable and can be pulled up in a container here
@@ -139,14 +169,14 @@ function SearchBooks() {
         <h1>Tamara Please dont kill me, I swear this is temporary!</h1>
 
         <div>
-          {/* this should benicely formated eventually */}
+          {/* this should be nicely formated eventually */}
           {/* tags.map */}
           {tempTags.map((TTag) => {
             return (
               // needs to return something with a value to read...
 
               <button onClick={() => {clickTag()}}> {TTag} </button>
-              
+              // <h1>test</h1>
             );
 
           })}
