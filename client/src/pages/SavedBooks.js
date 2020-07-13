@@ -7,6 +7,8 @@ import UserInfoContext from '../utils/UserInfoContext';
 import * as API from '../utils/API';
 import AuthService from '../utils/auth';
 
+import "./style.css";
+
 function SavedBooks() {
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
@@ -27,17 +29,17 @@ function SavedBooks() {
 
   return (
     <>
-      <Jumbotron fluid className='text-light bg-dark'>
+      <Jumbotron fluid className='text-dark bg-light'>
         <Container>
-          <h1>Viewing saved books!</h1>
+          <h1 className='viewing-liked'><i class="fas fa-heart"></i>  viewing liked posts!  <i class="fas fa-heart"></i></h1>
         </Container>
       </Jumbotron>
       <Container>
-        <h2>
+        {/* <h2 classname="saved-message">
           {userData.savedBooks.length
             ? `Viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? 'book' : 'books'}:`
-            : 'You have no saved books!'}
-        </h2>
+            : 'you have no liked posts!'}
+        </h2> */}
         <CardColumns>
           {userData.savedBooks.map((book) => {
             return (

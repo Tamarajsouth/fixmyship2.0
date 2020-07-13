@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import SearchBooks from './pages/SearchBooks';
 import SavedBooks from './pages/SavedBooks';
 import Navbar from './components/Navbar';
+import About from './pages/About';
 
 import * as API from './utils/API';
 import AuthService from './utils/auth';
@@ -47,6 +48,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={SearchBooks} />
             <Route exact path='/saved' component={SavedBooks} />
+            <Route exact path='/about' component={About} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           </Switch>
         </UserInfoContext.Provider>

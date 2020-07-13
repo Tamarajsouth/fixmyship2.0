@@ -1,13 +1,13 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Nav, Container, Modal, Tab, Card } from 'react-bootstrap';
+import { Navbar, Nav, Container, Modal, Tab, Card, Image, Col } from 'react-bootstrap';
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
 
 import UserInfoContext from '../utils/UserInfoContext';
 import AuthService from '../utils/auth';
 
-import "./navbarStyle.css";
+import "./style.css";
 
 function AppNavbar() {
   // set modal display state
@@ -18,6 +18,8 @@ function AppNavbar() {
   return (
     <>
       <Navbar bg='light' variant='light' expand='lg'>
+      <Col>
+          <Image className="logo1" src={require("./assets/img/logo1.png")}/></Col>
         <Container>
           <Navbar className="nav-main" as={Link} to='/'>
             Fix My 'Ship
@@ -73,15 +75,18 @@ function AppNavbar() {
       </Modal>
       <Card className='footer mt-auto py-3 bg-light text-white'>
         <div className='container'>
+        <Navbar className="about-footer" as={Link} to='/about'>
+        <i class="fas fa-info-circle"></i>
+          </Navbar>
           <div className="line line-1">
         <div className="wave wave1"></div>
       </div>
-      HELLO
       <div className="line line-2">
         <div className="wave wave2"></div>
       </div>
       <div className="line line-3">
-        <div className="wave wave3"></div>
+        <div className="wave wave3">
+        </div>
       </div>
     </div>
       </Card>
