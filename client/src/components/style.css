@@ -23,7 +23,25 @@
   color: black !important;
   text-decoration: none;
 }
-/* FOOTER */
+.logo1{
+  height: 50px;
+  align-content: center;
+}
+/* FOOTER THINGS */
+.about-footer{
+  position: fixed;
+  display: inline-block;
+  opacity: 1;
+  z-index: 100;
+  bottom:0;
+  right: 20px;
+  border: none;
+}
+
+.fas{
+  color: black
+}
+
 .footer{
   position:absolute;
   height: 200px;
@@ -32,6 +50,7 @@
   right:0;
   border: none;
 }
+
 .line-1{
   z-index: 15;
   opacity: 0.5;
