@@ -31,5 +31,3 @@ router.route('/books/:id').delete(authMiddleware, deleteBook);
 
 module.exports = router;
 
-
-//consider whether we should create a new file called "blogpost-routes"
