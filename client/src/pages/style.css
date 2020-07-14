@@ -29,8 +29,21 @@
 .about-card-1{
     width: 50%;
     align-self: center;
-    font-family: "Work Sans", sans-serif;
+    font-family: "Pacifico", cursive;
 }
+
+/* WELCOME - SEARCH FOR: */
+.welcome-heading{
+    font-size: x-large;
+    font-family: "Pacifico", cursive;
+    text-align: center;
+}
+.welcome-text{
+    width: 100%;
+    font-family: "Work Sans", sans-serif;
+    text-align: center;
+}
+
 
 /* POSTS / CARDS */
 .post-card{

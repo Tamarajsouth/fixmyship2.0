@@ -1,19 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Form,
-  Button,
-  Card,
-  CardColumns,
-} from "react-bootstrap";
-
+import { Container, Row, Col, Form, Button, Card, CardColumns } from "react-bootstrap";
 import UserInfoContext from "../utils/UserInfoContext";
 import AuthService from "../utils/auth";
 import { saveBook, searchGoogleBooks, getTest, getAllTags } from "../utils/API";
 
-import "./searchBooksStyle.css";
+import "./style.css";
 
 
 // BOOK RELATE FUCNTIONS - keep for reference!  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -124,19 +115,13 @@ const clickTag = event => {                                                   //
 return (
   <>
     <hr></hr>
-    <Card fluid className="welcome">
+    <Card.Body className="welcome-heading">Welcome!</Card.Body>
       <Container>
-        <h1 className="welcome">
-          {/* Hi there. Yes, you with the burning relationship questions you’re
-            too worried to ask your friends about. We saw you low-key checking
-            google for relationship advice like, “Am I a terrible friend because
-            I get jealous?” and “Is snooping on my S.O. okay…sometimes?” We’ll
-            admit it, Google is great for most things, like research papers and
-            cat videos but, relationship advice? Not so much. */}
+        <p className="welcome-text">
             Welcome to Fix My 'Ship, the relationship forum where real
             people give other people real advice.
             Sink or swim...only you can decide.
-          </h1>
+          </p>
         <Form onSubmit={handleFormSubmit}>
           <Form.Row>
             <Col xs={12} md={8}>
@@ -157,12 +142,9 @@ return (
           </Form.Row>
         </Form>
       </Container>
-    </Card>
 
     <Container>
       {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
-      <h1>Tamara Please dont kill me, I swear this is temporary!</h1>
-
       <div>
         {/* this should be nicely formated eventually */}
         {/* tags.map */}
