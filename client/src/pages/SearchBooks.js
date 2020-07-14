@@ -37,8 +37,8 @@ function SearchBooks() {
         // Line 40:5:  React Hook useEffect has a missing dependency: 'userInfo'. Either include it or remove the dependency array
       })
       //add error handling here
-      .catch(err => console.log(err));
-      ;
+      .catch(err => console.log("No tags found. Please add tags to database")); //not sure if this is catching the error.
+      
   }, []);
 
   // ~~~~~~~~~~~
