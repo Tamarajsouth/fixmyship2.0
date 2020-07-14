@@ -20,7 +20,6 @@ import "./searchBooksStyle.css";
 function SearchBooks() {
 
   //this should initialize tags in the state
-
   const [Tags, setTags] = useState(["tagsNotFound"]);
   //this is grabbing the first tag from an apicall to the server. Needs to grab more than one...
   useEffect(() => {
@@ -29,7 +28,7 @@ function SearchBooks() {
         let tagObject = [];
         res.data.map((tagData) => {
           // need to make this part into an object with 
-          let workingTag = {_id: tagData._id, tagName: tagData.tagName} 
+          let workingTag = { _id: tagData._id, tagName: tagData.tagName }
           tagObject.push(workingTag);
         });
         setTags(tagObject);
@@ -38,7 +37,7 @@ function SearchBooks() {
       })
       //add error handling here
       .catch(err => console.log("No tags found. Please add tags to database")); //not sure if this is catching the error.
-      
+
   }, []);
 
   // ~~~~~~~~~~~
@@ -87,23 +86,28 @@ function SearchBooks() {
   // END OF BOOKS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
   // BEGIN TAGS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
+  const [articles, setArticles] = useState([]);
   const clickTag = event => {                                                   //Working - GORM
     //should be set to activate "onClick" for each tag
     //... we might need to create a new model for tags... so that tags are easily searchable and can be pulled up in a container here
-
     // call api --> search database for specific tag
     //  - tag should be located within the component being clicked on. We should be able to grab this with something like "event.target.tagName"
-
     //return component via map!
     //need to create component in render...
-
     //BETTER WAY TO DO THIS: there is a component called BlogPosts (etc). That component displays all BlogPosts. 
     // this function here will simply set the tempTag/Tag state to the clicked 
     //...this need to relearn USeContext to do this.
     console.log("button clicked");  //why is this running on render instead of click?
-    getTest();
- 
-    //troubleshooting this particular function!
+    getTest()
+    // .then((articleData) => {
+    //   console.log("articleData");
+    //   //setArticles()
+    // })
+    // .catch((err) => console.log(err))
+    ;  // how do I get res from this?
+
+    // .then ( display some post summaries)
+    //if we have a section full of posts, this could simply set the state for that!
   };
 
   // END TAGS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
