@@ -1,0 +1,102 @@
+.viewing-liked{
+    font-size: x-large;
+    font-family: "Pacifico", cursive;
+    text-align: center;
+}
+.no-saved-message{
+    font-size: large;
+    font-family: "Work Sans", sans-serif;
+    text-align: center;
+}
+
+/* ABOUT THINGS */
+.about-header{
+    text-align: center;
+    font-family: "Work Sans", sans-serif;
+}
+.about-body{
+    text-align: center;
+    font-family: "Work Sans", sans-serif;
+}
+.about-site{
+    text-align: center;
+    font-family: "Work Sans", sans-serif;
+}
+.about-site-heading{
+    text-align: center;
+    font-family: "Pacifico", cursive;
+}
+.about-card-1{
+    width: 50%;
+    align-self: center;
+    font-family: "Pacifico", cursive;
+}
+
+/* WELCOME - SEARCH FOR: */
+.welcome-heading{
+    font-size: x-large;
+    font-family: "Pacifico", cursive;
+    text-align: center;
+}
+.welcome-text{
+    width: 100%;
+    font-family: "Work Sans", sans-serif;
+    text-align: center;
+}
+
+
+/* POSTS / CARDS */
+.post-card{
+    width:75%;
+    align-self: center;
+    padding: 10px;
+}
+.post-subject{
+    font-family: "Work Sans", sans-serif;
+    font-style: initial;
+}
+.username{
+    font-family: "Work Sans", sans-serif;
+}
+.heart-btn{
+    background-color: rgb(216, 216, 216);
+    border: 0px;
+    border-style: none;
+}
+.heart-btn:hover{
+    background-color: rgb(155, 127, 255);
+}
+.comment-btn{
+    background-color: rgb(216, 216, 216);
+    border: 0px;
+    border-style: none;
+}
+.comment-btn:hover{
+    background-color: rgb(155, 127, 255);
+}
+
+/* RULES PAGE */
+.rules-card-1{
+    width:75%;
+    align-self: center;
+    padding: 10px;
+}
+.rules-heading{
+    text-align: center;
+    font-family: "Pacifico", cursive;
+}
+.rules-body{
+    font-family: "Work Sans", sans-serif;
+    font-size: medium;
+    text-align: justify;
+}
+.rule-items{
+    font-size: normal;
+    text-align: center;
+}
+.rules-link{
+    text-decoration: none !important;
+}
+.rules-link:hover{
+    color: #ec4f4f;
+}
