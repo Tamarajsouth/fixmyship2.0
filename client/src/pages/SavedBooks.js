@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
+import { Jumbotron, Container, Card, Button } from 'react-bootstrap';
 
 // import context for global state
 import UserInfoContext from '../utils/UserInfoContext';
@@ -35,12 +35,51 @@ function SavedBooks() {
         </Container>
       </Jumbotron>
       <Container>
+        <Card>
+        <Card.Body className="post-card">
+          <Card.Title className="post-subject">Post Subject</Card.Title>
+          <p className="username">posted by:</p>
+          <Card.Text>Body of text Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+            labore et dolore magna aliqua. In metus vulputate eu scelerisque felis imperdiet proin. Ac felis donec et odio pellentesque diam. 
+            Massa ultricies mi quis hendrerit dolor magna. Nulla facilisi nullam vehicula ipsum a arcu. Tristique senectus et netus et malesuada 
+            fames ac. Enim sit amet venenatis urna cursus eget nunc. Lacus sed viverra tellus in. Tempus egestas sed sed risus pretium quam vulputate. Arcu vitae elementum curabitur vitae. 
+            Vestibulum rhoncus est pellentesque elit ullamcorper. Augue mauris augue neque gravida.</Card.Text>
+            <Button className="heart-btn"><i class="fas fa-heart"></i> like</Button><span>   </span>
+            <Button className="comment-btn"><i class="fas fa-comment-dots"></i> comment</Button>
+        </Card.Body>
+        </Card>
+        <Card>
+        <Card.Body className="post-card">
+          <Card.Title className="post-subject">Post Subject</Card.Title>
+          <p className="username">posted by:</p>
+          <Card.Text>Body of text Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+            labore et dolore magna aliqua. In metus vulputate eu scelerisque felis imperdiet proin. Ac felis donec et odio pellentesque diam. 
+            Massa ultricies mi quis hendrerit dolor magna. Nulla facilisi nullam vehicula ipsum a arcu. Tristique senectus et netus et malesuada 
+            fames ac. Enim sit amet venenatis urna cursus eget nunc. Lacus sed viverra tellus in. Tempus egestas sed sed risus pretium quam vulputate. Arcu vitae elementum curabitur vitae. 
+            Vestibulum rhoncus est pellentesque elit ullamcorper. Augue mauris augue neque gravida.</Card.Text>
+            <Button className="heart-btn"><i class="fas fa-heart"></i> like</Button><span>   </span>
+            <Button className="comment-btn"><i class="fas fa-comment-dots"></i> comment</Button>
+        </Card.Body>
+        </Card>
+        <Card>
+        <Card.Body className="post-card">
+          <Card.Title className="post-subject">Post Subject</Card.Title>
+          <p className="username">posted by:</p>
+          <Card.Text>Body of text Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+            labore et dolore magna aliqua. In metus vulputate eu scelerisque felis imperdiet proin. Ac felis donec et odio pellentesque diam. 
+            Massa ultricies mi quis hendrerit dolor magna. Nulla facilisi nullam vehicula ipsum a arcu. Tristique senectus et netus et malesuada 
+            fames ac. Enim sit amet venenatis urna cursus eget nunc. Lacus sed viverra tellus in. Tempus egestas sed sed risus pretium quam vulputate. Arcu vitae elementum curabitur vitae. 
+            Vestibulum rhoncus est pellentesque elit ullamcorper. Augue mauris augue neque gravida.</Card.Text>
+            <Button className="heart-btn"><i className="fas fa-heart"></i> like</Button><span>   </span>
+            <Button className="comment-btn"><i className="fas fa-comment-dots"></i> comment</Button>
+        </Card.Body>
+        </Card>
         {/* <h2 classname="saved-message">
           {userData.savedBooks.length
             ? `Viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? 'book' : 'books'}:`
             : 'you have no liked posts!'}
         </h2> */}
-        <CardColumns>
+        {/* <CardColumns>
           {userData.savedBooks.map((book) => {
             return (
               <Card key={book.bookId} border='dark'>
@@ -56,7 +95,7 @@ function SavedBooks() {
               </Card>
             );
           })}
-        </CardColumns>
+        </CardColumns> */}
       </Container>
     </>
   );

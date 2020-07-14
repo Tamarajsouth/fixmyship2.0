@@ -1,5 +1,3 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
-
 ## Fix My 'Ship
 
 A modern day relationship forum where users can post to solicit advice from the Fix My 'Ship community. Users can login and see their liked posts and comment on other's posts.

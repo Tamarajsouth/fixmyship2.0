@@ -4,9 +4,13 @@ import SearchBooks from './pages/SearchBooks';
 import SavedBooks from './pages/SavedBooks';
 import Navbar from './components/Navbar';
 import About from './pages/About';
+import Footer from "./components/Footer";
+import Rules from "./pages/Rules";
 
 import * as API from './utils/API';
 import AuthService from './utils/auth';
+
+import "./index.css"
 
 // import our context object for state
 import UserInfoContext from './utils/UserInfoContext';
@@ -49,9 +53,11 @@ function App() {
             <Route exact path='/' component={SearchBooks} />
             <Route exact path='/saved' component={SavedBooks} />
             <Route exact path='/about' component={About} />
+            <Route exact path='/rules' component={Rules} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           </Switch>
         </UserInfoContext.Provider>
+        <Footer />
       </>
     </Router>
   );
