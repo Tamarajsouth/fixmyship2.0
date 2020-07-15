@@ -43,8 +43,9 @@
     font-family: "Work Sans", sans-serif;
     text-align: center;
 }
-
-
+.buttons-card{
+    text-align: center;
+}
 /* POSTS / CARDS */
 .post-card{
     width:75%;
@@ -75,6 +76,45 @@
     background-color: rgb(155, 127, 255);
 }
 
+/* CREATE POST PAGE */
+.create-post-heading{
+    font-size: x-large;
+    font-family: "Pacifico", cursive;
+    text-align: center;
+}
+.create-post{
+    width: 1000px;
+}
+.create-post-link{
+    width: 150px;
+    color: black;
+    border: none;
+    text-decoration: none;
+}
+.create-post-link:hover{
+    text-decoration: none !important;
+}
+.create-post-button{
+    background-color: white;
+    border: none;
+}
+.create-post-button:hover{
+    background-color: white;
+    text-decoration: none !important;
+}
+.choose-category-heading{
+    font-size: x-large;
+    font-family: "Pacifico", cursive;
+    text-align: center;
+}
+.category-btn{
+    text-align: center;
+    align-items: center;
+}
+.submit-btn{
+    text-align: center;
+    text-align: center;
+}
 /* RULES PAGE */
 .rules-card-1{
     width:75%;

@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Nav, Container, Modal, Tab, Card, Image, Col } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown, Container, Modal, Tab, Card, Image, Col } from 'react-bootstrap';
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
 
@@ -42,6 +42,18 @@ function AppNavbar() {
                 <Nav.Link onClick={() => setShowModal(true)}>login | sign up</Nav.Link>
               )}
             </Nav>
+            <Nav className="mr-right">
+      <NavDropdown title="Search by Category" id="basic-nav-dropdown">
+        <NavDropdown.Item href="#action/3.1">Dates</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.2">Marriage</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.3">Break Ups</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.3">LGBTQ+</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.3">Women</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.3">Men</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.3">Just Friends</NavDropdown.Item>
+        <NavDropdown.Divider />
+      </NavDropdown>
+    </Nav>
             <Navbar className="about-link" as={Link} to='/about'>
                 <i class="fas fa-info-circle"></i></Navbar>
           </Navbar.Collapse>
