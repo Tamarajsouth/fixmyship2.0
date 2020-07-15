@@ -1,30 +1,42 @@
 const mongoose = require("mongoose");
+const {ObjectId} = mongoose.Schema.Types
 const Schema = mongoose.Schema;
 
-const PostSchema = new Schema({
-  title: String,
-  body: String, //may need a longer variable type
-  summary: String, //this could be a splice from the body
-  posterId: String,   //this might be a int, but need to check mongoose doc
-  //datecreated and lastupdated... research that because I think its automatic
-
-//need to be able to figure out how to join this and track users own posts
-//add reference later
-
-  tags: [
-    {
-      type: String,
-      //add relationships later
-    },
-  ]
-
-
+const postSchema = new Schema(
+  {
+  title: {
+    type: String,
+    required: true
+  },
+  body: {
+    type: String,
+    required: true
+  },
+  summary: {
+    type: String,
+    required: true
+  },
+  username: {
+    type: String,
+    required: true
+  },
+  postedBy: {
+    type:ObjectId,
+    ref:"user"
+  },
+  image: {
+    type: String,
+    default: "no photo"
+  },
+  tags:{
+    type: String
+  },
 
 });
 
-const Post = mongoose.model("Post", PostSchema);
+const Post = mongoose.model('Post', postSchema);
 
 module.exports = Post;
 
 
-// make this into posts!
+

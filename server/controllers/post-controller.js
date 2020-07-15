@@ -1,7 +1,8 @@
-const {Post} = require('../models');
+const { Post, User } = require('../models');
+const { signToken } = require('../utils/auth');
+
 // figure out how signin works...
 //once this works we will add the signToken, etc
-
 
 module.exports = {
   async testGet(req, res) {
@@ -9,68 +10,71 @@ module.exports = {
     // const posts = await Post.find();
     // return res.json(post);
        //nothing in db...
-    
-
-
-
-
-
   },
 
 // everything below this
 
+  // async getPost(req, res) { // make into get function
 
+  //     // const foundPost = await Post.findOne({   //db.find...
+  //     //   req.title ?
+  //     // });
 
+  //   return res.json("test");
+  // },
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    async getPost(req, res) { // make into get function
-
-      // const foundPost = await Post.findOne({   //db.find...
-      //   req.title ?
-      // });
-
-    return res.json("test");
+  async newPost({ body }, res) { 
+    Post.create(body)
+    .then(({ _id }) => User.findOneAndUpdate({}, { $push: { post: _id } }, { new: true }))
+    .then(dbUser => {
+      res.json(dbUser);
+    })
+    .catch(err => {
+      res.json(err);
+    });
   },
 
   async editPost(req, res) {  //  not sure how this will work? -put
     return res.json("test");
   },
 
-  async savePost(req, res) {  // not sure how this will work -post
-    return res.json("test");
-  }
-
-};
-
-/*
- // create a post, sign a token, and send it back (to client/src/components/SignUpForm.js)
-  async createPost({ body }, res) {
-    const post = await Post.create(body);
-    if (!post) {
-      return res.status(400).json({ message: 'Something is wrong!' });
+  async deletePost({ user, params }, res) {
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: user._id },
+      { $pull: { savedPost: params.id }},
+      { new: true }
+    );
+    if (!updatedUser) {
+      return res.status(404).json({ message: "Couldn't find user with this id!" });
     }
-    // const token = signToken(post);
-    // res.json({ token, post });
-    res.json({ post });
+    return res.json(updatedUser);
   },
 
+  async savePost({ user, body }, res) {
+    console.log(user);
+    try {
+      const createdPost = await Post.create(body);
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $addToSet: { savedPosts: createdPost._id } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedUser);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+};
 
+// async getMyPosts({ user, body }, res) {
+//   console.log(user); 
+//   Post.findById(req.params.id)
+//   .then(posts => res.json(posts))
 
+// });
+/*
+ 
 // async getPostsByTag()
 
 async testPost(req, res) {  //do I need req and res?
