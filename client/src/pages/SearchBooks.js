@@ -1,38 +1,14 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Container, Row, Col, Form, Button, Card, CardColumns } from "react-bootstrap";
+import { Container, Nav, NavDropdown, Form, Button, Card, CardColumns } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 import UserInfoContext from "../utils/UserInfoContext";
 import AuthService from "../utils/auth";
-import { saveBook, searchGoogleBooks, getTest, getAllTags } from "../utils/API";
+import { saveBook, searchGoogleBooks } from "../utils/API";
 
 import "./style.css";
 
 
-// BOOK RELATE FUCNTIONS - keep for reference!  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 function SearchBooks() {
-
-  //this should initialize tags in the state
-  const [tempTags, setTempTags] = useState(["testTag1", "TestTag2"]); //switch this out with a function that gets tags from an api-call
-  //this is grabbing the first tag from an apicall to the server. Needs to grab more than one...
-  useEffect(() => {
-    getAllTags()
-      .then((res) => {
-        console.log(res.data[0].tagName); // I want to grab the name and id... so I can display name and pass the id to other functions...
-        console.log(res.data[0]._id);
-        let tagObject = [];
-        res.data.map((tagData) => {
-          
-          tagObject.push(tagData.tagName);  // need to make this part into an object with 
-          console.log(tagObject);
-        });
-         
-    setTempTags(tagObject); //good! now make it grab an array instead of the first object in array!
-        //change this to setTags
-    
-  });
-}, []);
-
-// ~~~~~~~~~~~
-
 
 // create state for holding returned google api data
 const [searchedBooks, setSearchedBooks] = useState([]);
@@ -75,96 +51,40 @@ const handleSaveBook = (bookId) => {
     .catch((err) => console.log(err));
 };
 // END OF BOOKS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// BEGIN TAGS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-// const renderTags = () => {
-// //  I need to figure out how to make tags set properly. Instead, I am using some temporary tags
-// console.log(tempTags)
-// }
-
-const clickTag = event => {                                                   //Working - GORM
-  //should be set to activate "onClick" for each tag
-  //... we might need to create a new model for tags... so that tags are easily searchable and can be pulled up in a container here
-
-  // call api --> search database for specific tag
-  //  - tag should be located within the component being clicked on. We should be able to grab this with something like "event.target.tagName"
-
-  //return component via map!
-  //need to create component in render...
-
-  //BETTER WAY TO DO THIS: there is a component called BlogPosts (etc). That component displays all BlogPosts. 
-  // this function here will simply set the tempTag/Tag state to the clicked 
-  //...this need to relearn USeContext to do this.
-  console.log("button clicked");  //why is this running on render instead of click?
-  getTest();
-  // getAllTags();
-  //troubleshooting this particular function!
-};
-
-// END TAGS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // BEGIN POST section   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//this needs to simply do an api call based on what tempTags (or permanent equivalent) is set to,
-//then map the results into separate post containers.
-//... but map needs to be in rendered section and function needs to be out here?
-
-
-// END of BlogPosts ~~~~
-
-
-
 
 return (
   <>
     <hr></hr>
     <Card.Body className="welcome-heading">Welcome!</Card.Body>
-      <Container>
+      <Container className="welcome-container">
         <p className="welcome-text">
             Welcome to Fix My 'Ship, the relationship forum where real
             people give other people real advice.
             Sink or swim...only you can decide.
           </p>
         <Form onSubmit={handleFormSubmit}>
-          <Form.Row>
-            <Col xs={12} md={8}>
-              <Form.Control
-                name="searchInput"
-                value={searchInput}
-                onChange={(e) => setSearchInput(e.target.value)}
-                type="text"
-                size="sm"
-                placeholder="search posts by category"
-              />
-            </Col>
-            <Col xs={12} md={4}>
-              <Button type="submit" variant="light" size="sm">
-                search
-                </Button>
-            </Col>
-          </Form.Row>
+        <Form.Row> 
+      {/* <Nav className="mr-center">
+      <NavDropdown title="Search by Category" id="basic-nav-dropdown">
+        <NavDropdown.Item href="#action/3.1">Dates</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.2">Marriage</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.3">Break Ups</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.3">LGBTQ+</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.3">Women</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.3">Men</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.3">Just Friends</NavDropdown.Item>
+        <NavDropdown.Divider />
+      </NavDropdown>
+    </Nav> */}
+    <Card.Body className="buttons-card">
+        <Link className="create-post-link" as={Link} to='/createpost'> create post </Link>
+        </Card.Body>
+        </Form.Row>
         </Form>
       </Container>
 
     <Container>
-      {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
-      <div>
-        {/* this should be nicely formated eventually */}
-        {/* tags.map */}
-        {tempTags.map((TTag) => {
-          return (
-            // needs to return something with a value to read...
-
-            <button onClick={() => { clickTag() }}> {TTag} </button>
-            // <h1>test</h1>
-          );
-
-        })}
-      </div>
-      <div>
-
-
-      </div>
-      {/* ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~ */}
-
-
 
       {/* <h2>{searchedBooks.length ? `Viewing ${searchedBooks.length} results:` : ''}</h2> */}
       <CardColumns>
@@ -207,10 +127,3 @@ return (
 }
 
 export default SearchBooks;
-
-//Notes
-/*
-Need to add a container full of tags
-Gorm is working on a function that should create a container full of post summaries.
-*** lets create a temporary Tags Section with preset tags for Saturday
-*/
