@@ -1,13 +1,13 @@
 import React, { useState, useContext, useEffect } from "react";
-import { Container, Row, Col, Form, Button, Card, CardColumns } from "react-bootstrap";
+import { Container, Nav, NavDropdown, Form, Button, Card, CardColumns } from "react-bootstrap";
+import { Link } from 'react-router-dom';
 import UserInfoContext from "../utils/UserInfoContext";
 import AuthService from "../utils/auth";
-import { saveBook, searchGoogleBooks, getTest } from "../utils/API";
+import { saveBook, searchGoogleBooks } from "../utils/API";
 
 import "./style.css";
 
 
-// BOOK RELATE FUCNTIONS - keep for reference!  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 function SearchBooks() {
 // create state for holding returned google api data
 const [searchedBooks, setSearchedBooks] = useState([]);
@@ -51,40 +51,34 @@ const handleSaveBook = (bookId) => {
 };
 // END OF BOOKS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // BEGIN POST section   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-//this needs to simply do an api call based on what tempTags (or permanent equivalent) is set to,
-//then map the results into separate post containers.
-//... but map needs to be in rendered section and function needs to be out here?
-
-
-// END of BlogPosts ~~~~
 return (
   <>
     <hr></hr>
     <Card.Body className="welcome-heading">Welcome!</Card.Body>
-      <Container>
+      <Container className="welcome-container">
         <p className="welcome-text">
             Welcome to Fix My 'Ship, the relationship forum where real
             people give other people real advice.
             Sink or swim...only you can decide.
           </p>
         <Form onSubmit={handleFormSubmit}>
-          <Form.Row>
-            <Col xs={12} md={8}>
-              <Form.Control
-                name="searchInput"
-                value={searchInput}
-                onChange={(e) => setSearchInput(e.target.value)}
-                type="text"
-                size="sm"
-                placeholder="search posts by category"
-              />
-            </Col>
-            <Col xs={12} md={4}>
-              <Button type="submit" variant="light" size="sm">
-                search
-                </Button>
-            </Col>
-          </Form.Row>
+        <Form.Row> 
+      {/* <Nav className="mr-center">
+      <NavDropdown title="Search by Category" id="basic-nav-dropdown">
+        <NavDropdown.Item href="#action/3.1">Dates</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.2">Marriage</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.3">Break Ups</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.3">LGBTQ+</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.3">Women</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.3">Men</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.3">Just Friends</NavDropdown.Item>
+        <NavDropdown.Divider />
+      </NavDropdown>
+    </Nav> */}
+    <Card.Body className="buttons-card">
+        <Link className="create-post-link" as={Link} to='/createpost'> create post </Link>
+        </Card.Body>
+        </Form.Row>
         </Form>
       </Container>
 
@@ -127,6 +121,6 @@ return (
     </Container>
   </>
 );
-      }
+}
 
 export default SearchBooks;
