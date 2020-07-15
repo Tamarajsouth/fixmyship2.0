@@ -1,19 +1,10 @@
 import React, { useState, useContext, useEffect } from "react";
-import {
-  Container,
-  Row,
-  Col,
-  Form,
-  Button,
-  Card,
-  CardColumns,
-} from "react-bootstrap";
-
+import { Container, Row, Col, Form, Button, Card, CardColumns } from "react-bootstrap";
 import UserInfoContext from "../utils/UserInfoContext";
 import AuthService from "../utils/auth";
 import { saveBook, searchGoogleBooks, getTest, getAllTags } from "../utils/API";
 
-import "./searchBooksStyle.css";
+import "./style.css";
 
 
 // BOOK RELATE FUCNTIONS - keep for reference!  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -99,12 +90,12 @@ function SearchBooks() {
     //...this need to relearn USeContext to do this.
     console.log("button clicked");  //why is this running on render instead of click?
     getTest()
-    // .then((articleData) => {
-    //   console.log("articleData");
-    //   //setArticles()
-    // })
-    // .catch((err) => console.log(err))
-    ;  // how do I get res from this?
+      // .then((articleData) => {
+      //   console.log("articleData");
+      //   //setArticles()
+      // })
+      // .catch((err) => console.log(err))
+      ;  // how do I get res from this?
 
     // .then ( display some post summaries)
     //if we have a section full of posts, this could simply set the state for that!
@@ -222,15 +213,51 @@ function SearchBooks() {
           })}
         </CardColumns>
       </Container>
+
+      <Container>
+
+
+
+
+        {/* <h2>{searchedBooks.length ? `Viewing ${searchedBooks.length} results:` : ''}</h2> */}
+        <CardColumns>
+          {searchedBooks.map((book) => {
+            return (
+              <Card key={book.bookId} border="none">
+                {/* book image code - not relevent to our app but saving just in case */}
+                {/* {book.image ? <Card.Img src={book.image} alt={`The cover for ${book.title}`} variant='top' /> : null} */}
+                <Card.Body>
+                  <Card.Title>{book.title}</Card.Title>
+                  <p className="small">user: {book.authors}</p>
+                  <Card.Text>
+                    {/* this is where the post text body should go */}
+                    {book.description}
+                  </Card.Text>
+                  {userData.username && (
+                    <Button
+                      // like post with a heart of reply
+                      disabled={userData.savedBooks?.some(
+                        (savedBook) => savedBook.bookId === book.bookId
+                      )}
+                      className="btn-block btn-info"
+                      onClick={() => handleSaveBook(book.bookId)}
+                    >
+                      {userData.savedBooks?.some(
+                        (savedBook) => savedBook.bookId === book.bookId
+                      )
+                        ? "This book has already been saved!"
+                        : "Save this Book!"}
+                    </Button>
+                  )}
+                </Card.Body>
+              </Card>
+            );
+          })}
+        </CardColumns>
+      </Container>
     </>
   );
 }
 
 export default SearchBooks;
 
-//Notes
-/*
-Need to add a container full of tags
-Gorm is working on a function that should create a container full of post summaries.
-*** lets create a temporary Tags Section with preset tags for Saturday
-*/

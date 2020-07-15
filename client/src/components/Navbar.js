@@ -42,6 +42,8 @@ function AppNavbar() {
                 <Nav.Link onClick={() => setShowModal(true)}>login | sign up</Nav.Link>
               )}
             </Nav>
+            <Navbar className="about-link" as={Link} to='/about'>
+                <i class="fas fa-info-circle"></i></Navbar>
           </Navbar.Collapse>
         </Container>
       </Navbar>
@@ -75,9 +77,6 @@ function AppNavbar() {
       </Modal>
       <Card className='footer mt-auto py-3 bg-light text-white'>
         <div className='container'>
-        <Navbar className="about-footer" as={Link} to='/about'>
-        <i class="fas fa-info-circle"></i>
-          </Navbar>
           <div className="line line-1">
         <div className="wave wave1"></div>
       </div>

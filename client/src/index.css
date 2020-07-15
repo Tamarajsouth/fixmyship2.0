@@ -15,3 +15,18 @@ h6 {
   font-weight: 300;
   font-style: italic;
 }
+
+:root {
+  --space: 1.5em 0;
+  --space: 2em 0;
+}
+
+.html{
+  position:relative; 
+  min-height: 100%;
+}
+/*Normalize html and body elements,this style is just good to have*/
+html,body{
+  margin:0;
+  padding:0;
+}
