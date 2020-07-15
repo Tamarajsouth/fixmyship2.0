@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import About from './pages/About';
 import Footer from "./components/Footer";
 import Rules from "./pages/Rules";
+import CreatePost from "./pages/CreatePost";
 
 import * as API from './utils/API';
 import AuthService from './utils/auth';
@@ -54,6 +55,7 @@ function App() {
             <Route exact path='/saved' component={SavedBooks} />
             <Route exact path='/about' component={About} />
             <Route exact path='/rules' component={Rules} />
+            <Route exact path='/createpost' component={CreatePost} />
             <Route render={() => <h1 className='display-2'>Wrong page!</h1>} />
           </Switch>
         </UserInfoContext.Provider>
