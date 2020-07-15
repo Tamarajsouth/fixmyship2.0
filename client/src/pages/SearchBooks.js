@@ -9,7 +9,6 @@ import "./style.css";
 
 
 function SearchBooks() {
-
 // create state for holding returned google api data
 const [searchedBooks, setSearchedBooks] = useState([]);
 // create state for holding our search field data
@@ -52,7 +51,6 @@ const handleSaveBook = (bookId) => {
 };
 // END OF BOOKS ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 // BEGIN POST section   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 return (
   <>
     <hr></hr>
@@ -85,7 +83,6 @@ return (
       </Container>
 
     <Container>
-
       {/* <h2>{searchedBooks.length ? `Viewing ${searchedBooks.length} results:` : ''}</h2> */}
       <CardColumns>
         {searchedBooks.map((book) => {
