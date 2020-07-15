@@ -1,4 +1,4 @@
-const { Post } = require('../models');
+const { Post, User } = require('../models');
 const { signToken } = require('../utils/auth');
 
 // figure out how signin works...
@@ -23,14 +23,15 @@ module.exports = {
   //   return res.json("test");
   // },
 
-  async newPost({ body }, res) {
-    const post = await Post.create(body);
-    if (!post) {
-      return res.status(400).json({ message: 'Something is wrong!' });
-    }
-    // const token = signToken(post);
-    // res.json({ token, post });
-    res.json({ post });
+  async newPost({ body }, res) { 
+    Post.create(body)
+    .then(({ _id }) => User.findOneAndUpdate({}, { $push: { post: _id } }, { new: true }))
+    .then(dbUser => {
+      res.json(dbUser);
+    })
+    .catch(err => {
+      res.json(err);
+    });
   },
 
   async editPost(req, res) {  //  not sure how this will work? -put
@@ -64,10 +65,14 @@ module.exports = {
       return res.status(400).json(err);
     }
   },
-
-
 };
 
+// async getMyPosts({ user, body }, res) {
+//   console.log(user); 
+//   Post.findById(req.params.id)
+//   .then(posts => res.json(posts))
+
+// });
 /*
  
 // async getPostsByTag()
