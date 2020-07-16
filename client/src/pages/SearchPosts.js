@@ -65,16 +65,12 @@ function SearchPosts() {
       <Card fluid className="welcome">
         <Container>
           <h1 className="welcome">
-            {/* Hi there. Yes, you with the burning relationship questions you’re
-            too worried to ask your friends about. We saw you low-key checking
-            google for relationship advice like, “Am I a terrible friend because
-            I get jealous?” and “Is snooping on my S.O. okay…sometimes?” We’ll
-            admit it, Google is great for most things, like research papers and
-            cat videos but, relationship advice? Not so much. */}
             Welcome to Fix My 'Ship, the relationship forum where real
             people give other people real advice. 
             Sink or swim...only you can decide. 
           </h1>
+
+          {/* SEARCH POSTS FUNCTION - UTILIZE EVENTUALLY TO SEARCH BY CATEGORIES */}
           <Form onSubmit={handleFormSubmit}>
             <Form.Row>
               <Col xs={12} md={8}>

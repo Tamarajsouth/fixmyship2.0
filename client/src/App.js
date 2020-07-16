@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import About from './pages/About';
 import Footer from "./components/Footer";
 import Rules from "./pages/Rules";
+import ViewPosts from "./pages/ViewPosts";
 import CreatePost from "./pages/CreatePost";
 
 import * as API from './utils/API';
@@ -51,6 +52,7 @@ function App() {
           <Navbar />
           <Switch>
             <Route exact path='/' component={SearchBooks} />
+            <Route exact path='/viewposts' component={ViewPosts} />
             <Route exact path='/saved' component={SavedBooks} />
             <Route exact path='/about' component={About} />
             <Route exact path='/rules' component={Rules} />
