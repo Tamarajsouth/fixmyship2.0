@@ -17,7 +17,8 @@ return (
             <Form.Label></Form.Label>
             <Form.Control as="textarea" placeholder='text goes here' rows="3" />
             </Form.Group>
-            <p className="choose-category-heading">choose a category to post to:</p>
+            <p className="choose-category-heading">Select a category to post to:</p>
+            <div className="btn-group">
             <Button className="category-btn" variant="outline-secondary">Dating</Button>{' '}
             <Button className="category-btn" variant="outline-secondary">Breaking Up</Button>{' '}
             <Button className="category-btn" variant="outline-secondary">Marriage</Button>{' '}
@@ -25,8 +26,11 @@ return (
             <Button className="category-btn" variant="outline-secondary">Women</Button>{' '}
             <Button className="category-btn" variant="outline-secondary">Men</Button>{' '}
             <Button className="category-btn" variant="outline-secondary">Just Friends</Button>{' '}
-            <Button type="submit-btn" size="sm">
-            Submit Post</Button>  
+            </div>
+            <hr></hr>
+            <div className="submit-btn">
+            <Button className="submit-btn" variant="outline-secondary">Submit Post</Button>{' '}
+            </div>
         </Card.Body>
 </>
 )

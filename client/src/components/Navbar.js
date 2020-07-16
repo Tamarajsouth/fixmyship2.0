@@ -19,7 +19,7 @@ function AppNavbar() {
     <>
       <Navbar bg='light' variant='light' expand='lg'>
       <Col>
-          <Image className="logo1" src={require("./assets/img/logo1.png")}/></Col>
+          <Image className="logo1" src={require("./assets/img/logo1.png")} /></Col>
         <Container>
           <Navbar className="nav-main" as={Link} to='/'>
             Fix My 'Ship
@@ -27,10 +27,6 @@ function AppNavbar() {
           <Navbar.Toggle aria-controls='navbar' />
           <Navbar.Collapse id='navbar'>
             <Nav className='ml-auto'>
-              {/* <Nav.Link as={Link} to='/'>
-                profile
-              </Nav.Link> */}
-              {/* if user is logged in show saved books and logout */}
               {username ? (
                 <>
                   <Nav.Link as={Link} to='/saved'>
@@ -39,11 +35,11 @@ function AppNavbar() {
                   <Nav.Link onClick={AuthService.logout}>logout</Nav.Link>
                 </>
               ) : (
-                <Nav.Link onClick={() => setShowModal(true)}>login | sign up</Nav.Link>
+                <Nav.Link onClick={() => setShowModal(true)}>Login | Sign Up</Nav.Link>
               )}
             </Nav>
             <Nav className="mr-right">
-      <NavDropdown title="Search by Category" id="basic-nav-dropdown">
+      <NavDropdown title="Search" id="basic-nav-dropdown">
         <NavDropdown.Item href="#action/3.1">Dates</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.2">Marriage</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.3">Break Ups</NavDropdown.Item>
@@ -51,7 +47,7 @@ function AppNavbar() {
         <NavDropdown.Item href="#action/3.3">Women</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.3">Men</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.3">Just Friends</NavDropdown.Item>
-        <NavDropdown.Divider />
+        <NavDropdown.Item className="ViewPosts" as={Link} to='/ViewPosts'>View All</NavDropdown.Item>
       </NavDropdown>
     </Nav>
             <Navbar className="about-link" as={Link} to='/about'>

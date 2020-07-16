@@ -17,7 +17,6 @@ return (
             our forum as, non-judgemental, positive environment to chat about all things concerning love.
             <hr></hr>
             Cool & and now the rules! Most of these are self-explanatory, so please use your brains. :)
-            We have the right to revisit and update these rules at any time.
             <hr></hr>
             <ul className="rule-items">- No personal attacks or inflammatory behaviour</ul>
             <ul className="rule-items">- Refrain from using unnecessary swear words</ul>

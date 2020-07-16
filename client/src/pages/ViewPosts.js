@@ -9,7 +9,7 @@ import AuthService from '../utils/auth';
 
 import "./style.css";
 
-function SavedBooks() {
+function ViewPosts() {
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
 
@@ -31,8 +31,8 @@ function SavedBooks() {
     <>
       <Jumbotron fluid className='text-dark bg-light'>
         <Container>
-          <h1 className='viewing-liked'><i class="fas fa-heart"></i>  Viewing Liked Posts!  <i class="fas fa-heart"></i></h1>
-          <p className='user-instructions'> here you can comment on your liked posts or delete posts from your saved history. </p>
+          <h1 className='viewing-posts'><i class="fas fa-anchor"></i>  Viewing Community Posts!  <i class="fas fa-anchor"></i></h1>
+          <p className='user-instructions'> viewing all posts // or posts by category </p>
         </Container>
       </Jumbotron>
       <Container>
@@ -47,7 +47,7 @@ function SavedBooks() {
             Vestibulum rhoncus est pellentesque elit ullamcorper. Augue mauris augue neque gravida.</Card.Text>
             <Button className="heart-btn"><i class="fas fa-heart"></i> like</Button><span>   </span>
             <Button className="comment-btn"><i className="fas fa-comment-dots"></i> comment</Button><span>   </span>
-            <Button className="delete-btn"><i class="fas fa-trash-alt"></i> delete </Button>        </Card.Body>
+            </Card.Body>
         </Card>
         <Card>
         <Card.Body className="post-card">
@@ -60,7 +60,7 @@ function SavedBooks() {
             Vestibulum rhoncus est pellentesque elit ullamcorper. Augue mauris augue neque gravida.</Card.Text>
             <Button className="heart-btn"><i class="fas fa-heart"></i> like</Button><span>   </span>
             <Button className="comment-btn"><i className="fas fa-comment-dots"></i> comment</Button><span>   </span>
-            <Button className="delete-btn"><i class="fas fa-trash-alt"></i> delete </Button>        </Card.Body>
+            </Card.Body>
         </Card>
         <Card>
         <Card.Body className="post-card">
@@ -73,7 +73,6 @@ function SavedBooks() {
             Vestibulum rhoncus est pellentesque elit ullamcorper. Augue mauris augue neque gravida.</Card.Text>
             <Button className="heart-btn"><i className="fas fa-heart"></i> like</Button><span>   </span>
             <Button className="comment-btn"><i className="fas fa-comment-dots"></i> comment</Button><span>   </span>
-            <Button className="delete-btn"><i class="fas fa-trash-alt"></i> delete </Button>
         </Card.Body>
         </Card>
         {/* <h2 classname="saved-message">
@@ -103,4 +102,4 @@ function SavedBooks() {
   );
 }
 
-export default SavedBooks;
+export default ViewPosts;
