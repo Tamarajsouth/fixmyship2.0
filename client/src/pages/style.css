@@ -8,7 +8,17 @@
     font-family: "Work Sans", sans-serif;
     text-align: center;
 }
-
+.user-instructions{
+    font-size: large;
+    font-family: "Work Sans", sans-serif;
+    text-align: center;
+}
+/* VIEW POSTS */
+.viewing-posts{
+    font-size: xx-large;
+    font-family: "Pacifico", cursive;
+    text-align: center;
+}
 /* ABOUT THINGS */
 .about-header{
     text-align: center;
@@ -31,10 +41,18 @@
     align-self: center;
     font-family: "Pacifico", cursive;
 }
+.author-info{
+    text-align: center;
+    font-family: "Work Sans", sans-serif;
+}
+.author-link:hover{
+    color: #ec4f4f;
+    text-decoration: none;
+}
 
 /* WELCOME - SEARCH FOR: */
 .welcome-heading{
-    font-size: x-large;
+    font-size: xx-large;
     font-family: "Pacifico", cursive;
     text-align: center;
 }
@@ -75,6 +93,14 @@
 .comment-btn:hover{
     background-color: rgb(155, 127, 255);
 }
+.delete-btn{
+    background-color: rgb(216, 216, 216);
+    border: 0px;
+    border-style: none;
+}
+.delete-btn:hover{
+    background-color: rgb(155, 127, 255);
+}
 
 /* CREATE POST PAGE */
 .create-post-heading{
@@ -86,10 +112,7 @@
     width: 1000px;
 }
 .create-post-link{
-    width: 150px;
-    color: black;
-    border: none;
-    text-decoration: none;
+    border-radius: 20px;
 }
 .create-post-link:hover{
     text-decoration: none !important;
@@ -107,12 +130,14 @@
     font-family: "Pacifico", cursive;
     text-align: center;
 }
-.category-btn{
+.btn-group{
+    border-radius: 30px;
+    display: flex;
     text-align: center;
-    align-items: center;
 }
 .submit-btn{
-    text-align: center;
+    background-color: white;
+    border-radius: 30px;
     text-align: center;
 }
 /* RULES PAGE */

@@ -29,9 +29,9 @@
 .fas{
   color: black;
 }
-.fas:hover{
+/* .fas:hover{
   color: #d34e4a;
-}
+} */
 .about-link{
   text-decoration: none !important;
 }

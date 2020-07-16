@@ -59,24 +59,17 @@ return (
         <p className="welcome-text">
             Welcome to Fix My 'Ship, the relationship forum where real
             people give other people real advice.
+            <br></br>
             Sink or swim...only you can decide.
+          <br></br>  
+          <br></br>
+            <i className="fas fa-anchor fa-3x"></i>
           </p>
         <Form onSubmit={handleFormSubmit}>
         <Form.Row> 
-      {/* <Nav className="mr-center">
-      <NavDropdown title="Search by Category" id="basic-nav-dropdown">
-        <NavDropdown.Item href="#action/3.1">Dates</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.2">Marriage</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Break Ups</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">LGBTQ+</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Women</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Men</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Just Friends</NavDropdown.Item>
-        <NavDropdown.Divider />
-      </NavDropdown>
-    </Nav> */}
     <Card.Body className="buttons-card">
-        <Link className="create-post-link" as={Link} to='/createpost'> create post </Link>
+    <Button className="create-post-link" as={Link} to='/createpost' variant="outline-secondary">Create Post</Button>{' '}
+        {/* <Link className="create-post-link" as={Link} to='/createpost'> create post </Link> */}
         </Card.Body>
         </Form.Row>
         </Form>
