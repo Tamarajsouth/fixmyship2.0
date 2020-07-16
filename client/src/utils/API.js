@@ -60,3 +60,9 @@ export const getAllTags = function () {
   return axios.get('/api/tags/all');
   
 };
+//comments
+export const getAllComments = function () {
+  console.log("getting comments from server");
+   return axios.get('/api/comments/all');
+   
+ };
