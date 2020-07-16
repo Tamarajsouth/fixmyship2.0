@@ -20,23 +20,22 @@ const postSchema = new Schema(
     type: String,
     required: true
   },
-  postedBy: {
-    type:ObjectId,
-    ref:"user"
-  },
-  image: {
-    type: String,
-    default: "no photo"
-  },
-  tags:{
-    type: String
-  },
+  // postedBy: {
+  //   type:ObjectId,
+  //   ref:"user"
+  // },
+  // image: {
+  //   type: String,
+  //   default: "no photo"
+  // },
+  // tags:{
+  //   type: String
+  // },
 
 });
 
 const Post = mongoose.model('Post', postSchema);
 
 module.exports = Post;
-
 
 

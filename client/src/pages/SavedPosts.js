@@ -1,6 +1,5 @@
 import React, { useContext } from 'react';
 import { Jumbotron, Container, CardColumns, Card, Button } from 'react-bootstrap';
-
 // import context for global state
 import UserInfoContext from '../utils/UserInfoContext';
 
@@ -23,7 +22,27 @@ function SavedPosts() {
       // upon succes, update user data to reflect post change
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));
-  };
+      function handleInputChange(event) {
+        const { name, value } = event.target;
+        setFormObject({...formObject, [name]: value})
+      };
+    
+      // When the form is submitted, use the API.savePost method to save the book data
+      // Then reload books from the database
+      function handleFormSubmit(event) {
+        event.preventDefault();
+        if (formObject.title && formObject.author) {
+          API.savePost({
+            title: formObject.title,
+            body: formObject.author,
+            summary: formObject.synopsis
+          })
+            .then(res => loadPosts())
+            .catch(err => console.log(err));
+        }
+      };
+  
+    };
 
   return (
     <>
@@ -61,5 +80,3 @@ function SavedPosts() {
 }
 
 export default SavedPosts;
-
-
