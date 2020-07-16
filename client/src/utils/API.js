@@ -48,7 +48,7 @@ export const getPosts = function (TagName) {
 
 
 */
-
+//Tags
 export const getTest = function () {
   console.log("API hit");
   return axios.get('/api/posts/');
@@ -64,5 +64,16 @@ export const getAllTags = function () {
 export const getAllComments = function () {
   console.log("getting comments from server");
    return axios.get('/api/comments/all');
+   
+ };
+ export const getCommentsByUser = function (userId) { // search by username?
+  console.log("getting comments from server");
+   return axios.get(`/api/comments/user/${userId}`);
+   
+ };
+
+ export const getCommentsByPost = function (postId) { //not sure if this is the correct data
+  console.log("getting comments from server");
+   return axios.get(`/api/comments/post/${postId}`);
    
  };
