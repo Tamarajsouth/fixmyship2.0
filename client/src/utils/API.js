@@ -52,6 +52,11 @@ export const getAllPosts = function () {
   return axios.get('/api/posts/all');
 }
 
+export const createPost = function () {
+  console.log("post created");
+  return axios.get('/api/posts/all');
+}
+
 //Tags
 export const getTest = function () {
   console.log("API hit");

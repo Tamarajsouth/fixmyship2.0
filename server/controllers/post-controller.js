@@ -10,6 +10,18 @@ module.exports = {
     return res.json(allPosts);
   },
 
+  async createPost({ body }, res) { //need to figure out how to lock this behind middleware
+    const myPost = await Post.create(body);
+
+    if (!myPost) {
+      return res.status(400).json({ message: 'Something is wrong!' });
+    }
+    // const token = signToken(user);
+    res.json(myPost);
+  },
+
+
+
 // everything below this
 
   // async getPost(req, res) { // make into get function

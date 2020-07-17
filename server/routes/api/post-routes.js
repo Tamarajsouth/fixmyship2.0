@@ -8,12 +8,15 @@ const auth = require('../../utils/auth');
 const { Router } = require('express');
 
 const {
+    getAllPosts,
+    createPost,
+
     newPost,
     editPost,
     deletePost,
     likedPost,
-    getMyPosts,
-    getAllPosts
+    getMyPosts
+    
 } = require('../../controllers/post-controller');
 
 
@@ -26,6 +29,8 @@ router.route('/all').get(getAllPosts);
 //do we need a get saved? can probably do on frontend...
 
 //post new
+router.route('/').post(createPost);
+    //
 
 // update (put)
 
