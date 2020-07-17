@@ -51,7 +51,7 @@ function AppNavbar() {
       </NavDropdown>
     </Nav>
             <Navbar className="about-link" as={Link} to='/about'>
-                <i class="fas fa-info-circle"></i></Navbar>
+                <i className="fas fa-info-circle"></i></Navbar>
           </Navbar.Collapse>
         </Container>
       </Navbar>
