@@ -12,13 +12,15 @@ const postSchema = new Schema(
     type: String,
     required: true
   },
-  summary: {
-    type: String,
-    required: true
-  },
+  // summary: {
+  //   type: String,
+  //   required: true
+  // },
+
   username: {
     type: String,
-    required: true
+    required: true,
+    ref: "User"
   },
   // postedBy: {
   //   type:ObjectId,

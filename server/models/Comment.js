@@ -4,7 +4,7 @@ const postSchema = require('./Post');
 const userSchema = require('./User');
 
 const commentSchema = new Schema(
-    {
+    {   //CHANGE USERID TO USERNAME
         userId: {
             type: Schema.Types.ObjectId,
             ref: "User"

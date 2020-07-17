@@ -5,11 +5,9 @@ const { signToken } = require('../utils/auth');
 //once this works we will add the signToken, etc
 
 module.exports = {
-  async testGet(req, res) {
-    console.log("Hello Server")
-    // const posts = await Post.find();
-    // return res.json(post);
-       //nothing in db...
+  async getAllPosts({body}, res) {
+    const allPosts = await Post.find();
+    return res.json(allPosts);
   },
 
 // everything below this

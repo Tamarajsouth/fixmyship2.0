@@ -16,10 +16,27 @@ const {
     getAllPosts
 } = require('../../controllers/post-controller');
 
+
+//get all (summaries?)
+router.route('/all').get(getAllPosts);
+//get one
+
+//get by user
+
+//do we need a get saved? can probably do on frontend...
+
+//post new
+
+// update (put)
+
+
+
+// ~~~~~~old
+/*
 router
     .route('/')
     .get(postController.testGet)
-    .post(/*something*/)
+    .post()
     .delete()
 // router.route('/test').get(testPost);
 
@@ -34,20 +51,8 @@ router.route('/deletepost/:id').delete(authMiddleware, deletePost);
 
 //GET SINGLE USER POSTS
 // router.route('/myposts').get(authMiddleware, getMyPosts);
+*/
 
-
-
-// router.route('/allpost').get(getAllPosts).put(authMiddleware, savePost);  //need a custom function that interacts with database
-//that function will be in controller!
-//search post ID
-// router.route('/:id').get(getSingleUser);
-// .get(postController.findByID)
-//needs custom method
-
-// authMiddleware
-//figure out how savedposts will work... if we can do it
-
-// router.route('/tags/:tagName)
 
 
 

@@ -45,9 +45,13 @@ estimated function:
 export const getPosts = function (TagName) {
   return axios.get(`/api/tags/${TagName}`);
 };
-
-
 */
+
+export const getAllPosts = function () {
+  console.log("retrieving all posts");
+  return axios.get('/api/posts/all');
+}
+
 //Tags
 export const getTest = function () {
   console.log("API hit");
