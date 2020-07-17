@@ -17,15 +17,17 @@ const postSchema = new Schema(
   //   required: true
   // },
 
+
   // username: {
   //   type: String,
   //   required: true,
     // ref: "User"
     //remove this
   // },
-  userId: {
-    type: Schema.Types.ObjectId,
-    ref: "User"
+//   userId: {
+//     type: Schema.Types.ObjectId,
+//     ref: "User"
+
   },
   createdAt: {
     type: Date, default: Date.now 
