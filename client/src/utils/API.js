@@ -38,14 +38,8 @@ export const searchGoogleBooks = function (query) {
 };
 
 
-/*
-POSTS AND NEW STUFF
-estimated function:
+// POSTS (articles)
 
-export const getPosts = function (TagName) {
-  return axios.get(`/api/tags/${TagName}`);
-};
-*/
 
 export const getAllPosts = function () {
   console.log("retrieving all posts");
@@ -57,7 +51,12 @@ export const createPost = function () {
   return axios.get('/api/posts/all');
 }
 
-//Tags
+export const getOnePost = function () {
+  console.log("retrieving all posts");
+  return axios.get('/api/posts/post/:_id');
+}
+
+// Tags
 export const getTest = function () {
   console.log("API hit");
   return axios.get('/api/posts/');
@@ -69,7 +68,7 @@ export const getAllTags = function () {
   return axios.get('/api/tags/all');
   
 };
-//comments
+// comments
 export const getAllComments = function () {
   console.log("getting comments from server");
    return axios.get('/api/comments/all');

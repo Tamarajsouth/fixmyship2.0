@@ -10,6 +10,7 @@ const { Router } = require('express');
 const {
     getAllPosts,
     createPost,
+    getCommentsByPost,
 
     newPost,
     editPost,
@@ -21,8 +22,10 @@ const {
 
 
 //get all (summaries?)
-router.route('/all').get(getAllPosts);
-//get one
+router.route('/all').get(authMiddleware, getAllPosts);
+
+//get one post by id
+router.route('/post/:_id').get(getCommentsByPost);
 
 //get by user
 
@@ -30,7 +33,7 @@ router.route('/all').get(getAllPosts);
 
 //post new
 router.route('/').post(createPost);
-    //
+    // will need to figure out authorization
 
 // update (put)
 

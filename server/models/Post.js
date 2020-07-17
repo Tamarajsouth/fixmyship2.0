@@ -23,10 +23,10 @@ const postSchema = new Schema(
     // ref: "User"
     //remove this
   // },
-  userId: {
-    type: Schema.Types.ObjectId,
-    ref: "User"
-  },
+  // userId: {
+  //   type: Schema.Types.ObjectId,
+  //   ref: "User"
+  // },
   createdAt: {
     type: Date, default: Date.now 
   }
@@ -41,6 +41,8 @@ const postSchema = new Schema(
   // tags:{
   //   type: String
   // },
+
+//lastUpdatedAt : {type: Data, default: Date.now}
 
 });
 
