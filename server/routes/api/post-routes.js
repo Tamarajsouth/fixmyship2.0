@@ -25,7 +25,7 @@ const {
 router.route('/all').get(authMiddleware, getAllPosts);
 
 //get one post by id
-router.route('/post/:_id').get(authMiddleware, getPostById);  // ,
+router.route('/post/:_id').get(authMiddleware, getPostById);  
 
 //get by user
 
