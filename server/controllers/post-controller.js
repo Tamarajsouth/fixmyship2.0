@@ -7,6 +7,9 @@ const { signToken } = require('../utils/auth');
 module.exports = {
   async getAllPosts({ body }, res) {
     const allPosts = await Post.find();
+    if (!allPosts) {
+      return res.status(400).json({ message: 'Something is wrong!' });
+    }
     return res.json(allPosts);
   },
 
@@ -22,13 +25,20 @@ module.exports = {
 
   async getCommentsByPost(req, res) {
     console.log(req.params._id);
-    const onePost = await Post.findOne({"_id": req.params._id});
+    const onePost = await Post.findOne({ "_id": req.params._id });
+    if (!onePosts) {
+      return res.status(400).json({ message: 'Something is wrong!' });
+    }
     return res.json(onePost);
   },
 
-  async editPost (req, res){
+  async editPost(req, res) {
     console.log("edit post... not yet implemented")
-    //MAKE ME WORK!!!
+    //MAKE ME WORK!!! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    const onePost = "test";
+    if (!onePosts) {
+      return res.status(400).json({ message: 'Something is wrong!' });
+    }
   },
 
 
@@ -54,9 +64,7 @@ module.exports = {
       });
   },
 
-  async editPost(req, res) {  //  not sure how this will work? -put
-    return res.json("test");
-  },
+ 
 
   async deletePost({ user, params }, res) {
     const updatedUser = await User.findOneAndUpdate(

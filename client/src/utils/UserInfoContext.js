@@ -8,6 +8,8 @@ const UserInfoContext = React.createContext({
   username: '',
   email: '',
   bookCount: 0,
+  posts: [],
+  password: '',
   getUserData: () => undefined,
 });
 
