@@ -5,32 +5,18 @@ const userSchema = require('./User');
 
 const commentSchema = new Schema(
     {   //CHANGE USERID TO USERNAME
-        userId: {
+        user: {
             type: Schema.Types.ObjectId,
             ref: "User"
             // does this need to match the keyname of the userschema id?
         },
+        post: {
+            type: Schema.Types.ObjectId,
+            ref: "Post"
+        },
         mainText: String,
         numLikes: Number,
         createdAt: {type: Date, default: Date.now}
-        // pull in email form user instead of here?
-        // favorites? 
-        // title?
-
-
-
-        //   posts: [
-        //     {
-        //       type: Schema.Types.ObjectId,
-        //       ref: "Post",
-        //     }
-        //   ]
-        // },  
-        // set this to use virtual below
-        // {
-        //   toJSON: {
-        //     virtuals: true,
-        //   },
     }
 );
 
