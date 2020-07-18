@@ -7,6 +7,7 @@ module.exports = {  //I don't see where we would use this
     async getAllComments(req, res) {
         const comments = await Comment.find();
         return res.json(comments);
+        
 
     },
     // async getCommentsByPost(req, res) {

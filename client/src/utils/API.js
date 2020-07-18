@@ -32,9 +32,9 @@ export const deleteBook = function (bookId, token) {
 };
 
 //get books
-export const getBooks = function (bookData, token) {
-  return axios.post(`/api/users/books/${bookId}`, { headers: { authorization: `Bearer ${token}` } });
-};
+// export const getBooks = function (bookData, token) {
+//   return axios.post(`/api/users/books/${bookId}`, { headers: { authorization: `Bearer ${token}` } });
+// };
 // make a search to google books api
 // https://www.googleapis.com/books/v1/volumes?q=harry+potter
 export const searchGoogleBooks = function (query) {
