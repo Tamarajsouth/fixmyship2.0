@@ -8,7 +8,7 @@ import { saveBook, searchGoogleBooks } from "../utils/API";
 import "./style.css";
 
 
-function SearchBooks() {
+function Welcome() {
 // create state for holding returned google api data
 const [searchedBooks, setSearchedBooks] = useState([]);
 // create state for holding our search field data
@@ -116,4 +116,4 @@ return (
 );
 }
 
-export default SearchBooks;
+export default Welcome;

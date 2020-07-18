@@ -9,7 +9,7 @@ import AuthService from '../utils/auth';
 
 import "./style.css";
 
-function SavedBooks() {
+function UserSavedBooks() {
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
 
@@ -103,4 +103,4 @@ function SavedBooks() {
   );
 }
 
-export default SavedBooks;
+export default UserSavedBooks;
