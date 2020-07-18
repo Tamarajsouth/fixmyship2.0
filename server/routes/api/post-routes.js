@@ -3,7 +3,7 @@ const postController = require('../../controllers/post-controller');
 const requireLogin = require('../../utils/auth')
 //middleware for authentication and user access to posts
 const { authMiddleware } = require('../../utils/auth');
-const { savePost } = require('../../controllers/post-controller');
+
 const auth = require('../../utils/auth');
 const { Router } = require('express');
 
@@ -15,13 +15,14 @@ const {
     newPost,
     editPost,
     deletePost,
+    savePost,
     likedPost,
     getMyPosts
     
 } = require('../../controllers/post-controller');
 
 
-//get all (summaries?)
+//get all - now working
 router.route('/all').get(authMiddleware, getAllPosts);
 
 //get one post by id
@@ -32,7 +33,7 @@ router.route('/post/:_id').get(authMiddleware, getPostById);
 //do we need a get saved? can probably do on frontend...
 
 //post new
-router.route('/').post(createPost);
+router.route('/').post(authMiddleware, createPost);
     // will need to figure out authorization
 
 // update (put)

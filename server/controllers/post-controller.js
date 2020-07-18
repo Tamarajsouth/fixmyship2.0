@@ -6,9 +6,7 @@ const { signToken } = require('../utils/auth');
 //need to figure out way to add token into the parameters...
 
 module.exports = {
-  async getAllPosts( req, res) {
-    
-    console.log("words");
+  async getAllPosts( req, res) {    // this function works now
     const allPosts = await Post.find();
     if (!allPosts) {
       return res.status(400).json({ message: 'Something is wrong!' });
@@ -16,14 +14,16 @@ module.exports = {
     return res.json(allPosts);
   },
 
-  async createPost({ body }, res) { //need to figure out how to lock this behind middleware
+  //saveBooks function does not have middleware in the createUser post, only the put that updates the books
+  async createPost({ body, user }, res) { //need to figure out how to lock this behind middleware
+    console.log("testing ");
     const myPost = await Post.create(body);
 
     if (!myPost) {
       return res.status(400).json({ message: 'Something is wrong!' });
     }
-    // const token = signToken(user);
-    res.json(token, myPost);
+    const token = signToken(user);
+    res.json(token, myPost);  // token is invalid... which means a token was sent!
   },
 
   async getPostById(req, res) {
@@ -46,7 +46,7 @@ module.exports = {
   },
 
 
-  // everything below this
+  // everything below this is old!  ~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   // async getPost(req, res) { // make into get function
 
@@ -82,7 +82,7 @@ module.exports = {
     return res.json(updatedUser);
   },
 
-  async savePost({ user, body }, res) {
+  async savePost({ user, body }, res) { // pretty sure this is not functional...
     console.log(user);
     try {
       const createdPost = await Post.create(body);
