@@ -23,10 +23,11 @@ module.exports = {
     res.json(myPost);
   },
 
-  async getCommentsByPost(req, res) {
+  async getPostById(req, res) {
     console.log(req.params._id);
     const onePost = await Post.findOne({ "_id": req.params._id });
-    if (!onePosts) {
+    console.log("looking for: " + req.params.id)
+    if (!onePost) {
       return res.status(400).json({ message: 'Something is wrong!' });
     }
     return res.json(onePost);
