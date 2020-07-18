@@ -25,7 +25,7 @@ const {
 router.route('/all').get(authMiddleware, getAllPosts);
 
 //get one post by id
-router.route('/post/:_id').get(getCommentsByPost);
+router.route('/post/:_id').get(getCommentsByPost);  //add in middleware
 
 //get by user
 

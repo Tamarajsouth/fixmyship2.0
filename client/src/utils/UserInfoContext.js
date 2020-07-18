@@ -7,7 +7,9 @@ const UserInfoContext = React.createContext({
   savedBooks: [],
   username: '',
   email: '',
-  // bookCount: 0,
+  bookCount: 0,
+  posts: [],
+  password: '',
   getUserData: () => undefined,
 });
 
