@@ -5,14 +5,34 @@ const { signToken } = require('../utils/auth');
 //once this works we will add the signToken, etc
 
 module.exports = {
-  async testGet(req, res) {
-    console.log("Hello Server")
-    // const posts = await Post.find();
-    // return res.json(post);
-       //nothing in db...
+  async getAllPosts({ body }, res) {
+    const allPosts = await Post.find();
+    return res.json(allPosts);
   },
 
-// everything below this
+  async createPost({ body }, res) { //need to figure out how to lock this behind middleware
+    const myPost = await Post.create(body);
+
+    if (!myPost) {
+      return res.status(400).json({ message: 'Something is wrong!' });
+    }
+    // const token = signToken(user);
+    res.json(myPost);
+  },
+
+  async getCommentsByPost(req, res) {
+    console.log(req.params._id);
+    const onePost = await Post.findOne({"_id": req.params._id});
+    return res.json(onePost);
+  },
+
+  async editPost (req, res){
+    console.log("edit post... not yet implemented")
+    //MAKE ME WORK!!!
+  },
+
+
+  // everything below this
 
   // async getPost(req, res) { // make into get function
 
@@ -23,15 +43,15 @@ module.exports = {
   //   return res.json("test");
   // },
 
-  async newPost({ body }, res) { 
+  async newPost({ body }, res) {
     Post.create(body)
-    .then(({ _id }) => User.findOneAndUpdate({}, { $push: { post: _id } }, { new: true }))
-    .then(dbUser => {
-      res.json(dbUser);
-    })
-    .catch(err => {
-      res.json(err);
-    });
+      .then(({ _id }) => User.findOneAndUpdate({}, { $push: { post: _id } }, { new: true }))
+      .then(dbUser => {
+        res.json(dbUser);
+      })
+      .catch(err => {
+        res.json(err);
+      });
   },
 
   async editPost(req, res) {  //  not sure how this will work? -put
@@ -41,7 +61,7 @@ module.exports = {
   async deletePost({ user, params }, res) {
     const updatedUser = await User.findOneAndUpdate(
       { _id: user._id },
-      { $pull: { savedPost: params.id }},
+      { $pull: { savedPost: params.id } },
       { new: true }
     );
     if (!updatedUser) {
@@ -74,7 +94,7 @@ module.exports = {
 
 // });
 /*
- 
+
 // async getPostsByTag()
 
 async testPost(req, res) {  //do I need req and res?
