@@ -13,7 +13,7 @@ return (
           <Card.Text><h3 className="about-site-heading">Love, Dating, Marriage & Relation'ship Advice</h3></Card.Text>
           <p className="about-body">We would like to take the opportunity to welcome you to this forum.
           <br></br>
-          <b>A relationship forum for all: heterosexual; bisexual; homosexual; LGBTQ+; everyone is welcome!</b>
+          <b>A relationship forum for all! Everyone is welcome!</b>
           <br></br>
           We're relatively new, therefore, as we grow, we will continue to introduce new forum areas and 
           other cool additions to this love relationship forum, whether you're considering marriage, 
