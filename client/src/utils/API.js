@@ -50,10 +50,11 @@ export const getAllPosts = function () {
   return axios.get('/api/posts/all');
 }
 
-export const createPost = function () {
+export const createPost = function (postData) {
   console.log("post created");
-  return axios.get('/api/posts/all');
+  return axios.post('/api/posts/', postData);
 }
+
 
 export const getOnePost = function () {
   console.log("retrieving all posts");
