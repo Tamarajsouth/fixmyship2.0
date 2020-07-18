@@ -6,6 +6,11 @@ const { signToken } = require('../utils/auth');
 module.exports = {  //I don't see where we would use this
     async getAllComments(req, res) {
         const comments = await Comment.find();
+
+        if (!comments) {
+            return res.status(400).json({ message: 'Something is wrong!' });
+          }
+
         return res.json(comments);
 
     },
