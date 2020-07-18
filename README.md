@@ -1,59 +1,53 @@
-# googlebooks-app with authentication using JWT (JSON Web Token)
+## Fix My 'Ship
 
-## About This Boilerplate
+### About
 
-This setup allows for a Node/Express/React/JWT app which can be easily deployed to Heroku.
 
-The front-end React app will auto-reload as it's updated via webpack dev server, and the backend Express app will auto-reload independently with nodemon.
+A full stack web application where a user can login and interact with an online community to get and give relationship advice.
 
-An article on how the server is setup with JWT can be found [here](https://hptechblogs.com/using-json-web-token-for-authentication/). This has been modified to use a mongo database instead of hardcoded array of users.
+### User Story
 
-The front end has been setup to use JWT as a way of authenticating users and routes. To understand it's structure better please refer to the following article [here](https://hptechblogs.com/using-json-web-token-react/)
+As a human with feelings, you want to help other humans with feelings get through difficult relationship hurdles or celebrate happy moments in ones relationships. We have created this app to help build a supportive community of people who care for one another and offer solicited helpful relationship advice
 
-Please feel free to modify this code in anyway you see fit for your project. It is a boilerplate setup that tries to make sure you can get something up and running without having to worry about setting up user authentication from scratch.
-I highly suggest you read the articles before jumping in so you can have an better understanding of how everything works in the code.
-
-Server-side article and using JWT: https://hptechblogs.com/using-json-web-token-for-authentication/
-
-Front End article on using the JWT on a react application: https://hptechblogs.com/using-json-web-token-react/
-
-## Starting the app locally
-
-First off make sure you have a local version of MongoDB running on your machine. This project will make a local database for you called `appDB`.
-
+``` AS a person - 
+I WANT to post and comment on relationship subjects 
+FOR certain categories
+SO that I can offer help and solicit advice to a community of users.
 ```
-mongod
-```
+#### Technologies Utilized:
 
-Start by installing front and backend dependencies. While in the root directory, run the following command:
+1. jQuery / JSX
+2. React.js
+3. Bootstrap 4 / Custom CSS
+4. Node.js & Express Web Servers
+5. Packaged by MongoDB with Mongoose ORM
+6.  Deployed using Heroku with Data
+<hr>
+#### Screenshots of Deployed Application:
 
-```
-npm install
-```
+<a href="https://imgbb.com/"><img src="https://i.ibb.co/PZPRLbv/Screen-Shot-2020-07-18-at-10-50-57-AM.png" alt="Screen-Shot-2020-07-18-at-10-50-57-AM" border="0"></a>
 
-After all installations complete, run the following command in your terminal:
+<a href="https://ibb.co/p0Y8c4Q"><img src="https://i.ibb.co/5Mbymsk/Screen-Shot-2020-07-18-at-10-50-22-AM.png" alt="Screen-Shot-2020-07-18-at-10-50-22-AM" border="0"></a>
+
+<a href="https://ibb.co/cY6450L"><img src="https://i.ibb.co/km4Nnj1/Screen-Shot-2020-07-18-at-10-50-37-AM.png" alt="Screen-Shot-2020-07-18-at-10-50-37-AM" border="0"></a>
+
+<a href="https://ibb.co/5xfLkpn"><img src="https://i.ibb.co/rf1H38c/Screen-Shot-2020-07-18-at-10-50-48-AM.png" alt="Screen-Shot-2020-07-18-at-10-50-48-AM" border="0"></a>
+<hr>
+#### Deployment Link
+
+https://fixmyship20.herokuapp.com/
+
+#### Initializing App Locally
 
 ```
 npm start
 ```
+<hr>
+#### Creators
 
-That's it, your app should be running on <http://localhost:3000>. The Express server should intercept any AJAX requests from the client.
+- [Tamara South ](https://github.com/AZGchip "Visit Tamara's GitHub")
+- [Megan Murphy](https://github.com/childovhurin "Visit Megans's GitHub")
+- [Geordin Soucie](https://github.com/GormTheWyrm "Visit Gorm's GitHub")
 
-## Deployment (Heroku)
 
-### Create a Git Repo
 
-Once you're ready to deploy, start by making sure your project is a git repository. If so, proceed to the next section, otherwise run the following commands in your terminal:
-
-```
-git init
-git add .
-git commit -m "Initial commit"
-```
-
-### Deploying
-
-1. Go onto your heroku account and link your repository through the UI
-2. Go to resources and find mLab as a Add-on
-3. Provision a Mongo Database
-4. Go back and click "Deploy"
