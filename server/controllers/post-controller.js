@@ -3,9 +3,12 @@ const { signToken } = require('../utils/auth');
 
 // figure out how signin works...
 //once this works we will add the signToken, etc
+//need to figure out way to add token into the parameters...
 
 module.exports = {
-  async getAllPosts({ body }, res) {
+  async getAllPosts( req, res) {
+    
+    console.log("words");
     const allPosts = await Post.find();
     if (!allPosts) {
       return res.status(400).json({ message: 'Something is wrong!' });
@@ -20,13 +23,14 @@ module.exports = {
       return res.status(400).json({ message: 'Something is wrong!' });
     }
     // const token = signToken(user);
-    res.json(myPost);
+    res.json(token, myPost);
   },
 
-  async getCommentsByPost(req, res) {
+  async getPostById(req, res) {
     console.log(req.params._id);
     const onePost = await Post.findOne({ "_id": req.params._id });
-    if (!onePosts) {
+    console.log("looking for: " + req.params.id)
+    if (!onePost) {
       return res.status(400).json({ message: 'Something is wrong!' });
     }
     return res.json(onePost);

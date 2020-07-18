@@ -14,7 +14,7 @@ router.route('/all').get(authMiddleware, getAllComments);
 
 
 //get comments by user id
-router.route('/user/:userId').get(getCommentsByUser);  // authMiddleware,  add this back in!
+router.route('/user/:userId').get(authMiddleware, getCommentsByUser);  // authMiddleware,  add this back in!
 //... need to figure out if I can just use username...
 
 //get comments by post id

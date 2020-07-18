@@ -45,9 +45,9 @@ export const searchGoogleBooks = function (query) {
 // POSTS (articles)
 
 
-export const getAllPosts = function () {
+export const getAllPosts = function (token) {
   console.log("retrieving all posts");
-  return axios.get('/api/posts/all');
+  return axios.get('/api/posts/all', { headers: { authorization: `Bearer ${token}` } });
 }
 
 export const createPost = function (postData) {

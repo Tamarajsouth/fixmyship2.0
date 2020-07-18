@@ -2,7 +2,6 @@
 
 ### About
 
-
 A full stack web application where a user can login and interact with an online community to get and give relationship advice.
 
 ### User Story
@@ -23,6 +22,7 @@ SO that I can offer help and solicit advice to a community of users.
 5. Packaged by MongoDB with Mongoose ORM
 6.  Deployed using Heroku with Data
 <hr>
+
 #### Screenshots of Deployed Application:
 
 <a href="https://imgbb.com/"><img src="https://i.ibb.co/PZPRLbv/Screen-Shot-2020-07-18-at-10-50-57-AM.png" alt="Screen-Shot-2020-07-18-at-10-50-57-AM" border="0"></a>
@@ -33,6 +33,7 @@ SO that I can offer help and solicit advice to a community of users.
 
 <a href="https://ibb.co/5xfLkpn"><img src="https://i.ibb.co/rf1H38c/Screen-Shot-2020-07-18-at-10-50-48-AM.png" alt="Screen-Shot-2020-07-18-at-10-50-48-AM" border="0"></a>
 <hr>
+
 #### Deployment Link
 
 https://fixmyship20.herokuapp.com/
@@ -43,6 +44,7 @@ https://fixmyship20.herokuapp.com/
 npm start
 ```
 <hr>
+
 #### Creators
 
 - [Tamara South ](https://github.com/AZGchip "Visit Tamara's GitHub")
