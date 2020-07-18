@@ -22,11 +22,11 @@ module.exports = {
 
   async getCommentsByPost(req, res) {
     console.log(req.params._id);
-    const onePost = await Post.findOne({"_id": req.params._id});
+    const onePost = await Post.findOne({ "_id": req.params._id });
     return res.json(onePost);
   },
 
-  async editPost (req, res){
+  async editPost(req, res) {
     console.log("edit post... not yet implemented")
     //MAKE ME WORK!!!
   },

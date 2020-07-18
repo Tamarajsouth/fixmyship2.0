@@ -12,35 +12,33 @@ const postSchema = new Schema(
     type: String,
     required: true
   },
-  // summary: {
-  //   type: String,
-  //   required: true
-  // },
-
-  // username: {
-  //   type: String,
-  //   required: true,
-    // ref: "User"
-    //remove this
-  // },
-  // userId: {
-  //   type: Schema.Types.ObjectId,
-  //   ref: "User"
-  // },
+  summary: {
+    type: String,
+    required: false
+  },
+  user: {
+    type: Schema.Types.ObjectId,
+    ref: "User"
+  },
   createdAt: {
-    type: Date, default: Date.now 
-  }
+    type: Date, 
+    default: Date.now //is this working?
+  },
   // postedBy: {
   //   type:ObjectId,
   //   ref:"user"
   // },
-  // image: {
-  //   type: String,
-  //   default: "no photo"
-  // },
-  // tags:{
-  //   type: String
-  // },
+  Gravitar: { //make this into gravitar url...
+    type: String,
+    default: "no photo"
+  },
+  tags:[  //this could also be a single catagory instead of an array
+          //not sure if this needs to be an entire collection
+  {
+    type: Schema.Types.ObjectId,
+    ref: "Tag"
+  }
+],
 
 //lastUpdatedAt : {type: Data, default: Date.now}
 

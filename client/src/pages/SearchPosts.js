@@ -3,7 +3,7 @@ import { Container, Row, Col, Form, Button, Card, CardColumns } from "react-boot
 
 import UserInfoContext from "../utils/UserInfoContext";
 import AuthService from "../utils/auth";
-import { savePost, searchAllPosts } from "../utils/API";
+import { savePost, getAllPosts } from "../utils/API";
 
 import "./style.css";
 
@@ -23,7 +23,8 @@ function SearchPosts() {
       return false;
     }
 
-    searchAllPosts(searchInput)
+    getAllPosts(searchInput) // Gorm changed the name to reflect waht is in API.js
+      //this was "searchAllPosts"
       .then(({ data }) => {
         const postData = data.items.map((post) => ({
           // display post subject line
