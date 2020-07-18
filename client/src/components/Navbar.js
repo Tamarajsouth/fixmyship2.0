@@ -47,7 +47,7 @@ function AppNavbar() {
         <NavDropdown.Item href="#action/3.3">Women</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.3">Men</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.3">Just Friends</NavDropdown.Item>
-        <NavDropdown.Item className="ViewPosts" as={Link} to='/ViewPosts'>View All</NavDropdown.Item>
+        <NavDropdown.Item className="CommunityPosts" as={Link} to='/CommunityPosts'>View All</NavDropdown.Item>
       </NavDropdown>
     </Nav>
             <Navbar className="about-link" as={Link} to='/about'>
