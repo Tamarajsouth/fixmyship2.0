@@ -38,23 +38,29 @@ export const searchGoogleBooks = function (query) {
 };
 
 
-/*
-POSTS AND NEW STUFF
-estimated function:
-
-export const getPosts = function (TagName) {
-  return axios.get(`/api/tags/${TagName}`);
-};
+// POSTS (articles)
 
 
-*/
+export const getAllPosts = function () {
+  console.log("retrieving all posts");
+  return axios.get('/api/posts/all');
+}
 
+export const createPost = function () {
+  console.log("post created");
+  return axios.get('/api/posts/all');
+}
+
+export const getOnePost = function () {
+  console.log("retrieving all posts");
+  return axios.get('/api/posts/post/:_id');
+}
+
+// Tags
 export const getTest = function () {
   console.log("API hit");
   return axios.get('/api/posts/');
-  // return axios.get('/api/users/test');
-  //does index make the /api/users  part appear in front of everything in user-routes?
-  //maybe try '/test' if above fails
+
 };
 
 export const getAllTags = function () {
@@ -62,3 +68,20 @@ export const getAllTags = function () {
   return axios.get('/api/tags/all');
   
 };
+// comments
+export const getAllComments = function () {
+  console.log("getting comments from server");
+   return axios.get('/api/comments/all');
+   
+ };
+ export const getCommentsByUser = function (userId) { // search by username?
+  console.log("getting comments from server");
+   return axios.get(`/api/comments/user/${userId}`);
+   
+ };
+
+ export const getCommentsByPost = function (postId) { //not sure if this is the correct data
+  console.log("getting comments from server");
+   return axios.get(`/api/comments/post/${postId}`);
+   
+ };
