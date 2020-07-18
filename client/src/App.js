@@ -1,12 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
-import SearchBooks from './pages/SearchBooks';
-import SavedBooks from './pages/SavedBooks';
+import Welcome from './pages/Welcome';
+import UserSavedBooks from './pages/UserSavedBooks';
 import Navbar from './components/Navbar';
 import About from './pages/About';
 import Footer from "./components/Footer";
 import Rules from "./pages/Rules";
-import ViewPosts from "./pages/ViewPosts";
+import CommunityPosts from "./pages/CommunityPosts";
 import CreatePost from "./pages/CreatePost";
 
 import * as API from './utils/API';
@@ -51,9 +51,9 @@ function App() {
         <UserInfoContext.Provider value={userInfo}>
           <Navbar />
           <Switch>
-            <Route exact path='/' component={SearchBooks} />
-            <Route exact path='/viewposts' component={ViewPosts} />
-            <Route exact path='/saved' component={SavedBooks} />
+            <Route exact path='/' component={Welcome} />
+            <Route exact path='/communityposts' component={CommunityPosts} />
+            <Route exact path='/saved' component={UserSavedBooks} />
             <Route exact path='/about' component={About} />
             <Route exact path='/rules' component={Rules} />
             <Route exact path='/createpost' component={CreatePost} />

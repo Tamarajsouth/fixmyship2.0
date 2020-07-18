@@ -9,7 +9,7 @@ import AuthService from '../utils/auth';
 
 import "./style.css";
 
-function ViewPosts() {
+function CommunityPosts() {
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
 
@@ -102,4 +102,4 @@ function ViewPosts() {
   );
 }
 
-export default ViewPosts;
+export default CommunityPosts;
