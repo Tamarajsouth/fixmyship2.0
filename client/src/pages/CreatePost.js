@@ -10,6 +10,20 @@ import "./style.css";
 function CreatePost() {
   const [formObject, setFormObject] = useState({});
 
+   // LOAD ALL BOOKS TO STORE THEM WITH SETBOOKS
+   useEffect(() => {
+    loadBooks()
+  }, [])
+
+  // LOAD BOOK DATA
+  function loadBooks() {
+    API.getBooks()
+      .then(res => 
+        setBooks(res.data)
+      )
+      .catch(err => console.log(err));
+  };
+
   function handleInputChange(event) {
     const { name, value } = event.target;
     console.log(name, value);
