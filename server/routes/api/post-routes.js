@@ -33,7 +33,7 @@ router.route('/post/:_id').get(authMiddleware, getPostById);
 //do we need a get saved? can probably do on frontend...
 
 //post new
-router.route('/').post(authMiddleware, createPost);
+router.route('/').post(authMiddleware, createPost);    //  ,
     // will need to figure out authorization
 
 // update (put)
