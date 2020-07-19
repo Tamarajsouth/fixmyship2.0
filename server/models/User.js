@@ -17,6 +17,10 @@ const userSchema = new Schema(
       unique: true,
       match: [/.+@.+\..+/, 'Must use a valid email address'],
     },
+  Gravitar: { //make this into gravitar url...
+    type: String,
+    default: "no photo"
+  },
     password: {
       type: String,
       required: true,
