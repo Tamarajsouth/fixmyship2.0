@@ -46,10 +46,11 @@ export const getAllPosts = function (token) {
   return axios.get('/api/posts/all', { headers: { authorization: `Bearer ${token}` } });
 }
 
-export const createPost = function (postData) {
+export const createPost = function (postData, token) {
   console.log("post created");
-  return axios.post('/api/posts/', postData);
-}
+  return axios.post('/api/posts/', postData, { headers: { authorization: `Bearer ${token}` } });
+} // need to figure out how/where to update the user's post array!
+//in the post-controller!?
 
 
 export const getOnePost = function () {
