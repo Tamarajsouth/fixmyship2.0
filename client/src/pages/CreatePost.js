@@ -48,7 +48,7 @@ function CreatePost() {
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
 
-      API.createPost(book)  //where do I get this data from?
+      API.createPost(book, token)  //where do I get this data from?
         .then((res) => console.log(res))
         .catch((err) => console.log(err));  
     }
@@ -116,7 +116,7 @@ function CreatePost() {
           // ={!(formObject.title && formObject.body && formObject.username)}
           onClick={handleFormSubmit}
         >
-          Submit Book
+          Create Post
         </button>
       </Card.Body>
     </>

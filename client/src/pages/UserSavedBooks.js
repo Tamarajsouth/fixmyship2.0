@@ -31,7 +31,7 @@ function UserSavedBooks() {
     <>
       <Jumbotron fluid className='text-dark bg-light'>
         <Container>
-          <h1 className='viewing-liked'><i class="fas fa-heart"></i>  Viewing Liked Posts!  <i class="fas fa-heart"></i></h1>
+          <h1 className='viewing-liked'><i className="fas fa-heart"></i>  Viewing Liked Posts!  <i className="fas fa-heart"></i></h1>
           <p className='user-instructions'> here you can comment on your liked posts or delete posts from your saved history. </p>
         </Container>
       </Jumbotron>
@@ -45,22 +45,9 @@ function UserSavedBooks() {
             Massa ultricies mi quis hendrerit dolor magna. Nulla facilisi nullam vehicula ipsum a arcu. Tristique senectus et netus et malesuada 
             fames ac. Enim sit amet venenatis urna cursus eget nunc. Lacus sed viverra tellus in. Tempus egestas sed sed risus pretium quam vulputate. Arcu vitae elementum curabitur vitae. 
             Vestibulum rhoncus est pellentesque elit ullamcorper. Augue mauris augue neque gravida.</Card.Text>
-            <Button className="heart-btn"><i class="fas fa-heart"></i> like</Button><span>   </span>
+            <Button className="heart-btn"><i className="fas fa-heart"></i> like</Button><span>   </span>
             <Button className="comment-btn"><i className="fas fa-comment-dots"></i> comment</Button><span>   </span>
-            <Button className="delete-btn"><i class="fas fa-trash-alt"></i> delete </Button>        </Card.Body>
-        </Card>
-        <Card>
-        <Card.Body className="post-card">
-          <Card.Title className="post-subject">Post Subject</Card.Title>
-          <p className="username">posted by:</p>
-          <Card.Text>Body of text Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
-            labore et dolore magna aliqua. In metus vulputate eu scelerisque felis imperdiet proin. Ac felis donec et odio pellentesque diam. 
-            Massa ultricies mi quis hendrerit dolor magna. Nulla facilisi nullam vehicula ipsum a arcu. Tristique senectus et netus et malesuada 
-            fames ac. Enim sit amet venenatis urna cursus eget nunc. Lacus sed viverra tellus in. Tempus egestas sed sed risus pretium quam vulputate. Arcu vitae elementum curabitur vitae. 
-            Vestibulum rhoncus est pellentesque elit ullamcorper. Augue mauris augue neque gravida.</Card.Text>
-            <Button className="heart-btn"><i class="fas fa-heart"></i> like</Button><span>   </span>
-            <Button className="comment-btn"><i className="fas fa-comment-dots"></i> comment</Button><span>   </span>
-            <Button className="delete-btn"><i class="fas fa-trash-alt"></i> delete </Button>        </Card.Body>
+            <Button className="delete-btn"><i className="fas fa-trash-alt"></i> delete </Button>        </Card.Body>
         </Card>
         <Card>
         <Card.Body className="post-card">
@@ -73,7 +60,20 @@ function UserSavedBooks() {
             Vestibulum rhoncus est pellentesque elit ullamcorper. Augue mauris augue neque gravida.</Card.Text>
             <Button className="heart-btn"><i className="fas fa-heart"></i> like</Button><span>   </span>
             <Button className="comment-btn"><i className="fas fa-comment-dots"></i> comment</Button><span>   </span>
-            <Button className="delete-btn"><i class="fas fa-trash-alt"></i> delete </Button>
+            <Button className="delete-btn"><i className="fas fa-trash-alt"></i> delete </Button>        </Card.Body>
+        </Card>
+        <Card>
+        <Card.Body className="post-card">
+          <Card.Title className="post-subject">Post Subject</Card.Title>
+          <p className="username">posted by:</p>
+          <Card.Text>Body of text Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut 
+            labore et dolore magna aliqua. In metus vulputate eu scelerisque felis imperdiet proin. Ac felis donec et odio pellentesque diam. 
+            Massa ultricies mi quis hendrerit dolor magna. Nulla facilisi nullam vehicula ipsum a arcu. Tristique senectus et netus et malesuada 
+            fames ac. Enim sit amet venenatis urna cursus eget nunc. Lacus sed viverra tellus in. Tempus egestas sed sed risus pretium quam vulputate. Arcu vitae elementum curabitur vitae. 
+            Vestibulum rhoncus est pellentesque elit ullamcorper. Augue mauris augue neque gravida.</Card.Text>
+            <Button className="heart-btn"><i className="fas fa-heart"></i> like</Button><span>   </span>
+            <Button className="comment-btn"><i className="fas fa-comment-dots"></i> comment</Button><span>   </span>
+            <Button className="delete-btn"><i className="fas fa-trash-alt"></i> delete </Button>
         </Card.Body>
         </Card>
         {/* <h2 classname="saved-message">
