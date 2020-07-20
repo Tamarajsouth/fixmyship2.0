@@ -36,6 +36,7 @@ module.exports = {
     return res.json(onePost);
   },
 
+
   async editPost(req, res) {
     console.log("edit post... not yet implemented")
     //MAKE ME WORK!!! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
@@ -67,8 +68,6 @@ module.exports = {
         res.json(err);
       });
   },
-
- 
 
   async deletePost({ user, params }, res) {
     const updatedUser = await User.findOneAndUpdate(

@@ -10,8 +10,6 @@ import AuthService from '../utils/auth';
 
 import "./style.css";
 
-
-
 function CommunityPosts() {
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
@@ -29,14 +27,6 @@ function CommunityPosts() {
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));
   };
-
-
-
-
-
-
-
-
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 const [postArticles, setPostArticles] = useState([]);
@@ -65,20 +55,7 @@ const [postArticles, setPostArticles] = useState([]);
  
   }, []);
 
-
-
-
-
-
 // ~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-
-
-
-
-
-
 
   return (
     <>

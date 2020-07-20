@@ -50,7 +50,7 @@ function CreatePost() {
 
       API.createPost(book)  //where do I get this data from?
         .then((res) => console.log(res))
-        .catch((err) => console.log(err));
+        .catch((err) => console.log(err));  
     }
   }
   return (
