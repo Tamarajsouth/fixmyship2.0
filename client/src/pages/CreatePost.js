@@ -102,7 +102,7 @@ function CreatePost() {
           // ={!(formObject.title && formObject.body && formObject.username)}
           onClick={handleFormSubmit}
         >
-          Submit Book
+          Create Post
         </button>
       </Card.Body>
     </>
