@@ -40,7 +40,11 @@ function LoginForm({ handleModalClose }) {
         console.log(err.response);
         setShowAlert(true);
         setErrorText(err.response.data.message);
+
       });
+
+    }
+
   };
 
   return (
