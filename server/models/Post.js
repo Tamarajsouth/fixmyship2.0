@@ -27,11 +27,7 @@ const postSchema = new Schema(
   // postedBy: {
   //   type:ObjectId,
   //   ref:"user"
-  // },
-  Gravitar: { //make this into gravitar url...
-    type: String,
-    default: "no photo"
-  },
+  // }
   tags:[  //this could also be a single catagory instead of an array
           //not sure if this needs to be an entire collection
   {

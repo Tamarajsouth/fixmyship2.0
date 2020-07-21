@@ -2,6 +2,7 @@
 
 import React, { useState, useContext } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
+import {  Redirect } from "react-router-dom";
 
 import UserInfoContext from '../utils/UserInfoContext';
 import { loginUser } from '../utils/API';
@@ -12,6 +13,7 @@ function LoginForm({ handleModalClose }) {
   const [validated, setValidation] = useState(false);
   const [showAlert, setShowAlert] = useState(false);
   const [errorText, setErrorText] = useState('');
+  const [redirect, setRedirect] = useState(false);
 
   const userData = useContext(UserInfoContext);
 
@@ -35,6 +37,7 @@ function LoginForm({ handleModalClose }) {
         AuthService.login(data.token);
         userData.getUserData();
         handleModalClose();
+        setRedirect(true);
       })
       .catch((err) => {
         console.log(err.response);
@@ -49,6 +52,7 @@ function LoginForm({ handleModalClose }) {
 
   return (
     <>
+    {redirect ? <Redirect to="/communityposts" /> : <p></p>}
       <Form noValidate validated={validated} onSubmit={handleFormSubmit}>
         <Alert dismissible onClose={() => setShowAlert(false)} show={showAlert} variant='light'>
           {errorText || 'Something went wrong with your login credentials!'}

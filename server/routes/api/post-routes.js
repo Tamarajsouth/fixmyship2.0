@@ -32,11 +32,10 @@ router.route('/post/:_id').get(authMiddleware, getPostById);
 //do we need a get saved? can probably do on frontend...
 
 //post new
-router.route('/').post(authMiddleware, createPost);    //  ,
-    // will need to figure out authorization
+router.route('/').post(authMiddleware, createPost); // works!
 
 // update (put)
-
+router.route('/').post(authMiddleware, editPost);   // not working yet!
 
 
 // ~~~~~~old
