@@ -6,6 +6,7 @@ const {
   saveBook,    //new
   deleteBook,   //new
   login,
+  saveUserPost
   
 
 } = require('../../controllers/user-controller');
@@ -23,6 +24,9 @@ router.route('/me').get(authMiddleware, getSingleUser);
 router.route('/:username').get(getSingleUser);
 
 router.route('/books/:id').delete(authMiddleware, deleteBook);
+
+//save id to savedPosts in user
+router.route('/posts/:id').put(authMiddleware, saveUserPost);
 
 module.exports = router;
 

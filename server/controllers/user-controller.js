@@ -75,4 +75,21 @@ module.exports = {
     }
     return res.json(updatedUser);
   },
+
+  async saveUserPost({ user, body }, res) { //FIX ME!!! add token
+    console.log("You have reached the save post API");
+    console.log(user);
+    try {
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $addToSet: { savedBooks: body } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedUser);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+
 };
