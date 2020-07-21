@@ -15,48 +15,21 @@ module.exports = {
     return res.json(allPosts);
   },
 
-  //saveBooks function does not have middleware in the createUser post, only the put that updates the books
-  async createPost( req , res) { //need to figure out how to lock this behind middleware
-    console.log("testing ");
-    //right here I should attempt to get user from header...
-    console.log(req.user);
-    //params and query are empty...
-    // WHERE DOES THE USER-CONTROLLER GET THE user PARAMETER FROM!?
-    // getSingleUser(); //async getSingleUser({ user = null, params }, res) {
-    //try and find user or token in some manner...
-    // and top function if that fails...
-    // IMPLEMENT HERE
-    //I will also need to update that user with the post id !
 
-    // findOne({})  .populate('Post') .exec(function (err, user) 
-    //{  if (err) return handleError(err);    });
-
-    //const userId = params._id ... that cant be right...
-    try {
-      let user = User.findOne({  /* this needs to grab an id... */ })
-      console.log("user:");
-      // console.log(user);
-    }
-    catch (err) {
-      console.log(err);
-      return res.status(400).json(err);
-    }
-
-
-
+  async createPost(req, res) { // this works!
     const myPost = await Post.create(req.body);
 
     if (!myPost) {
       return res.status(400).json({ message: 'Something is wrong!' });
     }
-    // const token = signToken(user);
-    res.json(myPost);  // token is invalid... which means a token was sent!
-  },  // this function still posts even if token is sent- needs to be configured differently to stop anon posting
+    res.json(myPost);
+  },
 
-  async getPostById(req, res) {
+  async getPostById(req, res) { //does this work? 
+    //Seems to work without middleware, needs to be tested with middleware from front-end
     console.log(req.params._id);
     const onePost = await Post.findOne({ "_id": req.params._id });
-    console.log("looking for: " + req.params.id)
+    console.log("looking for: " + req.params._id)
     if (!onePost) {
       return res.status(400).json({ message: 'Something is wrong!' });
     }
@@ -66,6 +39,11 @@ module.exports = {
   async editPost(req, res) {
     console.log("edit post... not yet implemented")
     //MAKE ME WORK!!! ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    /*  Notes:
+        this needs to recieve the post id...
+        ..wait...
+    */
+
     const onePost = "test";
     if (!onePosts) {
       return res.status(400).json({ message: 'Something is wrong!' });
