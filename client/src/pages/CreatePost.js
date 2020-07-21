@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, Redirect } from "react-router-dom";
 import { Button, Form, Card } from "react-bootstrap";
 import * as API from "../utils/API";
 import AuthService from "../utils/auth";
@@ -7,7 +7,10 @@ import AuthService from "../utils/auth";
 import "./style.css";
 // import { InputGroupRadio } from 'react-bootstrap/InputGroup';
 
+
+
 function CreatePost() {
+  const [redirect, setRedirect] = useState(false);
   const [formObject, setFormObject] = useState({});
 
   function handleInputChange(event) {
@@ -37,10 +40,13 @@ function CreatePost() {
       API.createPost(book, token)  //where do I get this data from?
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
+        setRedirect(true);
     }
   }
   return (
     <>
+    {/* loggedIn needs to be replaced with redirect...from state */}
+    {redirect ? <Redirect to="/communityposts" /> : <p></p>}
       <hr></hr>
       <Card.Body className="welcome-heading">Create a Post!</Card.Body>
       <Card.Body>
