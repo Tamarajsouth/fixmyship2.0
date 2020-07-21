@@ -1,5 +1,3 @@
-// see SignupForm.js for comments
-
 import React, { useState, useContext } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import {  Redirect } from "react-router-dom";
@@ -43,11 +41,7 @@ function LoginForm({ handleModalClose }) {
         console.log(err.response);
         setShowAlert(true);
         setErrorText(err.response.data.message);
-
       });
-
-    }
-
   };
 
   return (
