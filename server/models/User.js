@@ -17,10 +17,10 @@ const userSchema = new Schema(
       unique: true,
       match: [/.+@.+\..+/, 'Must use a valid email address'],
     },
-  Gravitar: { //make this into gravitar url...
-    type: String,
-    default: "no photo"
-  },
+    Gravitar: { //make this into gravitar url...
+      type: String,
+      default: "no photo"
+    },
     password: {
       type: String,
       required: true,
@@ -31,8 +31,15 @@ const userSchema = new Schema(
         type: Schema.Types.ObjectId,
         ref: "Post",
       }
+    ],
+    savedPosts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Post",
+      }
     ]
-  },  
+  },
+
   // set this to use virtual below
   {
     toJSON: {

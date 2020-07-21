@@ -91,4 +91,8 @@ export const getAllComments = function () {
    return axios.get(`/api/comments/post/${postId}`);
    
  };
- 
+
+ // save users posts so they show up in community tab...
+ export const saveUserPost = function (postId, token) {
+  return axios.put('/api/users/posts/:id', postId, { headers: { authorization: `Bearer ${token}` } });
+};
