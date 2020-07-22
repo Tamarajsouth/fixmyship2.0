@@ -3,15 +3,17 @@ import { Link, Redirect } from "react-router-dom";
 import { Button, Form, Card } from "react-bootstrap";
 import * as API from "../utils/API";
 import AuthService from "../utils/auth";
+import UserInfoContext from "../utils/UserInfoContext";
 
 import "./style.css";
 // import { InputGroupRadio } from 'react-bootstrap/InputGroup';
 
 
-
 function CreatePost() {
   const [redirect, setRedirect] = useState(false);
   const [formObject, setFormObject] = useState({});
+  const userData = useContext(UserInfoContext);
+    //userData.username ?
 
    // LOAD ALL BOOKS TO STORE THEM WITH SETBOOKS
   //  useEffect(() => {
@@ -38,6 +40,7 @@ function CreatePost() {
     event.preventDefault();
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
     console.log("token", token)
+
     if (!token) {
       return false;
     }
@@ -45,7 +48,9 @@ function CreatePost() {
       const book = {
         title: formObject.title,
         body: formObject.body,
-        username: formObject.username,
+        // username: formObject.username,  
+        username: userData.username  // 
+
       };
       API.saveBook(book, token)
         .then((res) => console.log(res))
