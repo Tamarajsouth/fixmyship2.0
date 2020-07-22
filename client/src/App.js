@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import Welcome from './pages/Welcome';
-import UserSavedBooks from './pages/UserSavedBooks';
+import UserSavedPosts from './pages/UserSavedPosts';
 import Navbar from './components/Navbar';
 import About from './pages/About';
 import Footer from "./components/Footer";
@@ -53,7 +53,7 @@ function App() {
           <Switch>
             <Route exact path='/' component={Welcome} />
             <Route exact path='/communityposts' component={CommunityPosts} />
-            <Route exact path='/saved' component={UserSavedBooks} />
+            <Route exact path='/saved' component={UserSavedPosts} />
             <Route exact path='/about' component={About} />
             <Route exact path='/rules' component={Rules} />
             <Route exact path='/createpost' component={CreatePost} />
