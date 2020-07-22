@@ -9,7 +9,7 @@ module.exports = {  //I don't see where we would use this
 
         if (!comments) {
             return res.status(400).json({ message: 'Something is wrong!' });
-          }
+        }
 
         return res.json(comments);
 
@@ -28,27 +28,25 @@ module.exports = {  //I don't see where we would use this
         console.log("**");
         console.log(req.params);
         console.log("**");
-        try {
+        
             const foundComments = await Comment.find({  //this refuses to find anything except all or nothing
-                // "userId": req.params.userId
-                "userId" : "5f0e5dec363f2c2600a65876"    //this works in mongoDB
+                // "user": req.params._id
+                "body": "skalborg!"    //this works!
 
             });//this is  not functional yet...
-            
-                // seems to return all comments... or none
-                
-            if (foundComments) {console.log("found user?");
-            console.log(foundComments); // this is returning an empty bracket... so returns anything
-        }
+
+            // seems to return all comments... or none
+
+            if (foundComments) {
+                console.log("found user?");
+                console.log(foundComments); // this is returning an empty bracket... so returns anything
+            }
             if (!foundComments) {
                 return res.status(400).json({ message: 'Cannot find comments for this user!' });
             }
 
             return res.json(foundComments);
-        } catch (err) {
-            console.log(err);
-            return res.status(400).json(err);
-        }
+            //THIS IS FINDING THE POST ID, NOT USER!
     },
 
     //get comments by postId    (see posts comments)
@@ -66,8 +64,19 @@ module.exports = {  //I don't see where we would use this
     //   },
 
 
-// postComment
+    // postComment
+    async postComment(req, res) {
+        const comment = await Comment.create(req.body);
 
-//editComment
+        if (!comment) {
+            return res.status(400).json({ message: 'Something is wrong!' });
+        }
+
+        return res.json(comment);
+
+    }
+
+
+    //editComment
 
 };
