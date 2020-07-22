@@ -91,5 +91,17 @@ module.exports = {
       return res.status(400).json(err);
     }
   },
+  async deleteUserPost({ user, params }, res) {
+    console.log("you have reached the delete post API");
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: user._id },
+      { $pull: { savedBooks: { bookId: params.id } } },
+      { new: true }
+    );
+    if (!updatedUser) {
+      return res.status(404).json({ message: "Couldn't find user with this id!" });
+    }
+    return res.json(updatedUser);
+  },
 
 };

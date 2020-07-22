@@ -27,7 +27,6 @@ function CommunityPosts() {
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));
   };
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 const [postArticles, setPostArticles] = useState([]);
 
@@ -55,7 +54,6 @@ const [postArticles, setPostArticles] = useState([]);
  
   }, []);
 
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
   return (
     <>

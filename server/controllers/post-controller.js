@@ -43,12 +43,20 @@ module.exports = {
     /*  Notes:
         this needs to recieve the post id...
         ..wait...
+        updateOne... findOneAndUpdate()
+        req.body.body should contain the main text that needs to be updated...
+        the whole text must be sent, not just the part that is changed...
+        post id must be in req.params.id
+        ... need to figure out how to make this update the user as well... does the post id change?
     */
 
-    const onePost = "test";
+    const onePost = await Post.findByIdAndUpdate(
+      {_id: req.params.id}, {$set: {body: req.body}}
+    );
     if (!onePosts) {
       return res.status(400).json({ message: 'Something is wrong!' });
     }
+    return res.json(onePost);
   },
 
 
