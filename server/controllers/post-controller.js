@@ -29,7 +29,7 @@ module.exports = {
     }
 
 //then create post
-    let myPost = await Post.create(req.body);
+    const myPost = await Post.create(req.body);
     if (!myPost) {
       console.log("post not created");
       return res.status(400).json({ message: 'Something is wrong!' });
@@ -38,7 +38,10 @@ module.exports = {
     // console.log(myPost);
 
  //update mypost with the user id and save it
-
+ const updatedPost = await Post.findOneAndUpdate({_id: myPost._id},
+  {user: user._id}
+  );  //need to make sure this does not delete post...
+  //check to see if I need to catch this error...
 //update user
     const updatedUser = await User.findOneAndUpdate(
       { username: req.body.username },  //find by username- ok
