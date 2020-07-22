@@ -36,7 +36,8 @@ router.route('/post/:_id').get(authMiddleware, getPostById);
 router.route('/').post(authMiddleware, createPost); // works!
 
 // update (put)
-router.route('/').post(authMiddleware, editPost);   // not working yet!
+router.route('/').put(authMiddleware, editPost);   // not working yet!
+// this can break it, should I just comment it out?
 
 
 // ~~~~~~old

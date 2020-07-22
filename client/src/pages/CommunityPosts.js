@@ -31,14 +31,6 @@ function CommunityPosts() {
   };
 
 
-
-
-
-
-
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
 const [postArticles, setPostArticles] = useState([]);
 
   useEffect(() => {
@@ -64,19 +56,6 @@ const [postArticles, setPostArticles] = useState([]);
       .catch(err => console.log("No posts found. Please add posts to database")); //not sure if this is catching the error.
  
   }, []);
-
-
-
-
-
-
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-
-
-
-
 
 
 

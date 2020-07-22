@@ -92,3 +92,7 @@ export const getAllComments = function () {
  export const saveUserPost = function (postId, token) {
   return axios.put('/api/users/posts/:id', postId, { headers: { authorization: `Bearer ${token}` } });
 };
+
+export const deleteUserPost = function (postId, token) {
+  return axios.put('/api/users/posts/:id', postId, { headers: { authorization: `Bearer ${token}` } });
+};
