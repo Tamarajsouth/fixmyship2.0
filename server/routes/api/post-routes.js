@@ -11,7 +11,7 @@ const {
     getAllPosts,
     createPost,
     getPostById,
-
+// ~~~
     newPost,
     editPost,
     deletePost,
@@ -31,9 +31,11 @@ router.route('/post/:_id').get(authMiddleware, getPostById);
 //get by user
 
 //do we need a get saved? can probably do on frontend...
+//should not need it for logged in user
 
 //post new
 router.route('/').post(authMiddleware, createPost); // works!
+//then make usercall
 
 // update (put)
 router.route('/').put(authMiddleware, editPost);   // not working yet!

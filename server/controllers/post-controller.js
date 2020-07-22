@@ -15,13 +15,43 @@ module.exports = {
     return res.json(allPosts);
   },
 
-
-  async createPost(req, res) { // this works!
-    const myPost = await Post.create(req.body);
-
-    if (!myPost) {
+// AAAAAAAAAAAAAAAAAAAAAAaaaaaaaaaaaaaaaaaagggggggh!
+  async createPost(req, res) { // this works! But needs testign with user data input!
+    console.log("user params");
+    console.log(req.params);
+    //there are not params- I need to change the route to /post/:_id !
+    console.log("first find user");
+//first find user
+    const user = await User.findOne({ username: req.body.username });
+    if (!user) {
+      console.log("user does not exist");
       return res.status(400).json({ message: 'Something is wrong!' });
     }
+
+//then create post
+    let myPost = await Post.create(req.body);
+    if (!myPost) {
+      console.log("post not created");
+      return res.status(400).json({ message: 'Something is wrong!' });
+    }
+    console.log("post created"); //this is not occuring!
+    // console.log(myPost);
+
+ //update mypost with the user id and save it
+
+//update user
+    const updatedUser = await User.findOneAndUpdate(
+      { username: req.body.username },  //find by username- ok
+      { $addToSet: { posts: myPost._id } }, //adds post id... testme!
+      //added null...I need a req.params.id for this to work...
+      // I was able to add a specific post via hardcoded string id...
+      { new: true, runValidators: true }
+    );
+    if (!updatedUser) {
+      console.log("user not updated");
+      return res.status(400).json({ message: 'Something is wrong!' });
+    }
+    console.log("user updated!");
     res.json(myPost);
   },
 
@@ -50,7 +80,7 @@ module.exports = {
     */
 
     const onePost = await Post.findByIdAndUpdate(
-      {_id: req.params.id}, {$set: {body: req.body}}
+      { _id: req.params.id }, { $set: { body: req.body } }
     );
     if (!onePosts) {
       return res.status(400).json({ message: 'Something is wrong!' });
@@ -134,36 +164,26 @@ return res.json({post}); //will this work?
 };
 
 // we should do routes first!
+   .then((data) => User.findOneAndUpdate({ user: "5f147c7753960423ccf2a70b" }, { $push: { posts: "5f147c7753960423ccf2a70b" } }, { new: true }))
+      .then(dbUser => {
+        console.log(dbUser);  //this is null right now...
+        console.log("test");
+      })
+      .catch(err => {
+        console.log("caught err");
+        console.log(err);
+        res.json({ message: 'Something went wrong!' });
+      });
+      //...this is updating the database... but mypost does not exist so err occurs...
 
-const express = require('express')// // const router = express.Router()
-//POST MODELS// //
-const Post = require('../../models/Post')
-// GET ROUTE FOR API & POSTS// //
-router.get('/', (req, res) => {// //
-    Post.find()
-        .sort({ date: -1 })// //
-        .then(posts => res.json(posts))
-})
-// GET ROUTE API/POSTS/:id//
-router.get('/:id', (req, res) => {// //
-Post.findById(req.params.id)// //
-    .then(posts => res.json(posts))// //
-})
-// POST ROUTE API/POSTS// //
-router.post('/', (req, res) => {// //
-    Post.create(req.body)// //
-        .then(posts => res.json(posts))// //
-})
-//PUT ROUTE/ UPDATE API/POSTS/:id// //
-router.put('/:id', (req, res) => {// //
-    Post.findByIdAndUpdate(req.params.id, req.body)// //
-        .then(posts => res.json(posts))// //
-})
-// DELETE ROUTE API/POSTS/:id// //
-router.delete('/:id', (req, res) => {// //
-    Post.findByIdAndRemove(req.params.id)// //
-        .then(posts => res.json)// //
-})
+
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $addToSet: { savedPosts: createdPost._id } },
+        { new: true, runValidators: true }
+      );
+
+
 
 
 */
