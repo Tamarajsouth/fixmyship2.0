@@ -95,25 +95,25 @@ function CreatePost() {
           <Form.Control as="textarea" placeholder='text goes here' rows="3" />
         </Form.Group> */}
         <p className="choose-category-heading">choose a category to post to:</p>
-        <Button className="category-btn" variant="outline-secondary">
+        <Button className="dating-btn" variant="outline-secondary">
           Dating
         </Button>{" "}
-        <Button className="category-btn" variant="outline-secondary">
+        <Button className="breakingup-btn" variant="outline-secondary">
           Breaking Up
         </Button>{" "}
-        <Button className="category-btn" variant="outline-secondary">
+        <Button className="marriage-btn" variant="outline-secondary">
           Marriage
         </Button>{" "}
-        <Button className="category-btn" variant="outline-secondary">
+        <Button className="lgbtq-btn" variant="outline-secondary">
           LGBTQ+
         </Button>{" "}
-        <Button className="category-btn" variant="outline-secondary">
+        <Button className="women-btn" variant="outline-secondary">
           Women
         </Button>{" "}
-        <Button className="category-btn" variant="outline-secondary">
+        <Button className="men-btn" variant="outline-secondary">
           Men
         </Button>{" "}
-        <Button className="category-btn" variant="outline-secondary">
+        <Button className="justfriends-btn" variant="outline-secondary">
           Just Friends
         </Button>{" "}
         <button

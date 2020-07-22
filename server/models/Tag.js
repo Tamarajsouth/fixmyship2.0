@@ -3,7 +3,7 @@ const { Schema, model } = require('mongoose');
 const tagSchema = new Schema(
 {
     tagName: String,
-    articleIds: [
+    postTags: [
         {
             type: String,
             //this is just a list of articlePost ids that fall under this category.
@@ -12,6 +12,9 @@ const tagSchema = new Schema(
         }
         ]
 });
+
+
+
 
 const Tag = model('Tag', tagSchema);
 
