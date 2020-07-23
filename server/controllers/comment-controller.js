@@ -31,8 +31,8 @@ module.exports = {  //I don't see where we would use this
         console.log("**");
         
             const foundComments = await Comment.find({  //this refuses to find anything except all or nothing
-                // "user": req.params._id
-                "body": "skalborg!"    //this works!
+                "user": req.params._id
+                // "body": "skalborg!"    //this works!
 
             });//this is  not functional yet...
 
@@ -52,17 +52,21 @@ module.exports = {  //I don't see where we would use this
 
     //get comments by postId    (see posts comments)
 
-    // async getCommentsByPost({ myPost = null, params }, res) {
-    //     const foundUser = await User.findOne({
-    //       $or: [{ _id: user ? user._id : params.id }, { username: params.username }],
-    //     });
-
-    //     if (!foundUser) {
-    //       return res.status(400).json({ message: 'Cannot find a user with this id!' });
-    //     }
-
-    //     res.json(foundUser);
-    //   },
+    async getCommentsByPost(req, res) { 
+        console.log("looking for: " + req.params._id)
+        const myComments = await Comment.find({ 
+            // "post": req.params._id 
+            // "post" : "5f147c9d53960423ccf2a70c"
+            //this works empty but refused to give anythign but all or nothing
+            //this function wont even accept hardcoded query
+        });
+        if (!myComments) {
+          return res.status(400).json({ message: 'Something is wrong!' });
+        }
+        console.log("Found:" + myComments);
+        console.log(myComments);
+        return res.json(myComments);
+      },
 
 
     // postComment
