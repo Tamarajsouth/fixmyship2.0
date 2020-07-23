@@ -4,7 +4,7 @@ import { Button, Form, Card } from "react-bootstrap";
 import * as API from "../utils/API";
 import AuthService from "../utils/auth";
 import UserInfoContext from "../utils/UserInfoContext";
-import PropTypes from 'prop-types';
+
 
 import "./style.css";
 // import { InputGroupRadio } from 'react-bootstrap/InputGroup';
