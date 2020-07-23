@@ -29,6 +29,23 @@ function CommunityPosts() {
   };
 
 
+// SAVE POSTS "LIKE POSTS" BY CLICKING HEART BUTTON
+// -------------------------------------
+    const handleSavePost = (_id) => {
+    const postToSave = _id.map((post) => post._id === _id);
+
+    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
+    console.log('handleSavePostId --->_', _id)
+    if (!token) {
+      return false;
+  }
+
+  API.saveUserPost(postToSave, token)
+  .then(() => userData.getUserData())
+  .catch((err) => console.log(err));
+};
+
+
 const [postArticles, setPostArticles] = useState([]);
 
   useEffect(() => {
@@ -85,7 +102,9 @@ const [postArticles, setPostArticles] = useState([]);
 
             {/* <Button className="heart-btn" onClick={() => handleSavePost}><i className="fas fa-heart"></i> like</Button><span>   </span> */}
 
-            <Button className="heart-btn" variant="secondary" size="sm" onClick={()=> console.log('heart button clicked id ==>', _id)}><i className="fas fa-heart"></i></Button>
+            <Button className="heart-btn" variant="secondary" size="sm" onClick={()=> handleSavePost}>
+              <i class="fas fa-heart"></i>
+              </Button>
             <Button className="comment-btn" variant="secondary" size="sm"><i className="fas fa-comment-dots"></i></Button>
           </Card>
             )
