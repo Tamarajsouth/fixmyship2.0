@@ -78,7 +78,7 @@ const [postArticles, setPostArticles] = useState([]);
     <>
       <Jumbotron fluid className='text-dark bg-light'>
         <Container>
-          <h1 className='viewing-posts'><i class="fas fa-anchor"></i>  Viewing Community Posts!  <i class="fas fa-anchor"></i></h1>
+          <h1 className='viewing-posts'><i className="fas fa-anchor"></i>  Viewing Community Posts!  <i className="fas fa-anchor"></i></h1>
           <p className='user-instructions'> viewing all posts // or posts by category </p>
         </Container>
       </Jumbotron>

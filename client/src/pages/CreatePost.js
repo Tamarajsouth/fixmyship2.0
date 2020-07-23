@@ -30,7 +30,7 @@ function CreatePost() {
     if (!token) {
       return false;
     }
-    if (formObject.title && formObject.username) {
+    if (formObject.title && formObject.body) {
       const book = {
         title: formObject.title,
         body: formObject.body,
@@ -61,11 +61,11 @@ function CreatePost() {
             name="title"
             placeholder="Title (required)"
           />
-          <Form.Control
+          {/* <Form.Control
             onChange={handleInputChange}
             name="username"
             placeholder="Author (required)"
-          />
+          /> */}
           <Form.Control
             as="textarea"
             onChange={handleInputChange}
