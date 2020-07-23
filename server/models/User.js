@@ -32,6 +32,13 @@ const userSchema = new Schema(
         ref: "Post",
       }
     ],
+    // will need a comments variable if we are to save those
+    posts: [
+      {
+        type: Schema.Types.ObjectId,
+        ref: "Comment",
+      }
+    ],
     savedPosts: [
       {
         type: Schema.Types.ObjectId,

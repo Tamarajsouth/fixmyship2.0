@@ -3,10 +3,12 @@ const {
   createUser,
   getAllUsers,
   getSingleUser,
-  saveBook,    //new
-  deleteBook,   //new
+  saveBook,    
+  deleteBook,   
   login,
-  saveUserPost
+  saveUserPost,
+  deleteUserPost,
+  saveMyPost
   
 
 } = require('../../controllers/user-controller');
@@ -23,10 +25,15 @@ router.route('/me').get(authMiddleware, getSingleUser);
 
 router.route('/:username').get(getSingleUser);
 
-router.route('/books/:id').delete(authMiddleware, deleteBook);
+// router.route('/books/:id').delete(authMiddleware, deleteBook);
 
 //save id to savedPosts in user
-router.route('/posts/:id').put(authMiddleware, saveUserPost);
+// router.route('/posts/:id').put(authMiddleware, saveMyPost);
+
+router.route('/saved/add/:id').get(authMiddleware, saveUserPost);
+// authMiddleware,
+
+router.route('/saved/remove/:id').get(authMiddleware, deleteUserPost);
 
 module.exports = router;
 
