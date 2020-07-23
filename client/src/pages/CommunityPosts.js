@@ -10,8 +10,6 @@ import AuthService from '../utils/auth';
 
 import "./style.css";
 
-
-
 function CommunityPosts() {
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
@@ -75,14 +73,19 @@ const [postArticles, setPostArticles] = useState([]);
         </h2> */}
         <Card>
           {postArticles.map((post) => {
+            console.log('THIS IS THE POST!! --> ', post)
+            const { _id } = post
             return (
-              <Card>
+              <Card key={_id}>
                 <Card.Body className="post-card" key={post._id} border="dark">
                 </Card.Body>
           <Card.Title>Title: {post.title}</Card.Title>
           <p className='username'>Posted by:{post.user}</p>
             <Card.Text>{post.body}</Card.Text>
-            <Button className="heart-btn" variant="secondary" size="sm"><i class="fas fa-heart"></i></Button>
+
+            {/* <Button className="heart-btn" onClick={() => handleSavePost}><i className="fas fa-heart"></i> like</Button><span>   </span> */}
+
+            <Button className="heart-btn" variant="secondary" size="sm" onClick={()=> console.log('heart button clicked id ==>', _id)}><i class="fas fa-heart"></i></Button>
             <Button className="comment-btn" variant="secondary" size="sm"><i className="fas fa-comment-dots"></i></Button>
           </Card>
             )
