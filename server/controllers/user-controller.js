@@ -78,39 +78,37 @@ module.exports = {
 
   async saveUserPost({ user, body }, res) { //FIX ME!!! add token
     console.log("You have reached the save post API");
-    // console.log(user);
-    // try {
-    //   const updatedUser = await User.findOneAndUpdate(
-    //     { _id: user._id },
-    //     // { $addToSet: { savedPosts: body } },
-    //     { $addToSet: { savedPosts: user._id }},
-    //     { new: true, runValidators: true }
-    //   );
-    //   return res.json(updatedUser);
-    // } catch (err) {
-    //   console.log(err);
-    //   return res.status(400).json(err);
-    // }
-    res.json("You have reached the save post API");
+    console.log(user);
+    try {
+      const updatedUser = await User.findOneAndUpdate(
+        { _id: user._id },
+        // { $addToSet: { savedPosts: body } },
+        { $addToSet: { savedPosts: user._id }},
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedUser);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+    // res.json("You have reached the save post API");
 
   },
   async deleteUserPost({ user, params }, res) { //FIXME
     console.log("you have reached the delete post API");
-    // console.log(user);
-    // const updatedUser = await User.findOneAndUpdate(
-    //   { _id: user._id },
-    //   // { $pull: { savedPosts: { bookId: params.id } } }, //needs test
-    //   { $pull: { savedPosts: params.id } },  
-    //   //the first pulls from an array of documents... 
-    //   // but we have an array of ids... ?
-    //   { new: true }
-    // );
-    // if (!updatedUser) {
-    //   return res.status(404).json({ message: "Couldn't find user with this id!" });
-    // }
-    // return res.json(updatedUser);
-    res.json("you have reached the delete post API");
-    // res.send("test");
+    console.log(user);
+    const updatedUser = await User.findOneAndUpdate(
+      { _id: user._id },
+      // { $pull: { savedPosts: { bookId: params.id } } }, //needs test
+      { $pull: { savedPosts: params.id } },  
+      //the first pulls from an array of documents... 
+      // but we have an array of ids... ?
+      { new: true }
+    );
+    if (!updatedUser) {
+      return res.status(404).json({ message: "Couldn't find user with this id!" });
+    }
+    return res.json(updatedUser);
   },
 
 
