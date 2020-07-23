@@ -14,7 +14,7 @@ function UserSavedPosts() {
   const [postArticles, setPostArticles] = useState([]);
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
-
+  console.log("userData object --->", userData) ;
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeletePost = (_id) => {
     // get token
@@ -33,6 +33,7 @@ function UserSavedPosts() {
     const postToSave = _id.find((post) => post._id === _id);
 
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
+    console.log('handleSavePostId --->_', _id)
     if (!token) {
       return false;
   }
@@ -50,12 +51,13 @@ function UserSavedPosts() {
       </Jumbotron>
       <Container>
         <h2>
-          {userData.savedPosts
-            ? `Viewing ${userData.savedPosts} saved ${userData.savedPosts === 1 ? 'post' : 'posts'}:`
+          {userData.posts
+            ? `Viewing ${userData.posts} saved ${userData.posts === 1 ? 'post' : 'posts'}:`
             : 'You have no saved posts!'}
         </h2>
         <CardColumns>
-          {savedPosts.map((post) => {
+          {userData.posts.map((post) => {
+            const {_id}  = post
             return (
               <Card key={post._id} border='dark'>
                 <Card.Body>
@@ -65,7 +67,7 @@ function UserSavedPosts() {
                   <Button className='btn-block btn-danger' onClick={() => handleDeletePost(post._id)}>
                     Delete this Post
                   </Button>
-                  <Button className="heart-btn" onClick={() => handleSavePost}><i className="fas fa-heart"></i> like</Button><span>   </span>
+                  <Button className="heart-btn" onClick={() => handleSavePost(_id)}><i className="fas fa-heart"></i> like</Button><span>   </span>
 
                 </Card.Body>
               </Card>
