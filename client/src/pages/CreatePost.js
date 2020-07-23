@@ -1,33 +1,18 @@
-import React, { useState, useContext } from "react";
+import React, { useState, useContext, checkboxes } from "react";
 import { Link, Redirect } from "react-router-dom";
 import { Button, Form, Card } from "react-bootstrap";
 import * as API from "../utils/API";
 import AuthService from "../utils/auth";
 import UserInfoContext from "../utils/UserInfoContext";
+import PropTypes from 'prop-types';
 
 import "./style.css";
 // import { InputGroupRadio } from 'react-bootstrap/InputGroup';
-
 
 function CreatePost() {
   const [redirect, setRedirect] = useState(false);
   const [formObject, setFormObject] = useState({});
   const userData = useContext(UserInfoContext);
-    //userData.username ?
-
-   // LOAD ALL BOOKS TO STORE THEM WITH SETBOOKS
-  //  useEffect(() => {
-  //   loadBooks()
-  // }, [])
-
-  // // LOAD BOOK DATA
-  // function loadBooks() {
-  //   API.getBooks()
-  //     .then(res => 
-  //       setBooks(res.data)
-  //     )
-  //     .catch(err => console.log(err));
-  // };
 
   function handleInputChange(event) {
     const { name, value } = event.target;
@@ -61,6 +46,16 @@ function CreatePost() {
         .catch((err) => console.log(err));
         setRedirect(true);
     }
+      const Checkbox = ({ type = 'checkbox', name, checked = false, onChange }) => (
+        <input type={type} name={name} checked={checked} onChange={onChange} />
+      );
+      Checkbox.propTypes = {
+        type: PropTypes.string,
+        name: PropTypes.string.isRequired,
+        checked: PropTypes.bool,
+        onChange: PropTypes.func.isRequired,
+      }
+    
   }
   return (
     <>
@@ -134,3 +129,4 @@ function CreatePost() {
   );
 }
 export default CreatePost;
+
