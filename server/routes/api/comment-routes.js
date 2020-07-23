@@ -26,7 +26,7 @@ router.route('/user/:_id').get(getCommentsByUser);  // authMiddleware,  add this
 router.route('/post/:_id').get(getCommentsByPost);
 
 //post comment by post id
-router.route('/').get(postComment);
+router.route('/').post(postComment);
 
 //put (edit) comment by post id
 // router.route('/post/:postId').get(authMiddleware, editComment);
