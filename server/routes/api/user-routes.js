@@ -35,5 +35,7 @@ router.route('/saved/add/:id').get(authMiddleware, saveUserPost);
 
 router.route('/saved/remove/:id').get(authMiddleware, deleteUserPost);
 
+router.route('/all').get(authMiddleware, getAllUsers);
+
 module.exports = router;
 

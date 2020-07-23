@@ -37,6 +37,9 @@ export const searchGoogleBooks = function (query) {
   return axios.get('https://www.googleapis.com/books/v1/volumes', { params: { q: query } });
 };
 
+export const getAllUser = function () {
+  return axios.get(`/api/users/all`);
+};
 
 // POSTS (articles)
 
