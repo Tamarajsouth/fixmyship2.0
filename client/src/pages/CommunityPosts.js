@@ -1,6 +1,6 @@
 // HOME PAGE
 import React, { useContext, useEffect, useState } from 'react';
-import { Jumbotron, Container, Card, Button, CardColumns } from 'react-bootstrap';
+import { Jumbotron, Container, Card, Button, ButtonGroup } from 'react-bootstrap';
 
 // import context for global state
 import UserInfoContext from '../utils/UserInfoContext';
@@ -56,7 +56,7 @@ const [postArticles, setPostArticles] = useState([]);
       .then((res) => {
         let posts = [];
         res.data.map((postData) => {
-          let workingpost = { _id: postData._id, body: postData.body, summary: postData.summary, user: postData.user, createdAt: postData.createdAt, tags: postData.tags }
+          let workingpost = { _id: postData._id, body: postData.body, summary: postData.summary, createdAt: postData.createdAt, tags: postData.tags, title: postData.title, username: postData.user }
           posts.push(workingpost);
         });
 
@@ -79,15 +79,10 @@ const [postArticles, setPostArticles] = useState([]);
       <Jumbotron fluid className='text-dark bg-light'>
         <Container>
           <h1 className='viewing-posts'><i className="fas fa-anchor"></i>  Viewing Community Posts!  <i className="fas fa-anchor"></i></h1>
-          <p className='user-instructions'> viewing all posts // or posts by category </p>
+          <p className='user-instructions'> viewing all posts </p>
         </Container>
       </Jumbotron>
       <Container>
-       {/* <h2 classname="saved-message">
-          {userData.savedBooks.length
-            ? `Viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? 'book' : 'books'}:`
-            : 'you have no liked posts!'}
-        </h2> */}
         <Card>
           {postArticles.map((post) => {
             console.log('THIS IS THE POST!! --> ', post)
@@ -96,39 +91,22 @@ const [postArticles, setPostArticles] = useState([]);
               <Card key={_id}>
                 <Card.Body className="post-card" key={post._id} border="dark">
                 </Card.Body>
+
           <Card.Title>Title: {post.title}</Card.Title>
-          <p className='username'>Posted by:{post.user}</p>
+          <p className='username'>Posted by:{post.username}</p>
             <Card.Text>{post.body}</Card.Text>
-
-            {/* <Button className="heart-btn" onClick={() => handleSavePost}><i className="fas fa-heart"></i> like</Button><span>   </span> */}
-
+              <ButtonGroup className="btn-group">
             <Button className="heart-btn" variant="secondary" size="sm" onClick={()=> handleSavePost}>
               <i class="fas fa-heart"></i>
               </Button>
-            <Button className="comment-btn" variant="secondary" size="sm"><i className="fas fa-comment-dots"></i></Button>
+            <Button className="comment-btn" variant="secondary" size="sm"><i className="fas fa-comment-dots"></i>
+            </Button>
+            </ButtonGroup>
+            <br></br>
           </Card>
             )
           })}
         </Card>
-
-{/* 
-        <CardColumns>
-          {postArticles.map((post) => {
-            return (
-              <Card key={post._id} border='dark'>
-                
-                <Card.Body>
-                  <Card.Title>{post.title}</Card.Title>
-                  <p className='small'>User: {post.user}</p>
-                  <Card.Text>{post.body}</Card.Text> */}
-                  {/* <Button className='btn-block btn-danger' onClick={() => handleDeleteBook(book.bookId)}>
-                    Delete this Book!
-                  </Button> */}
-                {/* </Card.Body>
-              </Card>
-            );
-          })}
-        </CardColumns> */}
       </Container>
     </>
   );

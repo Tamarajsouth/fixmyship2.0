@@ -1,3 +1,4 @@
+/* USER SAVED POSTS */
 .viewing-liked{
     font-size: x-large;
     font-family: "Pacifico", cursive;
@@ -18,7 +19,9 @@
     font-size: xx-large;
     font-family: "Pacifico", cursive;
     text-align: center;
+    color: black
 }
+
 /* ABOUT THINGS */
 .about-header{
     text-align: center;
@@ -66,7 +69,7 @@
 }
 /* POSTS / CARDS */
 .post-card{
-    width:75%;
+    width:55%;
     align-self: center;
     padding: 10px;
 }
@@ -77,9 +80,15 @@
 .username{
     font-family: "Work Sans", sans-serif;
 }
+
+.btn-group {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .heart-btn{
-    width: 5rem;
     border: 0px;
+    width: 10px;
     border-style: none;
 }
 .heart-btn:hover{
@@ -87,7 +96,6 @@
 }
 .comment-btn{
     background-color: rgb(216, 216, 216);
-    width: 5rem;
     border: 0px;
     border-style: none;
 }
@@ -131,11 +139,7 @@
     font-family: "Pacifico", cursive;
     text-align: center;
 }
-.btn-group{
-    border-radius: 30px;
-    display: flex;
-    text-align: center;
-}
+
 .submit-btn{
     background-color: white;
     border-radius: 30px;
