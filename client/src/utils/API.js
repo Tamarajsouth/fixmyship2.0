@@ -51,14 +51,15 @@ export const createPost = function (postData, token) {
   return axios.post('/api/posts/', postData, { headers: { authorization: `Bearer ${token}` } });
 } 
 
-export const getOnePost = function (token) {  
-  console.log("retrieving all posts");
-  return axios.get('/api/posts/post/:_id', { headers: { authorization: `Bearer ${token}` } });
+
+export const getOnePost = function (_id, token) {  //needs testing now that token is passed in
+  console.log(`retrieving  post id ${_id}`)
+  return axios.get(`/api/posts/post/${_id}`), { headers: { authorization: `Bearer ${token}` } };
 }
 
 export const getTest = function () {
   console.log("API hit");
-  return axios.get('/api/posts/');
+  return axios.get('/api/posts');
 
 };
 

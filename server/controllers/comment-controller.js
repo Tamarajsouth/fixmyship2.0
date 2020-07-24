@@ -1,7 +1,6 @@
 const { Comment } = require('../models');
 // import sign token function from auth
-const { signToken } = require('../utils/auth');
-//search this to see where it is used - then remove if not needed
+
 
 module.exports = {  //I don't see where we would use this
     async getAllComments(req, res) {
@@ -31,7 +30,7 @@ module.exports = {  //I don't see where we would use this
         console.log("**");
         
             const foundComments = await Comment.find({  //this refuses to find anything except all or nothing
-                "user": req.params._id
+                // "user": req.params._id
                 // "body": "skalborg!"    //this works!
 
             });//this is  not functional yet...
@@ -47,7 +46,7 @@ module.exports = {  //I don't see where we would use this
             }
 
             return res.json(foundComments);
-            //THIS IS FINDING THE POST ID, NOT USER!
+            
     },
 
     //get comments by postId    (see posts comments)

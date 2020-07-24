@@ -29,19 +29,6 @@ function UserSavedPosts() {
       .catch((err) => console.log(err));
   };
 
-  const handleSavePost = (_id) => {
-    const postToSave = _id.find((post) => post._id === _id);
-
-    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
-    console.log('handleSavePostId --->_', _id)
-    if (!token) {
-      return false;
-  }
-
-  API.saveUserPost(postToSave, token)
-  .then(() => userData.getUserData())
-  .catch((err) => console.log(err));
-};
   return (
     <>
     <Jumbotron fluid className='text-light bg-dark'>
@@ -67,7 +54,7 @@ function UserSavedPosts() {
                   <Button className='btn-block btn-danger' onClick={() => handleDeletePost(post._id)}>
                     Delete this Post
                   </Button>
-                  <Button className="heart-btn" onClick={() => handleSavePost(_id)}><i className="fas fa-heart"></i> like</Button><span>   </span>
+                  {/* <Button className="heart-btn" onClick={() => handleSavePost(_id)}><i className="fas fa-heart"></i> like</Button><span>   </span> */}
 
                 </Card.Body>
               </Card>

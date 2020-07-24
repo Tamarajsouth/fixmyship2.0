@@ -1,12 +1,10 @@
-import React, { useState, useContext } from "react";
-import { Card } from "react-bootstrap";
+import React from "react";
 
 import "./style.css";
 
-function AppFooter() {
-    return (
-        <>
-        <Card className='footer mt-auto py-3 bg-light text-white'>
+const Footer = () => {
+    return (    
+        <div className='footer mt-auto py-3 bg-light text-white'>
         <div className='container'>
           <div className="line line-1">
         <div className="wave wave1"></div>
@@ -18,9 +16,8 @@ function AppFooter() {
         <div className="wave wave3"></div>
       </div>
     </div>
-      </Card>
-      </>
-    );
-}
+    </div>
+  )    
+}    
 
-export default AppFooter;
+export default Footer;
