@@ -1,7 +1,7 @@
 // HOME PAGE
 import React, { useContext, useEffect, useState } from 'react';
-import { Jumbotron, Container, Card, Button, CardColumns } from 'react-bootstrap';
-
+import { Jumbotron, Container, Card, Button, CardColumns, Modal} from 'react-bootstrap';
+import PostModal from '../components/PostModal'
 // import context for global state
 import UserInfoContext from '../utils/UserInfoContext';
 
@@ -13,6 +13,11 @@ import "./style.css";
 function CommunityPosts() {
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
+
+  //for comment modal
+  const [show, setShow] = useState(false);
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteBook = (bookId) => {
@@ -29,24 +34,24 @@ function CommunityPosts() {
   };
 
 
-// SAVE POSTS "LIKE POSTS" BY CLICKING HEART BUTTON
-// -------------------------------------
-    const handleSavePost = (_id) => {
+  // SAVE POSTS "LIKE POSTS" BY CLICKING HEART BUTTON
+  // -------------------------------------
+  const handleSavePost = (_id) => {
     const postToSave = _id.map((post) => post._id === _id);
 
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
     console.log('handleSavePostId --->_', _id)
     if (!token) {
       return false;
-  }
+    }
 
-  API.saveUserPost(postToSave, token)
-  .then(() => userData.getUserData())
-  .catch((err) => console.log(err));
-};
+    API.saveUserPost(postToSave, token)
+      .then(() => userData.getUserData())
+      .catch((err) => console.log(err));
+  };
 
 
-const [postArticles, setPostArticles] = useState([]);
+  const [postArticles, setPostArticles] = useState([]);
 
   useEffect(() => {
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
@@ -69,10 +74,16 @@ const [postArticles, setPostArticles] = useState([]);
       })
       //add error handling here
       .catch(err => console.log("No posts found. Please add posts to database")); //not sure if this is catching the error.
- 
+
   }, []);
 
+//modal function:
+function openComment(){
 
+  return(
+    <PostModal />
+  )
+}
 
   return (
     <>
@@ -83,7 +94,7 @@ const [postArticles, setPostArticles] = useState([]);
         </Container>
       </Jumbotron>
       <Container>
-       {/* <h2 classname="saved-message">
+        {/* <h2 classname="saved-message">
           {userData.savedBooks.length
             ? `Viewing ${userData.savedBooks.length} saved ${userData.savedBooks.length === 1 ? 'book' : 'books'}:`
             : 'you have no liked posts!'}
@@ -96,22 +107,22 @@ const [postArticles, setPostArticles] = useState([]);
               <Card key={_id}>
                 <Card.Body className="post-card" key={post._id} border="dark">
                 </Card.Body>
-          <Card.Title>Title: {post.title}</Card.Title>
-          <p className='username'>Posted by:{post.user}</p>
-            <Card.Text>{post.body}</Card.Text>
+                <Card.Title>Title: {post.title}</Card.Title>
+                <p className='username'>Posted by:{post.user}</p>
+                <Card.Text>{post.body}</Card.Text>
 
-            {/* <Button className="heart-btn" onClick={() => handleSavePost}><i className="fas fa-heart"></i> like</Button><span>   </span> */}
+                {/* <Button className="heart-btn" onClick={() => handleSavePost}><i className="fas fa-heart"></i> like</Button><span>   </span> */}
 
-            <Button className="heart-btn" variant="secondary" size="sm" onClick={()=> handleSavePost}>
-              <i class="fas fa-heart"></i>
-              </Button>
-            <Button className="comment-btn" variant="secondary" size="sm"><i className="fas fa-comment-dots"></i></Button>
-          </Card>
+                <Button className="heart-btn" variant="secondary" size="sm" onClick={() => handleSavePost}>
+                  <i class="fas fa-heart"></i>
+                </Button>
+                <Button className="comment-btn" variant="secondary" size="sm"><i className="fas fa-comment-dots" onClick={()=> openComment}></i></Button>
+              </Card>
             )
           })}
         </Card>
 
-{/* 
+        {/* 
         <CardColumns>
           {postArticles.map((post) => {
             return (
@@ -121,10 +132,10 @@ const [postArticles, setPostArticles] = useState([]);
                   <Card.Title>{post.title}</Card.Title>
                   <p className='small'>User: {post.user}</p>
                   <Card.Text>{post.body}</Card.Text> */}
-                  {/* <Button className='btn-block btn-danger' onClick={() => handleDeleteBook(book.bookId)}>
+        {/* <Button className='btn-block btn-danger' onClick={() => handleDeleteBook(book.bookId)}>
                     Delete this Book!
                   </Button> */}
-                {/* </Card.Body>
+        {/* </Card.Body>
               </Card>
             );
           })}

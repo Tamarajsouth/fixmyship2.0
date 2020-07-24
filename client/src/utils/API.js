@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const getAllUsers = function () {
   return axios.get('/api/users');
+  //this needs to have middleware or its insecure!? !!!!!!!!!!
 };
 
 // route to get logged in user's info (needs the token)
@@ -37,9 +38,7 @@ export const searchGoogleBooks = function (query) {
   return axios.get('https://www.googleapis.com/books/v1/volumes', { params: { q: query } });
 };
 
-export const getAllUser = function () {
-  return axios.get(`/api/users/all`);
-};
+
 
 // POSTS (articles)
 
