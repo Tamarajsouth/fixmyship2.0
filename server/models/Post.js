@@ -24,15 +24,11 @@ const postSchema = new Schema(
     type: Date, 
     default: Date.now //is this working?
   },
-  // postedBy: {
-  //   type:ObjectId,
-  //   ref:"user"
-  // }
-  tags:[  //this could also be a single catagory instead of an array
-          //not sure if this needs to be an entire collection
-  {
-    type: Schema.Types.ObjectId,
-    ref: "Tag"
+ 
+  tags: [
+    {
+    type: String,
+    required: true
   }
 ],
 

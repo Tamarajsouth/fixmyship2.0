@@ -4,21 +4,34 @@ import { Button, Form, Card } from "react-bootstrap";
 import * as API from "../utils/API";
 import AuthService from "../utils/auth";
 import UserInfoContext from "../utils/UserInfoContext";
+import PropTypes from 'prop-types';
 
 import "./style.css";
 // import { InputGroupRadio } from 'react-bootstrap/InputGroup';
 
-
 function CreatePost() {
   const [redirect, setRedirect] = useState(false);
-  const [formObject, setFormObject] = useState({});
+  const [formObject, setFormObject] = useState({
+    dating: false, 
+    breakingup: false,
+    marriage: false,
+    lgbtq: false,
+    women: false,
+    men: false,
+    justfriends: false,
+  });
   const userData = useContext(UserInfoContext);
-    //userData.username ?
 
   function handleInputChange(event) {
     const { name, value } = event.target;
     console.log(name, value);
     setFormObject({ ...formObject, [name]: value });
+  }
+
+  function handleCheckBoxInputChange(event) {
+    const { name, checked } = event.target;
+    console.log(name, checked)
+    setFormObject({ ...formObject, [name]: checked })
   }
 
   function handleFormSubmit(event) {
@@ -31,27 +44,67 @@ function CreatePost() {
       return false;
     }
     if (formObject.title && formObject.body) {
-      const book = {
+      const tags = [
+        {
+          name:"dating",
+          isSelected: formObject.dating
+        },
+
+        {
+          name:"breakingup",
+          isSelected: formObject.breakingup
+        },
+
+        {
+          name:"marriage",
+          isSelected: formObject.marriage
+        },
+
+        {
+          name:"lgbtq",
+          isSelected: formObject.lgbtq
+        },
+
+        {
+          name:"women",
+          isSelected: formObject.women
+        },
+
+        {
+          name:"men",
+          isSelected: formObject.men
+        },
+
+        {
+          name:"justfriends",
+          isSelected: formObject.justfriends
+        }
+
+      ]
+
+      const selectedTags= tags.filter(tag => {
+        return tag.isSelected
+      })
+      
+      const post = {
         title: formObject.title,
         body: formObject.body,
         // username: formObject.username,  
-        username: userData.username  // 
-
+        username: userData.username, 
+        tags: selectedTags.map(tag => tag.name)
       };
-      API.saveBook(book, token)
+      
+      API.createPost(post, token)  //where do I get this data from?
         .then((res) => console.log(res))
         .catch((err) => console.log(err));
-
-      API.createPost(book, token)  //where do I get this data from?
-        .then((res) => console.log(res))
-        .catch((err) => console.log(err));
-        setRedirect(true);
+      setRedirect(true);
     }
   }
+
   return (
-    <>
-    {/* loggedIn needs to be replaced with redirect...from state */}
-    {redirect ? <Redirect to="/communityposts" /> : <p></p>}
+    <div style= { {overflow: "auto" }}>
+      {/* loggedIn needs to be replaced with redirect...from state */}
+      {redirect ? <Redirect to="/communityposts" /> : <p></p>}
       <hr></hr>
       <Card.Body className="welcome-heading">Create a Post!</Card.Body>
       <Card.Body>
@@ -72,51 +125,30 @@ function CreatePost() {
             name="body"
             placeholder="Synopsis (Optional)"
           />
+
+          <Form.Check type="checkbox" name="dating" onClick={handleCheckBoxInputChange} checked={formObject.dating} label="Dating" />
+          <Form.Check type="checkbox" name="breakingup" onClick={handleCheckBoxInputChange} checked={formObject.breakingup} label="Breaking Up" />
+          <Form.Check type="checkbox" name="marriage" onClick={handleCheckBoxInputChange} checked={formObject.marriage} label="Marriage" label="Marriage" />
+          <Form.Check type="checkbox" name="lgbtq" onClick={handleCheckBoxInputChange} checked={formObject.lgbtq} label="LGBTQ+" label="LGBTQ+" />
+          <Form.Check type="checkbox" name="women" onClick={handleCheckBoxInputChange} checked={formObject.women} label="Women" label="Women" />
+          <Form.Check type="checkbox" name="men" onClick={handleCheckBoxInputChange} checked={formObject.men} label="Men" label="Men" />
+          <Form.Check type="checkbox" name="justfriends" onClick={handleCheckBoxInputChange} checked={formObject.justfriends} label="Just Friends" label="Just Friends" />
         </form>
-        {/* <Card.Title className="create-post-subject-line">
-        <Card.Title
-                onChange={handleInputChange}
-                name="title"
-                placeholder="Title (required)"
-              />
-          <Form.Control as="textarea" placeholder='title goes here' rows="1" />
-        </Card.Title>
-        <Form.Group controlId="exampleForm.ControlTextarea1">
-          <Form.Label></Form.Label>
-          <Form.Control as="textarea" placeholder='text goes here' rows="3" />
-        </Form.Group> */}
+
+
         <p className="choose-category-heading">choose a category to post to:</p>
-        <Button className="category-btn" variant="outline-secondary">
-          Dating
-        </Button>{" "}
-        <Button className="category-btn" variant="outline-secondary">
-          Breaking Up
-        </Button>{" "}
-        <Button className="category-btn" variant="outline-secondary">
-          Marriage
-        </Button>{" "}
-        <Button className="category-btn" variant="outline-secondary">
-          LGBTQ+
-        </Button>{" "}
-        <Button className="category-btn" variant="outline-secondary">
-          Women
-        </Button>{" "}
-        <Button className="category-btn" variant="outline-secondary">
-          Men
-        </Button>{" "}
-        <Button className="category-btn" variant="outline-secondary">
-          Just Friends
-        </Button>{" "}
+
         <button
           className="submit-btn"
           size="sm"
-          // ={!(formObject.title && formObject.body && formObject.username)}
           onClick={handleFormSubmit}
         >
           Create Post
         </button>
       </Card.Body>
-    </>
+    </div>
   );
-}
+};
+
 export default CreatePost;
+

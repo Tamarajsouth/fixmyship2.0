@@ -11,6 +11,7 @@ module.exports = {  //I don't see where we would use this
         }
 
         return res.json(comments);
+        
 
     },
     // async getCommentsByPost(req, res) {

@@ -1,5 +1,3 @@
-// see SignupForm.js for comments
-
 import React, { useState, useContext } from 'react';
 import { Form, Button, Alert } from 'react-bootstrap';
 import {  Redirect } from "react-router-dom";
