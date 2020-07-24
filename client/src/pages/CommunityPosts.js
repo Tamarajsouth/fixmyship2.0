@@ -73,7 +73,6 @@ const [postArticles, setPostArticles] = useState([]);
   }, []);
 
 
-
   return (
     <>
       <Jumbotron fluid className='text-dark bg-light'>
