@@ -32,16 +32,15 @@ export const deleteBook = function (bookId, token) {
   return axios.delete(`/api/users/books/${bookId}`, { headers: { authorization: `Bearer ${token}` } });
 };
 
+//get books
+// export const getBooks = function (bookData, token) {
+//   return axios.post(`/api/users/books/${bookId}`, { headers: { authorization: `Bearer ${token}` } });
+// };
 // make a search to google books api
 // https://www.googleapis.com/books/v1/volumes?q=harry+potter
 export const searchGoogleBooks = function (query) {
   return axios.get('https://www.googleapis.com/books/v1/volumes', { params: { q: query } });
 };
-
-
-
-// POSTS (articles)
-
 
 export const getAllPosts = function (token) {
   console.log("retrieving all posts");
@@ -51,8 +50,7 @@ export const getAllPosts = function (token) {
 export const createPost = function (postData, token) {
   console.log("post created");
   return axios.post('/api/posts/', postData, { headers: { authorization: `Bearer ${token}` } });
-} // need to figure out how/where to update the user's post array!
-//in the post-controller!?
+} 
 
 
 export const getOnePost = function (_id, token) {  //needs testing now that token is passed in
@@ -60,7 +58,6 @@ export const getOnePost = function (_id, token) {  //needs testing now that toke
   return axios.get(`/api/posts/post/${_id}`), { headers: { authorization: `Bearer ${token}` } };
 }
 
-// Tags
 export const getTest = function () {
   console.log("API hit");
   return axios.get('/api/posts');
@@ -68,30 +65,30 @@ export const getTest = function () {
 };
 
 export const getAllTags = function () {
- console.log("getting tags from server");
+  console.log("getting tags from server");
   return axios.get('/api/tags/all');
-  
+
 };
 // comments
 export const getAllComments = function () {
   console.log("getting comments from server");
-   return axios.get('/api/comments/all');
-   
- };
- export const getCommentsByUser = function (userId) { // search by username?
-  console.log("getting comments from server");
-   return axios.get(`/api/comments/user/${userId}`);
-   
- };
+  return axios.get('/api/comments/all');
 
- export const getCommentsByPost = function (postId) { //not sure if this is the correct data
+};
+export const getCommentsByUser = function (userId) { // search by username?
   console.log("getting comments from server");
-   return axios.get(`/api/comments/post/${postId}`);
-   
- };
+  return axios.get(`/api/comments/user/${userId}`);
 
- // save users posts so they show up in community tab...
- export const saveUserPost = function (postId, token) {
+};
+
+export const getCommentsByPost = function (postId) { //not sure if this is the correct data
+  console.log("getting comments from server");
+  return axios.get(`/api/comments/post/${postId}`);
+
+};
+
+// save users posts so they show up in community tab...
+export const saveUserPost = function (postId, token) {
   return axios.put('/api/users/posts/:id', postId, { headers: { authorization: `Bearer ${token}` } });
 };
 

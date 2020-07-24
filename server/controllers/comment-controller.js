@@ -7,6 +7,8 @@ module.exports = {  // use this
             return res.status(400).json({ message: 'Something is wrong!' });
         }
         return res.json(comments);
+        
+
     },
     async getCommentsByUser(req, res) { //needs testing
         console.log("**");
