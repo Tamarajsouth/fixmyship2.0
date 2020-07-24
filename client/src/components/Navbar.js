@@ -30,16 +30,16 @@ function AppNavbar() {
               {username ? (
                 <>
                   <Nav.Link as={Link} to='/saved'>
-                    view {username}'s profile
+                    View {username}'s Profile
                   </Nav.Link>
-                  <Nav.Link onClick={AuthService.logout}>logout</Nav.Link>
+                  <Nav.Link onClick={AuthService.logout}>Logout</Nav.Link>
                 </>
               ) : (
                 <Nav.Link onClick={() => setShowModal(true)}>Login | Sign Up</Nav.Link>
               )}
             </Nav>
             <Nav className="mr-right">
-      <NavDropdown title="Search" id="basic-nav-dropdown">
+      <NavDropdown title="Search Posts" id="basic-nav-dropdown">
         <NavDropdown.Item href="#action/3.1">Dates</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.2">Marriage</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.3">Break Ups</NavDropdown.Item>
@@ -63,10 +63,10 @@ function AppNavbar() {
             <Modal.Title id='signup-modal'>
               <Nav variant='pills'>
                 <Nav.Item>
-                  <Nav.Link eventKey='login'>login</Nav.Link>
+                  <Nav.Link eventKey='login'>Login</Nav.Link>
                 </Nav.Item>
                 <Nav.Item>
-                  <Nav.Link eventKey='signup'>sign up</Nav.Link>
+                  <Nav.Link eventKey='signup'>Sign Up</Nav.Link>
                 </Nav.Item>
               </Nav>
             </Modal.Title>
@@ -83,20 +83,6 @@ function AppNavbar() {
           </Modal.Body>
         </Tab.Container>
       </Modal>
-      <Card className='footer mt-auto py-3 bg-light text-white'>
-        <div className='container'>
-          <div className="line line-1">
-        <div className="wave wave1"></div>
-      </div>
-      <div className="line line-2">
-        <div className="wave wave2"></div>
-      </div>
-      <div className="line line-3">
-        <div className="wave wave3">
-        </div>
-      </div>
-    </div>
-      </Card>
     </>
   );
 }
