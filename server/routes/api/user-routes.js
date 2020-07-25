@@ -15,6 +15,7 @@ const {
 
 // import middleware
 const { authMiddleware } = require('../../utils/auth');
+console.log("RUNNNNNNNNNNNN!!!!")
 
 // put authMiddleware anywhere we need to send a token for verification of user
 router.route('/').get(getAllUsers).post(createUser).put(authMiddleware, saveBook);
@@ -26,20 +27,10 @@ router.route('/me').get(authMiddleware, getSingleUser);
 
 router.route('/:username').get(getSingleUser);
 
-
-// router.route('/books/:id').delete(authMiddleware, deleteBook);
-
-
-// ~~~~~~~I THINK THIS CODE BELOW NEEDS TO BE FIXED TO SAVE POSTS
-// save id to savedPosts in user
-// router.route('/posts/:id').put(authMiddleware, saveMyPost);
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-router.route('/saved/add/:id').get(authMiddleware, saveUserPost);
+router.route('/post').get(authMiddleware, saveUserPost);
 // authMiddleware,
-
-router.route('/saved/remove/:id').get(authMiddleware, deleteUserPost);
+// remove does not work
+// router.route('/saved/remove/:id').get(authMiddleware, deleteUserPost);
 
 // router.route('/all').get(authMiddleware, getAllUsers);
 

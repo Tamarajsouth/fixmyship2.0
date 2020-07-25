@@ -87,9 +87,10 @@ export const getCommentsByPost = function (postId) { //not sure if this is the c
 
 };
 
-// save users posts so they show up in community tab...
+// save users posts so they show up in savedpost page...
 export const saveUserPost = function (postId, token) {
-  return axios.put('/api/users/posts/:id', postId, { headers: { authorization: `Bearer ${token}` } });
+  console.log(`POST ID -->`, postId)
+  return axios.post('/api/post', postId, { headers: { authorization: `Bearer ${token}` } });
 };
 
 export const deleteUserPost = function (postId, token) {

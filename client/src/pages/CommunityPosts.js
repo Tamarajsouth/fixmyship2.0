@@ -4,10 +4,10 @@ import { Jumbotron, Container, Card, Button, ButtonGroup, CardColumns, Modal } f
 import PostModal from '../components/PostModal'
 import CommentDiv from '../components/CommentDiv'
 // import context for global state
-import UserInfoContext from '../utils/UserInfoContext';
+import UserInfoContext from "../utils/UserInfoContext";
 
-import * as API from '../utils/API';
-import AuthService from '../utils/auth';
+import * as API from "../utils/API";
+import AuthService from "../utils/auth";
 
 import "./style.css";
 
@@ -36,25 +36,6 @@ function CommunityPosts() {
       .catch((err) => console.log(err));
   };
 
-  console.log(searchedPosts);
-
-  // SAVE POSTS "LIKE POSTS" BY CLICKING HEART BUTTON
-  // -------------------------------------
-  const handleSavePost = (_id) => {
-
-    const postToSave = searchedPosts.find((post) => post._id === "5f1b7147ad24cb2748128c9c");
-    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
-    console.log('handleSavePostId --->_', _id)
-    if (!token) {
-      return false;
-    }
-
-    API.saveUserPost(postToSave, token)
-      .then(() => userData.getUserData())
-      .catch((err) => console.log(err));
-  };
-
-
   const [postArticles, setPostArticles] = useState([]);
   const [commentArray, setcommentArray] = useState([]);
   const [sort, setSort] = useState([]);
@@ -62,30 +43,39 @@ function CommunityPosts() {
 
   useEffect(() => {
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
-    if (!token) { return }
+    if (!token) {
+      return;
+    }
     console.log(token);
     API.getAllPosts(token) //api call to grab all posts and put them into "setPostArticles"
       .then((res) => {
         let posts = [];
         res.data.map((postData) => {
-          let workingpost = { _id: postData._id, body: postData.body, summary: postData.summary, createdAt: postData.createdAt, tags: postData.tags, title: postData.title, username: postData.user }
+          let workingpost = {
+            _id: postData._id,
+            body: postData.body,
+            summary: postData.summary,
+            createdAt: postData.createdAt,
+            tags: postData.tags,
+            title: postData.title,
+            username: postData.user,
+          };
           posts.push(workingpost);
         });
-        API.getAllUsers()
-          .then((res) => {
-            let users = [];
-            res.data.map((user) => {
-              console.log(user._id)
-              posts.forEach((post) => {
-                if (user._id === post.username) {
-                  post.username = user.username
-                  console.log(post.username);
-                }
-              })
-            })
-          })
+        API.getAllUsers().then((res) => {
+          let users = [];
+          res.data.map((user) => {
+            console.log(user._id);
+            posts.forEach((post) => {
+              if (user._id === post.username) {
+                post.username = user.username;
+                console.log(post.username);
+              }
+            });
+          });
+        });
         if (posts.length) {
-          console.log(posts)
+          console.log(posts);
           setPostArticles([...postArticles, ...posts]);
         }
       })
@@ -148,8 +138,11 @@ function CommunityPosts() {
   }
   function sortByDating(){
     // setSort("all");
-    
-    setVisibleArticles([...postArticles]);
+    // console.log("tag = " + postArticles[5].tags);
+    const sortedPosts = postArticles.filter(x => x.tags.includes("women"))
+    console.log(sortedPosts);
+    //this needs to be contains the tag instead of equals the tag...
+    setVisibleArticles([...sortedPosts]);
   }
   function sortByBreakup(){
     // setSort("all");
@@ -181,14 +174,33 @@ function CommunityPosts() {
   }
 
 
+
+  console.log(postArticles);
+  // SAVE POSTS "LIKE POSTS" BY CLICKING HEART BUTTON
+  // -------------------------------------
+  const handleSavePost = (_id) => {
+    const postToSave = postArticles.find((post) => post._id === _id);
+    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
+    console.log("postToSave --->_", postToSave, token);
+    console.log(postToSave._id);
+    if (!token) {
+      return false;
+    }
+    console.log(postToSave._id);
+    API.saveUserPost(postToSave._id, token)
+      .then(() => userData.getUserData())
+      .catch((err) => console.log(err));
+  };
+
   return (
     <>
-      <Jumbotron fluid className='text-dark bg-light'>
+      <Jumbotron fluid className="text-dark bg-light">
         <Container>
           <h1 className='viewing-posts'><i className="fas fa-anchor"></i>  Viewing Community Posts!  <i className="fas fa-anchor"></i></h1>
           <p className='user-instructions'> viewing all posts </p>
 
           <button onClick={sortAll}>View All</button>
+          <button onClick={sortByDating}>Dating</button>
 
 
         </Container>
@@ -224,7 +236,7 @@ function CommunityPosts() {
                 </ButtonGroup>
                 <br></br>
               </Card>
-            )
+            );
           })}
         </Card>
       </Container>
