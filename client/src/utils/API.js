@@ -2,6 +2,7 @@ import axios from 'axios';
 
 export const getAllUsers = function () {
   return axios.get('/api/users');
+  //this needs to have middleware or its insecure!? !!!!!!!!!!
 };
 
 // route to get logged in user's info (needs the token)

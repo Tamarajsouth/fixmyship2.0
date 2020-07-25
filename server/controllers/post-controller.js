@@ -16,7 +16,7 @@ module.exports = {
   },
 
 
-  async createPost(req, res) { // this works! But needs testign with user data input!
+  async createPost(req, res) { // this works! But needs testing with user data input!
     console.log("user params");
     console.log(req.params);
     //there are not params- I need to change the route to /post/:_id !
