@@ -1,7 +1,8 @@
 // HOME PAGE
 import React, { useContext, useEffect, useState } from 'react';
-import { Jumbotron, Container, Card, Button, ButtonGroup, CardColumns, Modal} from 'react-bootstrap';
+import { Jumbotron, Container, Card, Button, ButtonGroup, CardColumns, Modal } from 'react-bootstrap';
 import PostModal from '../components/PostModal'
+import CommentDiv from '../components/CommentDiv'
 // import context for global state
 import UserInfoContext from '../utils/UserInfoContext';
 
@@ -15,9 +16,9 @@ function CommunityPosts() {
   const userData = useContext(UserInfoContext);
 
   //for comment modal
-  const [show, setShow] = useState(false);
-  const handleClose = () => setShow(false);
-  const handleShow = () => setShow(true);
+  // const [show, setShow] = useState(false);
+  // const handleClose = () => setShow(false);
+  // const handleShow = () => setShow(true);
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteBook = (bookId) => {
@@ -38,7 +39,6 @@ function CommunityPosts() {
   // -------------------------------------
   const handleSavePost = (_id) => {
     const postToSave = _id.map((post) => post._id === _id);
-
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
     console.log('handleSavePostId --->_', _id)
     if (!token) {
@@ -52,12 +52,13 @@ function CommunityPosts() {
 
 
   const [postArticles, setPostArticles] = useState([]);
+  const [commentArray, setcommentArray] = useState([]);
 
   useEffect(() => {
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
     if (!token) { return }
     console.log(token);
-    API.getAllPosts(token) //api call to grab all posts
+    API.getAllPosts(token) //api call to grab all posts and put them into "setPostArticles"
       .then((res) => {
         let posts = [];
         res.data.map((postData) => {
@@ -75,15 +76,55 @@ function CommunityPosts() {
       //add error handling here
       .catch(err => console.log("No posts found. Please add posts to database")); //not sure if this is catching the error.
 
+      API.getAllComments(token) //api call to grab all posts and put them into "setPostArticles"
+      .then((res) => {
+        let comments = [];
+        res.data.map((commentData) => {
+          let workingComment = { _id: commentData._id, body: commentData.body, createdAt: commentData.createdAt, user: commentData.user }
+          //need to remove "mainText from comment model"
+          comments.push(workingComment);
+          console.log(workingComment);
+        });
+
+        if (comments.length) {
+          setcommentArray([...commentArray, ...comments]);
+          console.log("comment array");
+          console.log(commentArray);  //this is not showing up!
+        }
+        //change this to setposts
+        // Line 40:5:  React Hook useEffect has a missing dependency: 'userInfo'. Either include it or remove the dependency array
+      })
+      //add error handling here
+      .catch(err => console.log("No commentts found.")); //not sure if this is catching the error.
+
+
+
+
   }, []);
 
-//modal function:
-function openComment(){
+  function testFunction() {
+    console.log("test");
+    // handleClose();
+  }
 
-  return(
-    <PostModal />
-  )
-}
+  //modal function:
+  function openComment() {
+    console.log("modal should open");
+    // setShow(true);  //sets show to true so modal opens...
+    //need to set to false on close
+// handleShow(); //setting state resets app so it immediately renders without modal...
+    // return(
+    //do not need to return- instead put the modal under the button...
+    // <PostModal 
+    // xxx = yyy
+    // show={show}
+    // handleClose={testFunction}
+    // handlePostComment={testFunction}
+
+
+    // />
+    // )
+  }
 
   return (
     <>
@@ -95,26 +136,34 @@ function openComment(){
       </Jumbotron>
       <Container>
         <Card>
-          {postArticles.map((post) => {
-            console.log('THIS IS THE POST!! --> ', post)
+          {/*  change this to map a "visibleArticles" - but after tamara gives us the last push*/}
+          {postArticles.map((post) => { 
+            // console.log('THIS IS THE POST!! --> ', post)
             const { _id } = post
             return (
               <Card key={_id}>
                 <Card.Body className="post-card" key={post._id} border="dark">
                 </Card.Body>
 
-          <Card.Title>Title: {post.title}</Card.Title>
-          <p className='username'>Posted by:{post.username}</p>
-            <Card.Text>{post.body}</Card.Text>
-              <ButtonGroup className="btn-group">
-            <Button className="heart-btn" variant="secondary" size="sm" onClick={()=> handleSavePost}>
-              <i class="fas fa-heart"></i>
-              </Button>
-            <Button className="comment-btn" variant="secondary" size="sm"><i className="fas fa-comment-dots"></i>
-            </Button>
-            </ButtonGroup>
-            <br></br>
-          </Card>
+                <Card.Title>Title: {post.title}</Card.Title>
+                <p className='username'>Posted by:{post.username}</p>
+                <Card.Text>{post.body}</Card.Text>
+                <ButtonGroup className="btn-group">
+                  <Button className="heart-btn" variant="secondary" size="sm" onClick={() => handleSavePost}>
+                    <i class="fas fa-heart"></i>
+                  </Button>
+                  <Button className="comment-btn" variant="secondary" size="sm"><i className="fas fa-comment-dots" onClick={openComment}></i>
+                  </Button>
+                </ButtonGroup>
+                <button onClick={openComment}>ViewComments</button>
+                {/* <PostModal  (add props for data...)/>   */}
+                {/* <CommentDiv */}
+                //props; I need to create a ternary so that the function is visible if x but not is x...
+                //set state such that a single state can be compared agaisnt many comments...
+
+                {/* /> */}
+                <br></br>
+              </Card>
             )
           })}
         </Card>

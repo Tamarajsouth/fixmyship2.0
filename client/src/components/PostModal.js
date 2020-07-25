@@ -9,28 +9,14 @@ import AuthService from '../utils/auth';
 
 import "./style.css";
 
-function PostModal() {
+function PostModal(props) {
     const [show, setShow] = useState(false);
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
 
     return (
         <>
-            <Modal
-                show={show}
-                onHide={handleClose}
-                backdrop="static"
-                // keyboard={false}
-            ></Modal>
-            <h3>Title goes here</h3>
-            <span>User goes here</span>
-            <p>body goes here</p>
-
-
-            <Button variant="primary" onClick={handleShow}>
-                Launch demo modal
-        </Button>
-
+          
             <Modal show={show} onHide={handleClose}>
                 <Modal.Header closeButton>
                     <Modal.Title>Add a Comment</Modal.Title>
@@ -41,13 +27,13 @@ function PostModal() {
 
                 </Modal.Body>
                 <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>
+                    <button variant="secondary" onClick={handleClose()}>
                         Close
-            </Button>
-                    <Button variant="primary" onClick={handleClose}>
+            </button>
+                    <button variant="primary" /* onClick={props.handleClose()} */>
                      {/* {postComment}>  */}
                         Post Comment
-            </Button>
+            </button>
                 </Modal.Footer>
             </Modal>
 
