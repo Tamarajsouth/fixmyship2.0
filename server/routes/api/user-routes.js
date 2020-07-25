@@ -8,7 +8,7 @@ const {
   login,
   saveUserPost,
   deleteUserPost,
-  saveMyPost
+  saveMyPost,
   
 
 } = require('../../controllers/user-controller');
@@ -26,10 +26,15 @@ router.route('/me').get(authMiddleware, getSingleUser);
 
 router.route('/:username').get(getSingleUser);
 
+
 // router.route('/books/:id').delete(authMiddleware, deleteBook);
 
-//save id to savedPosts in user
+
+// ~~~~~~~I THINK THIS CODE BELOW NEEDS TO BE FIXED TO SAVE POSTS
+// save id to savedPosts in user
 // router.route('/posts/:id').put(authMiddleware, saveMyPost);
+// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
 
 router.route('/saved/add/:id').get(authMiddleware, saveUserPost);
 // authMiddleware,

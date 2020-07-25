@@ -9,6 +9,7 @@ body {
 }
 .content-wrap{
   flex: 1;
+  overflow: auto;
 }
 
 /* h1,
