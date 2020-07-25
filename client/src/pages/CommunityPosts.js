@@ -13,6 +13,8 @@ import "./style.css";
 function CommunityPosts() {
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
+  const [searchedPosts, setSearchedPosts] = useState([]);
+
 
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeleteBook = (bookId) => {
@@ -28,12 +30,13 @@ function CommunityPosts() {
       .catch((err) => console.log(err));
   };
 
+  console.log(searchedPosts);
 
 // SAVE POSTS "LIKE POSTS" BY CLICKING HEART BUTTON
 // -------------------------------------
     const handleSavePost = (_id) => {
-    const postToSave = _id.map((post) => post._id === _id);
-
+  
+    const postToSave = searchedPosts.find((post) => post._id === "5f1b7147ad24cb2748128c9c");
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
     console.log('handleSavePostId --->_', _id)
     if (!token) {
@@ -59,19 +62,29 @@ const [postArticles, setPostArticles] = useState([]);
           let workingpost = { _id: postData._id, body: postData.body, summary: postData.summary, createdAt: postData.createdAt, tags: postData.tags, title: postData.title, username: postData.user }
           posts.push(workingpost);
         });
-
+        API.getAllUsers()
+        .then((res) => {
+          let users = [];
+          res.data.map((user) => {console.log(user._id) 
+            posts.forEach((post) => {
+              if (user._id === post.username){
+                post.username = user.username
+                console.log(post.username);
+              }
+            })
+           })
+        })
         if (posts.length) {
+          console.log(posts)
           setPostArticles([...postArticles, ...posts]);
-
         }
-        //change this to setposts
-        // Line 40:5:  React Hook useEffect has a missing dependency: 'userInfo'. Either include it or remove the dependency array
       })
       //add error handling here
       .catch(err => console.log("No posts found. Please add posts to database")); //not sure if this is catching the error.
- 
-  }, []);
+      
 
+
+  }, []);
 
   return (
     <>
@@ -95,8 +108,16 @@ const [postArticles, setPostArticles] = useState([]);
           <p className='username'>Posted by:{post.username}</p>
             <Card.Text>{post.body}</Card.Text>
               <ButtonGroup className="btn-group">
-            <Button className="heart-btn" variant="secondary" size="sm" onClick={()=> handleSavePost}>
-              <i class="fas fa-heart"></i>
+            <Button 
+            disabled={userData.savedPosts?.some((savedPost) => savedPost._id === post._id)}
+            className='heart-btn btn-block btn-info'
+            variant="secondary" size="sm"
+            onClick={() => handleSavePost(post._id)}>
+            {userData.savedPosts?.some((savedPost) => savedPost._id === post._id)
+              ? 'This pook has already been saved!'
+              : 'Save this post!'}
+            {/* // className="heart-btn" variant="secondary" size="sm" onClick={()=> handleSavePost}> */}
+            {/* //   <i class="fas fa-heart"></i> */}
               </Button>
             <Button className="comment-btn" variant="secondary" size="sm"><i className="fas fa-comment-dots"></i>
             </Button>
