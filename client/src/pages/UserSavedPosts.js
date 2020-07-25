@@ -39,11 +39,7 @@ function UserSavedPosts() {
         </Container>
       </Jumbotron>
       <Container>
-        <h2 className="no-saved-message">
-          {userData.posts
-            ? `Viewing ${userData.posts} saved ${userData.posts === 1 ? 'post' : 'posts'}:`
-            : 'You have no saved posts!'}
-        </h2>
+    
         <CardColumns>
           {userData.posts.map((post) => {
             const {_id}  = post
