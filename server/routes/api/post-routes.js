@@ -28,7 +28,6 @@ router.route('/all').get(authMiddleware, getAllPosts);
 //get one post by id
 router.route('/post/:_id').get(authMiddleware, getPostById);  
 
-//get by user
 
 //do we need a get saved? can probably do on frontend...
 //should not need it for logged in user

@@ -76,13 +76,15 @@ module.exports = {
     return res.json(updatedUser);
   },
 
-  async saveUserPost({ user, body }, res) { //FIX ME!!! add token
+  async saveUserPost(req, res) {
+    console.log(req.params._id)
     console.log("You have reached the save post API");
     console.log(user);
     try {
       const updatedUser = await User.findOneAndUpdate(
         { _id: user._id },
-        { $addToSet: { savedBooks: body } },
+        // { $addToSet: { savedPosts: body } },
+        { $addToSet: { savedPosts: user._id }},
         { new: true, runValidators: true }
       );
       return res.json(updatedUser);
@@ -90,12 +92,18 @@ module.exports = {
       console.log(err);
       return res.status(400).json(err);
     }
+    // res.json("You have reached the save post API");
+
   },
-  async deleteUserPost({ user, params }, res) {
+  async deleteUserPost({ user, params }, res) { //FIXME
     console.log("you have reached the delete post API");
+    console.log(user);
     const updatedUser = await User.findOneAndUpdate(
       { _id: user._id },
-      { $pull: { savedBooks: { bookId: params.id } } },
+      // { $pull: { savedPosts: { bookId: params.id } } }, //needs test
+      { $pull: { savedPosts: params.id } },  
+      //the first pulls from an array of documents... 
+      // but we have an array of ids... ?
       { new: true }
     );
     if (!updatedUser) {
@@ -103,5 +111,23 @@ module.exports = {
     }
     return res.json(updatedUser);
   },
+
+
+  //OLD - simply
+  async saveMyPost({ user, body }, res) {
+    console.log(user);
+    try {
+      const updatedPost = await User.findOneAndUpdate(
+        { _id: user._id },
+        { $addToSet: { posts: body } },
+        { new: true, runValidators: true }
+      );
+      return res.json(updatedPost);
+    } catch (err) {
+      console.log(err);
+      return res.status(400).json(err);
+    }
+  },
+
 
 };

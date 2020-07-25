@@ -3,6 +3,7 @@ const router = require('express').Router();
 const {
     getAllComments,
     getCommentsByUser,
+    getCommentsByPost,
     postComment
     //    getComentsByPost
 } = require('../../controllers/comment-controller');
@@ -22,10 +23,10 @@ router.route('/user/:_id').get(getCommentsByUser);  // authMiddleware,  add this
 //... need to figure out if I can just use username...
 
 //get comments by post id
-router.route('/post/:_id').get(getCommentsByUser);
+router.route('/post/:_id').get(getCommentsByPost);
 
 //post comment by post id
-router.route('/').get(postComment);
+router.route('/').post(postComment);
 
 //put (edit) comment by post id
 // router.route('/post/:postId').get(authMiddleware, editComment);

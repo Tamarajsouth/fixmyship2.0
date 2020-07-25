@@ -15,20 +15,20 @@ module.exports = {
     return res.json(allPosts);
   },
 
-// AAAAAAAAAAAAAAAAAAAAAAaaaaaaaaaaaaaaaaaagggggggh!
+
   async createPost(req, res) { // this works! But needs testign with user data input!
     console.log("user params");
     console.log(req.params);
     //there are not params- I need to change the route to /post/:_id !
     console.log("first find user");
-//first find user
+    //first find user
     const user = await User.findOne({ username: req.body.username });
     if (!user) {
       console.log("user does not exist");
       return res.status(400).json({ message: 'Something is wrong!' });
     }
 
-//then create post
+    //then create post
     const myPost = await Post.create(req.body);
     if (!myPost) {
       console.log("post not created");
@@ -37,12 +37,12 @@ module.exports = {
     console.log("post created"); //this is not occuring!
     // console.log(myPost);
 
- //update mypost with the user id and save it
- const updatedPost = await Post.findOneAndUpdate({_id: myPost._id},
-  {user: user._id}
-  );  //need to make sure this does not delete post...
-  //check to see if I need to catch this error...
-//update user
+    //update mypost with the user id and save it
+    const updatedPost = await Post.findOneAndUpdate({ _id: myPost._id },
+      { user: user._id }
+    );  //need to make sure this does not delete post...
+    //check to see if I need to catch this error...
+    //update user
     const updatedUser = await User.findOneAndUpdate(
       { username: req.body.username },  //find by username- ok
       { $addToSet: { posts: myPost._id } }, //adds post id... testme!
@@ -68,6 +68,7 @@ module.exports = {
     }
     return res.json(onePost);
   },
+
 
   async editPost(req, res) {
     console.log("edit post... not yet implemented")

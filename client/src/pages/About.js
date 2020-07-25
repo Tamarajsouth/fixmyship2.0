@@ -1,6 +1,6 @@
 import React, { useState, useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { Navbar, Text, Button, Card } from 'react-bootstrap';
+import { Card } from 'react-bootstrap';
 
 import "./style.css";
 
@@ -25,8 +25,8 @@ return (
           <Link className="rules-link" as={Link} to='/rules'> rules </Link>
             carefully before registering. This advice forum is monitored and offenders will be banned.</p>
             <div className="author-info">
-              Front End:<a className="author-link" href='https://github.com/Tamarajsouth'> Tamara South</a><br></br>
-              Back End:<a className="author-link" href='https://github.com/childovhurin'> Megan Murphy</a> |  
+              <a className="author-link" href='https://github.com/Tamarajsouth'>Tamara South</a> |  
+              <a className="author-link" href='https://github.com/childovhurin'> Megan Murphy</a> |  
               <a className="author-link" href='https://github.com/GormTheWyrm'> Geordin Soucie</a>
             </div>
         </Card.Body>

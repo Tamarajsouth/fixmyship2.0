@@ -12,7 +12,9 @@ import "./style.css";
 function UserSavedPosts() {
   // get whole userData state object from App.js
   const userData = useContext(UserInfoContext);
+  const { username } = useContext(UserInfoContext);
 
+  console.log("userData object --->", userData) ;
   // create function that accepts the book's mongo _id value as param and deletes the book from the database
   const handleDeletePost = (_id) => {
     // get token
@@ -27,29 +29,33 @@ function UserSavedPosts() {
       .catch((err) => console.log(err));
   };
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 883d486a3433cd7bae103f2bba3666e110b0b167
   return (
     <>
-    <Jumbotron fluid className='text-light bg-dark'>
+    <Jumbotron fluid className='viewing-liked text-light bg-light'>
         <Container>
-          <h1>Viewing saved posts!</h1>
+          <h1 className="viewing-posts"><i className="fas fa-anchor"></i>  Viewing {username}'s Saved Posts!  <i className="fas fa-anchor"></i></h1>
         </Container>
       </Jumbotron>
       <Container>
-        <h2>
-          {userData.savedPosts
-            ? `Viewing ${userData.savedPosts} saved ${userData.savedPosts === 1 ? 'post' : 'posts'}:`
-            : 'You have no saved posts!'}
-        </h2>
+    
         <CardColumns>
+<<<<<<< HEAD
           {userData.savedPosts.map((post) => {
+=======
+          {userData.posts.map((post) => {
+            const {_id}  = post
+>>>>>>> 883d486a3433cd7bae103f2bba3666e110b0b167
             return (
               <Card key={post._id} border='dark'>
                 <Card.Body>
                   <Card.Title>{post.title}</Card.Title>
                   <p className='small'>Username: {post.username}</p>
                   <Card.Text>{post.body}</Card.Text>
-                  <Button className='btn-block btn-danger' onClick={() => handleDeletePost(post._id)}>
+                  <Button className='delete-saved-btn-block btn-danger' onClick={() => handleDeletePost(post._id)}>
                     Delete this Post
                   </Button>
                 </Card.Body>
