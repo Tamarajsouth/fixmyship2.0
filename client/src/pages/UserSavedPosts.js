@@ -36,7 +36,7 @@ function UserSavedPosts() {
       return false;
     }
     API.deleteUserPost(_id, token)
-      // upon succes, update user data to reflect book change
+      // upon success, update user data to reflect book change
       .then(() => userData.getUserData())
       .catch((err) => console.log(err));
   };
@@ -124,7 +124,7 @@ function UserSavedPosts() {
 
 
 
-
+  
 
   // // console.log("now try and get users posts");
   // API.getMe(token)
@@ -149,25 +149,24 @@ function UserSavedPosts() {
       <Container>
 
         <CardColumns>
-
           <Card>
             {/*  change this to map a "visibleArticles" - but after tamara gives us the last push*/}
-            {postArticles.map((mypost) => {
+            {postArticles.filter(xxx => xxx.username === name).map((mypost) => {
               // if statement that makes sure only things that render are users own posts
               //oops, probably not user statement... ternary
-              if (1)
-                return (
-                  <Card key={mypost._id}>
-                    <Card.Body className="post-card" key={mypost._id} border="dark">
-                    </Card.Body>
 
-                    <Card.Title>Title: {mypost.title}</Card.Title>
-                    <p className='username'>Posted by:{mypost.username}</p>
-                    <Card.Text>{mypost.body}</Card.Text>
+              return (
+                <Card key={mypost._id}>
+                  <Card.Body className="post-card" key={mypost._id} border="dark">
+                  </Card.Body>
 
-                    <br></br>
-                  </Card>
-                );
+                  <Card.Title>Title: {mypost.title}</Card.Title>
+                  <p className='username'>Posted by:{mypost.username}</p>
+                  <Card.Text>{mypost.body}</Card.Text>
+
+                  <br></br>
+                </Card>
+              );
             })}
           </Card>
 
