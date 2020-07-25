@@ -38,10 +38,10 @@ function CommunityPosts() {
 
   console.log(searchedPosts);
 
-// SAVE POSTS "LIKE POSTS" BY CLICKING HEART BUTTON
-// -------------------------------------
-    const handleSavePost = (_id) => {
-  
+  // SAVE POSTS "LIKE POSTS" BY CLICKING HEART BUTTON
+  // -------------------------------------
+  const handleSavePost = (_id) => {
+
     const postToSave = searchedPosts.find((post) => post._id === "5f1b7147ad24cb2748128c9c");
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
     console.log('handleSavePostId --->_', _id)
@@ -57,6 +57,8 @@ function CommunityPosts() {
 
   const [postArticles, setPostArticles] = useState([]);
   const [commentArray, setcommentArray] = useState([]);
+  const [sort, setSort] = useState([]);
+  const [visibleArticles, setVisibleArticles] = useState([]);
 
   useEffect(() => {
     const token = AuthService.loggedIn() ? AuthService.getToken() : null;
@@ -70,17 +72,18 @@ function CommunityPosts() {
           posts.push(workingpost);
         });
         API.getAllUsers()
-        .then((res) => {
-          let users = [];
-          res.data.map((user) => {console.log(user._id) 
-            posts.forEach((post) => {
-              if (user._id === post.username){
-                post.username = user.username
-                console.log(post.username);
-              }
+          .then((res) => {
+            let users = [];
+            res.data.map((user) => {
+              console.log(user._id)
+              posts.forEach((post) => {
+                if (user._id === post.username) {
+                  post.username = user.username
+                  console.log(post.username);
+                }
+              })
             })
-           })
-        })
+          })
         if (posts.length) {
           console.log(posts)
           setPostArticles([...postArticles, ...posts]);
@@ -89,7 +92,7 @@ function CommunityPosts() {
       //add error handling here
       .catch(err => console.log("No posts found. Please add posts to database")); //not sure if this is catching the error.
 
-      API.getAllComments(token) //api call to grab all posts and put them into "setPostArticles"
+    API.getAllComments(token) //api call to grab all posts and put them into "setPostArticles"
       .then((res) => {
         let comments = [];
         res.data.map((commentData) => {
@@ -125,7 +128,7 @@ function CommunityPosts() {
     console.log("modal should open");
     // setShow(true);  //sets show to true so modal opens...
     //need to set to false on close
-// handleShow(); //setting state resets app so it immediately renders without modal...
+    // handleShow(); //setting state resets app so it immediately renders without modal...
     // return(
     //do not need to return- instead put the modal under the button...
     // <PostModal 
@@ -139,18 +142,61 @@ function CommunityPosts() {
     // )
   }
 
+  function sortAll(){
+    // setSort("all");
+    setVisibleArticles([...postArticles]);
+  }
+  function sortByDating(){
+    // setSort("all");
+    
+    setVisibleArticles([...postArticles]);
+  }
+  function sortByBreakup(){
+    // setSort("all");
+    setVisibleArticles([...postArticles]);
+  }
+  function sortByMarriage(){
+    // setSort("all");
+    setVisibleArticles([...postArticles]);
+  }
+  function sortBylgbtq(){
+    // setSort("all");
+    setVisibleArticles([...postArticles]);
+  }
+  function sortByBreakup(){
+    // setSort("all");
+    setVisibleArticles([...postArticles]);
+  }
+  function sortByWomen(){
+    // setSort("all");
+    setVisibleArticles([...postArticles]);
+  }
+  function sortByMen(){
+    // setSort("all");
+    setVisibleArticles([...postArticles]);
+  }
+  function sortByJustFriends(){
+    // setSort("all");
+    setVisibleArticles([...postArticles]);
+  }
+
+
   return (
     <>
       <Jumbotron fluid className='text-dark bg-light'>
         <Container>
           <h1 className='viewing-posts'><i className="fas fa-anchor"></i>  Viewing Community Posts!  <i className="fas fa-anchor"></i></h1>
           <p className='user-instructions'> viewing all posts </p>
+
+          <button onClick={sortAll}>View All</button>
+
+
         </Container>
       </Jumbotron>
       <Container>
         <Card>
           {/*  change this to map a "visibleArticles" - but after tamara gives us the last push*/}
-          {postArticles.map((post) => { 
+          {visibleArticles.map((post) => {
             // console.log('THIS IS THE POST!! --> ', post)
             const { _id } = post
             return (
@@ -158,26 +204,26 @@ function CommunityPosts() {
                 <Card.Body className="post-card" key={post._id} border="dark">
                 </Card.Body>
 
-          <Card.Title>Title: {post.title}</Card.Title>
-          <p className='username'>Posted by:{post.username}</p>
-            <Card.Text>{post.body}</Card.Text>
-              <ButtonGroup className="btn-group">
-            <Button 
-            disabled={userData.savedPosts?.some((savedPost) => savedPost._id === post._id)}
-            className='heart-btn btn-block btn-info'
-            variant="secondary" size="sm"
-            onClick={() => handleSavePost(post._id)}>
-            {userData.savedPosts?.some((savedPost) => savedPost._id === post._id)
-              ? 'This pook has already been saved!'
-              : 'Save this post!'}
-            {/* // className="heart-btn" variant="secondary" size="sm" onClick={()=> handleSavePost}> */}
-            {/* //   <i class="fas fa-heart"></i> */}
-              </Button>
-            <Button className="comment-btn" variant="secondary" size="sm"><i className="fas fa-comment-dots"></i>
-            </Button>
-            </ButtonGroup>
-            <br></br>
-          </Card>
+                <Card.Title>Title: {post.title}</Card.Title>
+                <p className='username'>Posted by:{post.username}</p>
+                <Card.Text>{post.body}</Card.Text>
+                <ButtonGroup className="btn-group">
+                  <Button
+                    disabled={userData.savedPosts?.some((savedPost) => savedPost._id === post._id)}
+                    className='heart-btn btn-block btn-info'
+                    variant="secondary" size="sm"
+                    onClick={() => handleSavePost(post._id)}>
+                    {userData.savedPosts?.some((savedPost) => savedPost._id === post._id)
+                      ? 'This pook has already been saved!'
+                      : 'Save this post!'}
+                    {/* // className="heart-btn" variant="secondary" size="sm" onClick={()=> handleSavePost}> */}
+                    {/* //   <i class="fas fa-heart"></i> */}
+                  </Button>
+                  <Button className="comment-btn" variant="secondary" size="sm"><i className="fas fa-comment-dots"></i>
+                  </Button>
+                </ButtonGroup>
+                <br></br>
+              </Card>
             )
           })}
         </Card>
