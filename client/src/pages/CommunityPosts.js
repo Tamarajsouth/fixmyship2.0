@@ -30,23 +30,6 @@ function CommunityPosts() {
       .catch((err) => console.log(err));
   };
 
-  console.log(searchedPosts);
-
-// SAVE POSTS "LIKE POSTS" BY CLICKING HEART BUTTON
-// -------------------------------------
-    const handleSavePost = (_id) => {
-  
-    const postToSave = searchedPosts.find((post) => post._id === "5f1b7147ad24cb2748128c9c");
-    const token = AuthService.loggedIn() ? AuthService.getToken() : null;
-    console.log('handleSavePostId --->_', _id)
-    if (!token) {
-      return false;
-  }
-
-  API.saveUserPost(postToSave, token)
-  .then(() => userData.getUserData())
-  .catch((err) => console.log(err));
-};
 
 
 const [postArticles, setPostArticles] = useState([]);
@@ -84,7 +67,27 @@ const [postArticles, setPostArticles] = useState([]);
       
 
 
+
+
   }, []);
+
+  console.log(postArticles)
+// SAVE POSTS "LIKE POSTS" BY CLICKING HEART BUTTON
+// -------------------------------------
+const handleSavePost = (_id) => {
+  
+  const postToSave = postArticles.find((post) => post._id === "5f1b7147ad24cb2748128c9c");
+  const token = AuthService.loggedIn() ? AuthService.getToken() : null;
+  console.log('postToSave --->_', postToSave, token)
+  console.log(postToSave._id)
+  if (!token) {
+    return false;
+}
+console.log(postToSave._id)
+API.saveUserPost(postToSave._id, token)
+.then(() => userData.getUserData())
+.catch((err) => console.log(err));
+};
 
   return (
     <>
@@ -114,7 +117,7 @@ const [postArticles, setPostArticles] = useState([]);
             variant="secondary" size="sm"
             onClick={() => handleSavePost(post._id)}>
             {userData.savedPosts?.some((savedPost) => savedPost._id === post._id)
-              ? 'This pook has already been saved!'
+              ? 'This post has already been saved!'
               : 'Save this post!'}
             {/* // className="heart-btn" variant="secondary" size="sm" onClick={()=> handleSavePost}> */}
             {/* //   <i class="fas fa-heart"></i> */}

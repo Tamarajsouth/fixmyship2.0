@@ -25,17 +25,7 @@ router.route('/me').get(authMiddleware, getSingleUser);
 
 router.route('/:username').get(getSingleUser);
 
-
-// router.route('/books/:id').delete(authMiddleware, deleteBook);
-
-
-// ~~~~~~~I THINK THIS CODE BELOW NEEDS TO BE FIXED TO SAVE POSTS
-// save id to savedPosts in user
-// router.route('/posts/:id').put(authMiddleware, saveMyPost);
-// ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-
-router.route('/saved/add/:id').get(authMiddleware, saveUserPost);
+router.route('/posts/:id').get(authMiddleware, saveUserPost);
 // authMiddleware,
 
 router.route('/saved/remove/:id').get(authMiddleware, deleteUserPost);
