@@ -40,14 +40,14 @@ function AppNavbar() {
             </Nav>
             <Nav className="mr-right">
       <NavDropdown title="Search Posts" id="basic-nav-dropdown">
-        <NavDropdown.Item href="#action/3.1">Dates</NavDropdown.Item>
+        {/* <NavDropdown.Item href="#action/3.1">Dates</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.2">Marriage</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.3">Break Ups</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.3">LGBTQ+</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.3">Women</NavDropdown.Item>
         <NavDropdown.Item href="#action/3.3">Men</NavDropdown.Item>
-        <NavDropdown.Item href="#action/3.3">Just Friends</NavDropdown.Item>
-        <NavDropdown.Item className="ViewPosts" as={Link} to='/CommunityPosts'>View All</NavDropdown.Item>
+        <NavDropdown.Item href="#action/3.3">Just Friends</NavDropdown.Item> */}
+        <NavDropdown.Item className="ViewPosts" as={Link} to='/CommunityPosts'>Browse</NavDropdown.Item>
       </NavDropdown>
     </Nav>
             <Navbar className="about-link" as={Link} to='/about'>
