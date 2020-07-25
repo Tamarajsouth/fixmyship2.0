@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import { Link, Redirect } from "react-router-dom";
-import { Button, Form, Card } from "react-bootstrap";
+import { Button, Form, Card, ButtonGroup } from "react-bootstrap";
 import * as API from "../utils/API";
 import AuthService from "../utils/auth";
 import UserInfoContext from "../utils/UserInfoContext";
@@ -112,7 +112,7 @@ function CreatePost() {
           <Form.Control
             onChange={handleInputChange}
             name="title"
-            placeholder="Title (required)"
+            placeholder="Title"
           />
           {/* <Form.Control
             onChange={handleInputChange}
@@ -123,21 +123,21 @@ function CreatePost() {
             as="textarea"
             onChange={handleInputChange}
             name="body"
-            placeholder="Synopsis (Optional)"
+            placeholder="Synopsis"
           />
 
-          <Form.Check type="checkbox" name="dating" onClick={handleCheckBoxInputChange} checked={formObject.dating} label="Dating" />
-          <Form.Check type="checkbox" name="breakingup" onClick={handleCheckBoxInputChange} checked={formObject.breakingup} label="Breaking Up" />
-          <Form.Check type="checkbox" name="marriage" onClick={handleCheckBoxInputChange} checked={formObject.marriage} label="Marriage" label="Marriage" />
-          <Form.Check type="checkbox" name="lgbtq" onClick={handleCheckBoxInputChange} checked={formObject.lgbtq} label="LGBTQ+" label="LGBTQ+" />
-          <Form.Check type="checkbox" name="women" onClick={handleCheckBoxInputChange} checked={formObject.women} label="Women" label="Women" />
-          <Form.Check type="checkbox" name="men" onClick={handleCheckBoxInputChange} checked={formObject.men} label="Men" label="Men" />
-          <Form.Check type="checkbox" name="justfriends" onClick={handleCheckBoxInputChange} checked={formObject.justfriends} label="Just Friends" label="Just Friends" />
+          <Form.Check className="checkbox" type="checkbox" name="dating" onClick={handleCheckBoxInputChange} checked={formObject.dating} label="Dating" />
+          <Form.Check className="checkbox" type="checkbox" name="breakingup" onClick={handleCheckBoxInputChange} checked={formObject.breakingup} label="Breaking Up" />
+          <Form.Check className="checkbox" type="checkbox" name="marriage" onClick={handleCheckBoxInputChange} checked={formObject.marriage} label="Marriage" label="Marriage" />
+          <Form.Check className="checkbox" type="checkbox" name="lgbtq" onClick={handleCheckBoxInputChange} checked={formObject.lgbtq} label="LGBTQ+" label="LGBTQ+" />
+          <Form.Check className="checkbox" type="checkbox" name="women" onClick={handleCheckBoxInputChange} checked={formObject.women} label="Women" label="Women" />
+          <Form.Check className="checkbox" type="checkbox" name="men" onClick={handleCheckBoxInputChange} checked={formObject.men} label="Men" label="Men" />
+          <Form.Check className="checkbox" type="checkbox" name="justfriends" onClick={handleCheckBoxInputChange} checked={formObject.justfriends} label="Just Friends" label="Just Friends" />
         </form>
 
 
         <p className="choose-category-heading">choose a category to post to:</p>
-
+          <ButtonGroup className="submit-btn-group">
         <button
           className="submit-btn"
           size="sm"
@@ -145,6 +145,7 @@ function CreatePost() {
         >
           Create Post
         </button>
+        </ButtonGroup>
       </Card.Body>
     </div>
   );

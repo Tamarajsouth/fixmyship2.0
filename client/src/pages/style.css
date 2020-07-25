@@ -21,7 +21,19 @@
     text-align: center;
     color: black
 }
-
+.cat-btn-group{
+    text-align: center;
+}
+.cat-btn{
+    display: center;
+    align-self: center;
+    text-align: center;
+    border-style: solid;
+    border-radius: 20px;
+}
+.cat-btn:hover{
+    background-color: rgb(146, 126, 192);
+}
 /* ABOUT THINGS */
 .about-header{
     text-align: center;
@@ -139,11 +151,21 @@
     font-family: "Pacifico", cursive;
     text-align: center;
 }
-
-.submit-btn{
-    background-color: white;
-    border-radius: 30px;
+.submit-btn-group{
     text-align: center;
+}
+.submit-btn{
+    display: center;
+    align-self: center;
+    text-align: center;
+    border-style: solid;
+    border-radius: 20px;
+}
+.submit-btn:hover{
+    background-color: rgb(155, 127, 255);
+}
+.checkbox{
+    display: inline;
 }
 /* RULES PAGE */
 .rules-card-1{
