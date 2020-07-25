@@ -76,7 +76,8 @@ module.exports = {
     return res.json(updatedUser);
   },
 
-  async saveUserPost({ user, body }, res) { //FIX ME!!! add token
+  async saveUserPost(req, res) {
+    console.log(req.params._id)
     console.log("You have reached the save post API");
     console.log(user);
     try {
