@@ -139,39 +139,43 @@ function CommunityPosts() {
   function sortByDating(){
     // setSort("all");
     // console.log("tag = " + postArticles[5].tags);
-    const sortedPosts = postArticles.filter(x => x.tags.includes("women"))
+    const sortedPosts = postArticles.filter(x => x.tags.includes("dating"));
     console.log(sortedPosts);
     //this needs to be contains the tag instead of equals the tag...
     setVisibleArticles([...sortedPosts]);
   }
   function sortByBreakup(){
     // setSort("all");
-    setVisibleArticles([...postArticles]);
+    const sortedPosts = postArticles.filter(x => x.tags.includes("breakingup"));
+    setVisibleArticles([...sortedPosts]);
   }
   function sortByMarriage(){
+    const sortedPosts = postArticles.filter(x => x.tags.includes("marriage"));
     // setSort("all");
-    setVisibleArticles([...postArticles]);
+    setVisibleArticles([...sortedPosts]);
   }
   function sortBylgbtq(){
+    const sortedPosts = postArticles.filter(x => x.tags.includes("lgbtq"));
     // setSort("all");
-    setVisibleArticles([...postArticles]);
-  }
-  function sortByBreakup(){
-    // setSort("all");
-    setVisibleArticles([...postArticles]);
+    setVisibleArticles([...sortedPosts]);
   }
   function sortByWomen(){
+    const sortedPosts = postArticles.filter(x => x.tags.includes("women"));
     // setSort("all");
-    setVisibleArticles([...postArticles]);
+    setVisibleArticles([...sortedPosts]);
   }
   function sortByMen(){
     // setSort("all");
-    setVisibleArticles([...postArticles]);
+    const sortedPosts = postArticles.filter(x => x.tags.includes("men"));
+    setVisibleArticles([...sortedPosts]);
   }
   function sortByJustFriends(){
+    const sortedPosts = postArticles.filter(x => x.tags.includes("justfriends"));
     // setSort("all");
-    setVisibleArticles([...postArticles]);
+    setVisibleArticles([...sortedPosts]);
   }
+ 
+  
 
 
 
@@ -201,6 +205,14 @@ function CommunityPosts() {
 
           <button onClick={sortAll}>View All</button>
           <button onClick={sortByDating}>Dating</button>
+          <button onClick={sortByBreakup}>Breakup</button>
+          <button onClick={sortByMarriage}>Marriage</button>
+          <button onClick={sortBylgbtq}>LGBTQ+</button>
+          <button onClick={sortByWomen}>Women</button>
+          <button onClick={sortByMen}>Men</button>
+          <button onClick={sortByJustFriends}>Just Friends</button>
+
+          
 
 
         </Container>
