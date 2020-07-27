@@ -38,7 +38,7 @@ function CommunityPosts() {
 
   const [postArticles, setPostArticles] = useState([]);
   const [commentArray, setcommentArray] = useState([]);
-  const [sort, setSort] = useState([]);
+  const [sort, setSort] = useState(["no posts: click on a category to view posts"]); //this sets the description of the posts the user is viewing
   const [visibleArticles, setVisibleArticles] = useState([]);
 
   useEffect(() => {
@@ -130,14 +130,20 @@ function CommunityPosts() {
 
     // />
     // )
+
+// lets have this console.log the comments first...
+//then we will make it console log the comments for the specific post
+// then we render those comments!
+//we want this to be rendered in a box below the post!
+
   }
 
   function sortAll(){
-    // setSort("all");
+    setSort("all posts");
     setVisibleArticles([...postArticles]);
   }
   function sortByDating(){
-    // setSort("all");
+    setSort("dating posts");
     // console.log("tag = " + postArticles[5].tags);
     const sortedPosts = postArticles.filter(x => x.tags.includes("dating"));
     console.log(sortedPosts);
@@ -145,33 +151,33 @@ function CommunityPosts() {
     setVisibleArticles([...sortedPosts]);
   }
   function sortByBreakup(){
-    // setSort("all");
+    setSort("breakup posts");
     const sortedPosts = postArticles.filter(x => x.tags.includes("breakingup"));
     setVisibleArticles([...sortedPosts]);
   }
   function sortByMarriage(){
     const sortedPosts = postArticles.filter(x => x.tags.includes("marriage"));
-    // setSort("all");
+    setSort("marriage posts");
     setVisibleArticles([...sortedPosts]);
   }
   function sortBylgbtq(){
     const sortedPosts = postArticles.filter(x => x.tags.includes("lgbtq"));
-    // setSort("all");
+    setSort("LGBTQ+ posts");
     setVisibleArticles([...sortedPosts]);
   }
   function sortByWomen(){
     const sortedPosts = postArticles.filter(x => x.tags.includes("women"));
-    // setSort("all");
+    setSort("women posts");
     setVisibleArticles([...sortedPosts]);
   }
   function sortByMen(){
-    // setSort("all");
+    setSort("men posts");
     const sortedPosts = postArticles.filter(x => x.tags.includes("men"));
     setVisibleArticles([...sortedPosts]);
   }
   function sortByJustFriends(){
     const sortedPosts = postArticles.filter(x => x.tags.includes("justfriends"));
-    // setSort("all");
+    setSort("just friends posts");
     setVisibleArticles([...sortedPosts]);
   }
  
@@ -201,8 +207,8 @@ function CommunityPosts() {
       <Jumbotron fluid className="text-dark bg-light">
         <Container>
           <h1 className='viewing-posts'><i className="fas fa-anchor"></i>  Viewing Community Posts!  <i className="fas fa-anchor"></i></h1>
-          <p className='user-instructions'> viewing all posts </p>
-
+          <p className='user-instructions'> viewing {sort} </p>
+{/* WE NEED TO CHANGE VIEWING ALL POSTS TO REFLECT WHAT IS ACTUALLY BEING VIEWED- PREFERABLE WITH INSTRUCTIONS IF THERE IS NOTHIN IN THE STATE ...would need to implement setSort */}
           <button onClick={sortAll}>View All</button>
           <button onClick={sortByDating}>Dating</button>
           <button onClick={sortByBreakup}>Breakup</button>
@@ -213,8 +219,6 @@ function CommunityPosts() {
           <button onClick={sortByJustFriends}>Just Friends</button>
 
           
-
-
         </Container>
       </Jumbotron>
       <Container>
