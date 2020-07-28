@@ -189,15 +189,18 @@ function CommunityPosts() {
       <Jumbotron fluid className="text-dark bg-light">
         <Container>
           <h1 className='viewing-posts'><i className="fas fa-anchor"></i>  Viewing Community Posts!  <i className="fas fa-anchor"></i></h1>
-          <p className='user-instructions'> viewing {sort} </p>
-          <button onClick={sortAll}>View All</button>
-          <button onClick={sortByDating}>Dating</button>
-          <button onClick={sortByBreakup}>Breakup</button>
-          <button onClick={sortByMarriage}>Marriage</button>
-          <button onClick={sortBylgbtq}>LGBTQ+</button>
-          <button onClick={sortByWomen}>Women</button>
-          <button onClick={sortByMen}>Men</button>
-          <button onClick={sortByJustFriends}>Just Friends</button>
+          <p className='user-instructions'> viewing all posts </p>
+        <ButtonGroup className="cat-btn-group">
+          <button className="cat-btn" onClick={sortAll}>View All</button>
+          <button className="cat-btn" onClick={sortByDating}>Dating</button>
+          <button className="cat-btn" onClick={sortByBreakup}>Breakup</button>
+          <button className="cat-btn" onClick={sortByMarriage}>Marriage</button>
+          <button className="cat-btn" onClick={sortBylgbtq}>LGBTQ+</button>
+          <button className="cat-btn" onClick={sortByWomen}>Women</button>
+          <button className="cat-btn" onClick={sortByMen}>Men</button>
+          <button className="cat-btn" onClick={sortByJustFriends}>Just Friends</button>
+          </ButtonGroup>
+          
 
 
         </Container>
