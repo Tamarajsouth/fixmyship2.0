@@ -38,7 +38,7 @@ function CommunityPosts() {
 
   const [postArticles, setPostArticles] = useState([]);
   const [commentArray, setcommentArray] = useState([]);
-  const [sort, setSort] = useState([]);
+  const [sort, setSort] = useState(["no posts: click on a category to view posts"]); //this sets the description of the posts the user is viewing
   const [visibleArticles, setVisibleArticles] = useState([]);
 
   useEffect(() => {
@@ -65,31 +65,31 @@ function CommunityPosts() {
         API.getAllUsers().then((res) => {
           let users = [];
           res.data.map((user) => {
-            console.log(user._id);
+            // console.log(user._id);
             posts.forEach((post) => {
               if (user._id === post.username) {
                 post.username = user.username;
-                console.log(post.username);
+                // console.log(post.username);
               }
             });
           });
         });
         if (posts.length) {
-          console.log(posts);
+          // console.log(posts);
           setPostArticles([...postArticles, ...posts]);
         }
       })
       //add error handling here
       .catch(err => console.log("No posts found. Please add posts to database")); //not sure if this is catching the error.
 
-    API.getAllComments(token) //api call to grab all posts and put them into "setPostArticles"
+    API.getAllComments(token) //api call to grab all comments and put them into "commentArray"
       .then((res) => {
         let comments = [];
         res.data.map((commentData) => {
           let workingComment = { _id: commentData._id, body: commentData.body, createdAt: commentData.createdAt, user: commentData.user }
           //need to remove "mainText from comment model"
           comments.push(workingComment);
-          console.log(workingComment);
+          // console.log(workingComment);
         });
 
         if (comments.length) {
@@ -103,83 +103,71 @@ function CommunityPosts() {
       //add error handling here
       .catch(err => console.log("No commentts found.")); //not sure if this is catching the error.
 
-
-
-
-  }, []);
-
-  function testFunction() {
-    console.log("test");
-    // handleClose();
-  }
+  }, []); //end useEffect
 
   //modal function:
+  function ifComments() {
+    console.log("test");
+    return(<p>test</p>)
+  }
+
   function openComment() {
     console.log("modal should open");
-    // setShow(true);  //sets show to true so modal opens...
-    //need to set to false on close
-    // handleShow(); //setting state resets app so it immediately renders without modal...
-    // return(
-    //do not need to return- instead put the modal under the button...
-    // <PostModal 
-    // xxx = yyy
-    // show={show}
-    // handleClose={testFunction}
-    // handlePostComment={testFunction}
 
+    return (
 
-    // />
-    // )
+      <p>Comments will be here</p>
+
+    );
+
   }
 
-  function sortAll(){
-    // setSort("all");
+  function sortAll() {
+    setSort("all posts");
     setVisibleArticles([...postArticles]);
   }
-  function sortByDating(){
-    // setSort("all");
-    // console.log("tag = " + postArticles[5].tags);
+  function sortByDating() {
+    setSort("dating posts");
     const sortedPosts = postArticles.filter(x => x.tags.includes("dating"));
     console.log(sortedPosts);
-    //this needs to be contains the tag instead of equals the tag...
     setVisibleArticles([...sortedPosts]);
   }
-  function sortByBreakup(){
-    // setSort("all");
+  function sortByBreakup() {
+    setSort("breakup posts");
     const sortedPosts = postArticles.filter(x => x.tags.includes("breakingup"));
     setVisibleArticles([...sortedPosts]);
   }
-  function sortByMarriage(){
+  function sortByMarriage() {
     const sortedPosts = postArticles.filter(x => x.tags.includes("marriage"));
-    // setSort("all");
+    setSort("marriage posts");
     setVisibleArticles([...sortedPosts]);
   }
-  function sortBylgbtq(){
+  function sortBylgbtq() {
     const sortedPosts = postArticles.filter(x => x.tags.includes("lgbtq"));
-    // setSort("all");
+    setSort("LGBTQ+ posts");
     setVisibleArticles([...sortedPosts]);
   }
-  function sortByWomen(){
+  function sortByWomen() {
     const sortedPosts = postArticles.filter(x => x.tags.includes("women"));
-    // setSort("all");
+    setSort("women posts");
     setVisibleArticles([...sortedPosts]);
   }
-  function sortByMen(){
-    // setSort("all");
+  function sortByMen() {
+    setSort("men posts");
     const sortedPosts = postArticles.filter(x => x.tags.includes("men"));
     setVisibleArticles([...sortedPosts]);
   }
-  function sortByJustFriends(){
+  function sortByJustFriends() {
     const sortedPosts = postArticles.filter(x => x.tags.includes("justfriends"));
-    // setSort("all");
+    setSort("just friends posts");
     setVisibleArticles([...sortedPosts]);
   }
- 
-  
 
 
 
-  console.log(postArticles);
+
+
+
   // SAVE POSTS "LIKE POSTS" BY CLICKING HEART BUTTON
   // -------------------------------------
   const handleSavePost = (_id) => {
@@ -243,11 +231,12 @@ function CommunityPosts() {
                     {/* // className="heart-btn" variant="secondary" size="sm" onClick={()=> handleSavePost}> */}
                     {/* //   <i class="fas fa-heart"></i> */}
                   </Button>
-                  <Button className="comment-btn" variant="secondary" size="sm"><i className="fas fa-comment-dots"></i>
+                  <Button className="comment-btn" variant="secondary" size="sm" onClick={openComment}><i className="fas fa-comment-dots"></i>
                   </Button>
                 </ButtonGroup>
                 <br></br>
               </Card>
+              // {ifComments()}
             );
           })}
         </Card>
