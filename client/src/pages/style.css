@@ -166,8 +166,7 @@
 }
 .checkbox{
     display: inline;
-    background-color: white;
-    border: none;
+    margin-left: 1vw;
 }
 
 /* RULES PAGE */
