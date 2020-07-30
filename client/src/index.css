@@ -7,6 +7,8 @@ body {
   min-height: 100vh;
   /* overflow: auto; */
   padding-top: 3vh;
+  /* margin-left: 5vw;
+  margin-right: 5vw; */
 }
 .content-wrap{
   flex: 1;

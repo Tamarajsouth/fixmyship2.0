@@ -1,6 +1,6 @@
 // HOME PAGE
 import React, { useContext, useEffect, useState } from 'react';
-import { Jumbotron, Container, Card, Button, ButtonGroup, CardColumns, Modal } from 'react-bootstrap';
+import { Jumbotron, Container, Col, Row, Card, Button, ButtonGroup, CardColumns, Modal } from 'react-bootstrap';
 import PostModal from '../components/PostModal'
 import CommentDiv from '../components/CommentDiv'
 // import context for global state
@@ -108,7 +108,7 @@ function CommunityPosts() {
 
 
   function openComment(myid) {
-  // const openComment = () => {
+    // const openComment = () => {
     //prevent default?
     console.log("modal should open");
     console.log(myid)
@@ -160,9 +160,9 @@ function CommunityPosts() {
   }
 
 
-function noComments(){
-console.log("COmments are not yet implemented");
-}
+  function noComments() {
+    console.log("Comments are not yet implemented");
+  }
 
 
 
@@ -186,58 +186,60 @@ console.log("COmments are not yet implemented");
     <>
       <Jumbotron fluid className="text-dark bg-light">
         {/* <Container> */}
-          <h1 className='viewing-posts'><i className="fas fa-anchor"></i>  Viewing Community Posts!  <i className="fas fa-anchor"></i></h1>
-          <p className='user-instructions'> viewing all posts </p>
-          <ButtonGroup className="cat-btn-group">
-            <button className="cat-btn" onClick={sortAll}>View All</button>
-            <button className="cat-btn" onClick={sortByDating}>Dating</button>
-            <button className="cat-btn" onClick={sortByBreakup}>Breakup</button>
-            <button className="cat-btn" onClick={sortByMarriage}>Marriage</button>
-            <button className="cat-btn" onClick={sortBylgbtq}>LGBTQ+</button>
-            <button className="cat-btn" onClick={sortByWomen}>Women</button>
-            <button className="cat-btn" onClick={sortByMen}>Men</button>
-            <button className="cat-btn" onClick={sortByJustFriends}>Just Friends</button>
-          </ButtonGroup>
+        <h1 className='viewing-posts'><i className="fas fa-anchor"></i>  Viewing Community Posts!  <i className="fas fa-anchor"></i></h1>
+        <p className='user-instructions'> viewing all posts </p>
+        <ButtonGroup className="cat-btn-group">
+          <Row noGutters={true}>
+            <Col md={12}>
+              <button className="cat-btn" onClick={sortAll}>View All</button>
+              <button className="cat-btn" onClick={sortByDating}>Dating</button>
+              <button className="cat-btn" onClick={sortByBreakup}>Breakup</button>
+              <button className="cat-btn" onClick={sortByMarriage}>Marriage</button>
+              <button className="cat-btn" onClick={sortBylgbtq}>LGBTQ+</button>
+              <button className="cat-btn" onClick={sortByWomen}>Women</button>
+              <button className="cat-btn" onClick={sortByMen}>Men</button>
+              <button className="cat-btn" onClick={sortByJustFriends}>Just Friends</button>
+            </Col>
+          </Row>
+        </ButtonGroup>
 
 
 
         {/* </Container> */}
       </Jumbotron>
       {/* <Container> */}
-        <Card>
-          {/*  change this to map a "visibleArticles" - but after tamara gives us the last push*/}
-          {visibleArticles.map((post) => {
-            // console.log('THIS IS THE POST!! --> ', post)
-            const { _id } = post
-            return (
-              <>
-                <Card key={_id}>
-                  <Card.Body className="post-card" key={post._id} border="dark">
-                  </Card.Body>
+      <Card>
+        {/*  change this to map a "visibleArticles" - but after tamara gives us the last push*/}
+        {visibleArticles.map((post) => {
+          // console.log('THIS IS THE POST!! --> ', post)
+          const { _id } = post
+          return (
+            <>
+              <Card key={post._id}>
+                <Card.Body className="post-card" key={post._id} border="dark">
+                </Card.Body>
+                <Card.Title>Title: {post.title}</Card.Title>
+                <p className='username'>Posted by:{post.username}</p>
+                <Card.Text>{post.body}</Card.Text>
+                <ButtonGroup className="btn-group">
+                  <Button
+                    disabled={userData.savedPosts?.some((savedPost) => savedPost._id === post._id)}
+                    className='heart-btn btn-block btn-info'
+                    variant="secondary" size="sm"
+                    onClick={() => noComments()}>
+                    {userData.savedPosts?.some((savedPost) => savedPost._id === post._id)
+                      ? 'This pook has already been saved!'
+                      : 'Save this post!'}
+                    {/* // className="heart-btn" variant="secondary" size="sm" onClick={()=> handleSavePost}> */}
+                    {/* //   <i class="fas fa-heart"></i> */}
+                  </Button>
+                  <Button className="comment-btn" variant="secondary" size="sm" onClick={() => noComments()}><i className="fas fa-comment-dots"></i>
+                  </Button>
+                </ButtonGroup>
+                <br></br>
+              </Card>
 
-                  <Card.Title>Title: {post.title}</Card.Title>
-                  <p className='username'>Posted by:{post.username}</p>
-                  <Card.Text>{post.body}</Card.Text>
-                  <ButtonGroup className="btn-group">
-                    <Button
-                      disabled={userData.savedPosts?.some((savedPost) => savedPost._id === post._id)}
-                      className='heart-btn btn-block btn-info'
-                      variant="secondary" size="sm"
-                      onClick={() => handleSavePost(post._id)}>
-                      {userData.savedPosts?.some((savedPost) => savedPost._id === post._id)
-                        ? 'This pook has already been saved!'
-                        : 'Save this post!'}
-                      {/* // className="heart-btn" variant="secondary" size="sm" onClick={()=> handleSavePost}> */}
-                      {/* //   <i class="fas fa-heart"></i> */}
-                    </Button>
-                    <Button className="comment-btn" variant="secondary" size="sm" onClick={() => noComments}><i className="fas fa-comment-dots"></i>
-                    </Button>
-                  </ButtonGroup>
-                  <br></br>
-
-                </Card>
-
-                {/* THIS IS COMMENTS
+              {/* THIS IS COMMENTS
 
                 {filteredComments.map((thisComment) => {
                   return (
@@ -255,12 +257,12 @@ console.log("COmments are not yet implemented");
 
                   )
                 })}
-*/}
-              </>
+              */}
+            </>
 
-            );
-          })}
-        </Card>
+          );
+        })}
+      </Card>
       {/* </Container> */}
     </>
   );

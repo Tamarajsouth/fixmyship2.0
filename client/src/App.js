@@ -46,7 +46,7 @@ function App() {
   }, []);
 
   return (
-    <Container fluid="sm" className="page-container">
+    <Container fluid className="page-container">
       <Row>
         <Col sm={12}>
       <div className="content-wrap">

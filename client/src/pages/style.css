@@ -166,6 +166,7 @@
 }
 .checkbox{
     display: inline;
+    margin-left: 1vw;
 }
 /* RULES PAGE */
 .rules-card-1{
