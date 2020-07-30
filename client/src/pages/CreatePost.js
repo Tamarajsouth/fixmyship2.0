@@ -110,16 +110,13 @@ function CreatePost() {
       <Card.Body>
         <form>
           <Form.Control
+            className="create-post-form"
             onChange={handleInputChange}
             name="title"
             placeholder="Title"
           />
-          {/* <Form.Control
-            onChange={handleInputChange}
-            name="username"
-            placeholder="Author (required)"
-          /> */}
           <Form.Control
+            className="checkbox"
             as="textarea"
             onChange={handleInputChange}
             name="body"

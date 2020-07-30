@@ -166,8 +166,10 @@
 }
 .checkbox{
     display: inline;
-    
+    background-color: white;
+    border: none;
 }
+
 /* RULES PAGE */
 .rules-card-1{
     width:75%;
