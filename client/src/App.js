@@ -8,6 +8,7 @@ import Footer from "./components/Footer";
 import Rules from "./pages/Rules";
 import CommunityPosts from "./pages/CommunityPosts";
 import CreatePost from "./pages/CreatePost";
+import { Container, Col, Row } from 'react-bootstrap';
 
 import * as API from "./utils/API";
 import AuthService from "./utils/auth";
@@ -45,7 +46,9 @@ function App() {
   }, []);
 
   return (
-    <div className="page-container">
+    <Container fluid="sm" className="page-container">
+      <Row>
+        <Col sm={12}>
       <div className="content-wrap">
         <Router>
           <>
@@ -71,8 +74,11 @@ function App() {
           </>
         </Router>
       </div>
+      </Col>
+      </Row>
+      <div className="footer-push"></div>
       <Footer />
-    </div>
+    </Container>
   );
 }
 

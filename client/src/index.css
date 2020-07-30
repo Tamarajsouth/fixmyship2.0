@@ -6,10 +6,14 @@ body {
   flex-direction: column;
   min-height: 100vh;
   /* overflow: auto; */
+  padding-top: 3vh;
 }
 .content-wrap{
   flex: 1;
   overflow: auto;
+}
+.footer-push{
+height: 100px;
 }
 
 /* h1,

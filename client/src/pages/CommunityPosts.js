@@ -38,6 +38,7 @@ function CommunityPosts() {
 
   const [postArticles, setPostArticles] = useState([]);
   const [commentArray, setcommentArray] = useState([]);
+  const [filteredComments, setFilteredComments] = useState([]);
   const [sort, setSort] = useState(["no posts: click on a category to view posts"]); //this sets the description of the posts the user is viewing
   const [visibleArticles, setVisibleArticles] = useState([]);
 
@@ -94,8 +95,6 @@ function CommunityPosts() {
 
         if (comments.length) {
           setcommentArray([...commentArray, ...comments]);
-          console.log("comment array");
-          console.log(commentArray);  //this is not showing up!
         }
         //change this to setposts
         // Line 40:5:  React Hook useEffect has a missing dependency: 'userInfo'. Either include it or remove the dependency array
@@ -105,21 +104,17 @@ function CommunityPosts() {
 
   }, []); //end useEffect
 
-  //modal function:
-  function ifComments() {
-    console.log("test");
-    return(<p>test</p>)
-  }
 
-  function openComment() {
+
+
+  function openComment(myid) {
+  // const openComment = () => {
+    //prevent default?
     console.log("modal should open");
-
-    return (
-
-      <p>Comments will be here</p>
-
-    );
-
+    console.log(myid)
+    //post._id needs to get passed in to this funciton somehow
+    const sortedComments = commentArray.filter(c => c.post === myid);
+    setFilteredComments(commentArray.contains)
   }
 
   function sortAll() {
@@ -161,10 +156,13 @@ function CommunityPosts() {
     const sortedPosts = postArticles.filter(x => x.tags.includes("justfriends"));
     setSort("just friends posts");
     setVisibleArticles([...sortedPosts]);
+    console.log(commentArray);
   }
 
 
-
+function noComments(){
+console.log("COmments are not yet implemented");
+}
 
 
 
@@ -187,60 +185,83 @@ function CommunityPosts() {
   return (
     <>
       <Jumbotron fluid className="text-dark bg-light">
-        <Container>
+        {/* <Container> */}
           <h1 className='viewing-posts'><i className="fas fa-anchor"></i>  Viewing Community Posts!  <i className="fas fa-anchor"></i></h1>
           <p className='user-instructions'> viewing all posts </p>
-        <ButtonGroup className="cat-btn-group">
-          <button className="cat-btn" onClick={sortAll}>View All</button>
-          <button className="cat-btn" onClick={sortByDating}>Dating</button>
-          <button className="cat-btn" onClick={sortByBreakup}>Breakup</button>
-          <button className="cat-btn" onClick={sortByMarriage}>Marriage</button>
-          <button className="cat-btn" onClick={sortBylgbtq}>LGBTQ+</button>
-          <button className="cat-btn" onClick={sortByWomen}>Women</button>
-          <button className="cat-btn" onClick={sortByMen}>Men</button>
-          <button className="cat-btn" onClick={sortByJustFriends}>Just Friends</button>
+          <ButtonGroup className="cat-btn-group">
+            <button className="cat-btn" onClick={sortAll}>View All</button>
+            <button className="cat-btn" onClick={sortByDating}>Dating</button>
+            <button className="cat-btn" onClick={sortByBreakup}>Breakup</button>
+            <button className="cat-btn" onClick={sortByMarriage}>Marriage</button>
+            <button className="cat-btn" onClick={sortBylgbtq}>LGBTQ+</button>
+            <button className="cat-btn" onClick={sortByWomen}>Women</button>
+            <button className="cat-btn" onClick={sortByMen}>Men</button>
+            <button className="cat-btn" onClick={sortByJustFriends}>Just Friends</button>
           </ButtonGroup>
-          
 
 
-        </Container>
+
+        {/* </Container> */}
       </Jumbotron>
-      <Container>
+      {/* <Container> */}
         <Card>
           {/*  change this to map a "visibleArticles" - but after tamara gives us the last push*/}
           {visibleArticles.map((post) => {
             // console.log('THIS IS THE POST!! --> ', post)
             const { _id } = post
             return (
-              <Card key={_id}>
-                <Card.Body className="post-card" key={post._id} border="dark">
-                </Card.Body>
+              <>
+                <Card key={_id}>
+                  <Card.Body className="post-card" key={post._id} border="dark">
+                  </Card.Body>
 
-                <Card.Title>Title: {post.title}</Card.Title>
-                <p className='username'>Posted by:{post.username}</p>
-                <Card.Text>{post.body}</Card.Text>
-                <ButtonGroup className="btn-group">
-                  <Button
-                    disabled={userData.savedPosts?.some((savedPost) => savedPost._id === post._id)}
-                    className='heart-btn btn-block btn-info'
-                    variant="secondary" size="sm"
-                    onClick={() => handleSavePost(post._id)}>
-                    {userData.savedPosts?.some((savedPost) => savedPost._id === post._id)
-                      ? 'This pook has already been saved!'
-                      : 'Save this post!'}
-                    {/* // className="heart-btn" variant="secondary" size="sm" onClick={()=> handleSavePost}> */}
-                    {/* //   <i class="fas fa-heart"></i> */}
-                  </Button>
-                  <Button className="comment-btn" variant="secondary" size="sm" onClick={openComment}><i className="fas fa-comment-dots"></i>
-                  </Button>
-                </ButtonGroup>
-                <br></br>
-              </Card>
-              // {ifComments()}
+                  <Card.Title>Title: {post.title}</Card.Title>
+                  <p className='username'>Posted by:{post.username}</p>
+                  <Card.Text>{post.body}</Card.Text>
+                  <ButtonGroup className="btn-group">
+                    <Button
+                      disabled={userData.savedPosts?.some((savedPost) => savedPost._id === post._id)}
+                      className='heart-btn btn-block btn-info'
+                      variant="secondary" size="sm"
+                      onClick={() => handleSavePost(post._id)}>
+                      {userData.savedPosts?.some((savedPost) => savedPost._id === post._id)
+                        ? 'This pook has already been saved!'
+                        : 'Save this post!'}
+                      {/* // className="heart-btn" variant="secondary" size="sm" onClick={()=> handleSavePost}> */}
+                      {/* //   <i class="fas fa-heart"></i> */}
+                    </Button>
+                    <Button className="comment-btn" variant="secondary" size="sm" onClick={() => noComments}><i className="fas fa-comment-dots"></i>
+                    </Button>
+                  </ButtonGroup>
+                  <br></br>
+
+                </Card>
+
+                {/* THIS IS COMMENTS
+
+                {filteredComments.map((thisComment) => {
+                  return (
+                    <Card key={thisComment._id}> 
+                      <Card.Body className="post-card" border="dark">
+                      </Card.Body>
+                      <p className='username'>Posted by:{post.username}</p>
+                      <Card.Text>{thisComment.body}</Card.Text>
+
+
+                      <br></br>
+
+                    </Card>
+ 
+
+                  )
+                })}
+*/}
+              </>
+
             );
           })}
         </Card>
-      </Container>
+      {/* </Container> */}
     </>
   );
 }
